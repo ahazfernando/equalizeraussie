@@ -1,15 +1,10 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const models = [
@@ -18,151 +13,200 @@ const models = [
     name: "Cruzer",
     route: "/models/cruzer",
     image: "/caravan/CruzerCaravan.png",
-    logo: "/caravanlogos/CruzerLogo.png",
-    description: "Perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style.",
-    accentColor: "from-cyan-400/40 to-teal-600/20",
-    hoverColor: "hover:from-cyan-500/50 hover:to-teal-700/30",
-    buttonHover: "hover:bg-cyan-600 hover:text-white hover:shadow-cyan-500/50",
-    borderHover: "group-hover:border-cyan-500 group-hover:shadow-cyan-500/40",
+    logo: "/header/cruzerlogo.png",
+    description: "Perfect On Road Model",
   },
   {
     id: "rebel",
     name: "Rebel",
     route: "/models/rebel",
     image: "/caravan/RebelCaravan.png",
-    logo: "/caravanlogos/RebelLogo.png",
-    description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style",
-    accentColor: "from-orange-400/40 to-amber-600/20",
-    hoverColor: "hover:from-orange-500/50 hover:to-amber-700/30",
-    buttonHover: "hover:bg-orange-600 hover:text-white hover:shadow-orange-500/50",
-    borderHover: "group-hover:border-orange-500 group-hover:shadow-orange-500/40",
+    logo: "/header/rebelloogo.png",
+    description: "Semi Offroad Model",
   },
   {
     id: "rogue",
     name: "Rogue",
     route: "/models/rogue",
     image: "/caravan/RogueCaravan.png",
-    logo: "/caravanlogos/RogueLogo.png",
-    description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
-    accentColor: "from-emerald-400/40 to-green-700/20",
-    hoverColor: "hover:from-emerald-500/50 hover:to-green-800/30",
-    buttonHover: "hover:bg-emerald-600 hover:text-white hover:shadow-emerald-500/50",
-    borderHover: "group-hover:border-emerald-500 group-hover:shadow-emerald-500/40",
+    logo: "/header/rogurelogo.png",
+    description: "Off Road Model",
   },
 ];
 
 export function ModelSelector() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const activeModel = models[activeIndex];
+  const prevModel = models[activeIndex > 0 ? activeIndex - 1 : models.length - 1];
+  const nextModel = models[activeIndex < models.length - 1 ? activeIndex + 1 : 0];
+
+  const goToNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveIndex((prev) => (prev + 1) % models.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const goToPrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveIndex((prev) => (prev - 1 + models.length) % models.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
   return (
-    <section className="section-padding bg-gradient-to-b from-background via-background to-muted/40 relative overflow-hidden">
-      {/* Vibrant decorative background blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-red-100 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 right-1/3 w-[600px] h-[600px] bg-red-100 rounded-full blur-3xl animate-pulse delay-700" />
-        <div className="absolute bottom-0 left-1/3 w-[700px] h-[700px] bg-red-100 rounded-full blur-3xl animate-pulse delay-1000" />
+    <section className="relative w-full bg-black min-h-screen flex flex-col overflow-hidden -mt-24 pt-24">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center">
+        <div className="inline-block mb-6">
+          <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-red-600/10 border border-red-600/30 text-red-500 text-base font-semibold">
+            <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
+            Explore Our Models
+          </span>
+        </div>
+        <h2 className="font-heading text-5xl sm:text-6xl -mb-10 font-semibold">
+          Choose Your{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
+            Caravan
+          </span>
+        </h2>
       </div>
+    </div>
+      {/* Background model images overlay for ambient effect */ }
+  <div className="absolute inset-0 z-0 opacity-10">
+    <div className="absolute top-20 left-0 w-1/3 h-1/3">
+      <img
+        src={activeModel.image}
+        alt=""
+        className="w-full h-full object-cover blur-3xl"
+      />
+    </div>
+    <div className="absolute top-40 right-0 w-1/4 h-1/4">
+      <img
+        src={activeModel.image}
+        alt=""
+        className="w-full h-full object-cover blur-3xl"
+      />
+    </div>
+  </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 animate-fade-up">
-          <div className="inline-block mb-6">
-            <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-100 to-red-200 border border-red-500 text-red-500 dark:text-red-400 text-base font-semibold shadow-lg">
-              <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-              Explore Our Models
-            </span>
-          </div>
-          <h2 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold text-foreground mb-8 leading-tight">
-            CHOOSE YOUR{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 relative inline-block">
-              CARAVAN
-              <span className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-red-500/50 to-red-600/50 blur-xl" />
-            </span>
-          </h2>
-          <p className="text-muted-foreground max-w-4xl mx-auto text-xl sm:text-2xl leading-relaxed font-medium">
-            As a customisation expert we cater for everyone's needs, whether it's
-            tackling the Gibb River Road, heading to the Cape or going on that Christmas
-            holiday at the caravan park.
-          </p>
+  {/* Hero Carousel Container */ }
+  <div className="relative flex-1 flex items-center justify-center pt-2 pb-20 z-10">
+    {/* Navigation Arrows */}
+    <button
+      onClick={goToPrev}
+      className="absolute left-4 md:left-8 z-30 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 hover:scale-110 shadow-lg backdrop-blur-sm"
+      aria-label="Previous model"
+    >
+      <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+    </button>
+
+    <button
+      onClick={goToNext}
+      className="absolute right-4 md:right-8 z-30 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 hover:scale-110 shadow-lg backdrop-blur-sm"
+      aria-label="Next model"
+    >
+      <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+    </button>
+
+    {/* Carousel Content */}
+    <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-12">
+      <div className="relative flex items-center justify-center min-h-[500px] md:min-h-[550px] lg:min-h-[600px]">
+
+        {/* Previous Model Visual (Left side) */}
+        <div className="absolute left-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] -translate-x-1/2">
+          <img
+            src={prevModel.image}
+            alt={prevModel.name}
+            className="w-[400px] h-[300px] object-contain"
+          />
         </div>
 
-        <div className="relative perspective-1000">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-              slidesToScroll: 1,
-            }}
-            className="w-full"
+        {/* Active Model (Center) */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeModel.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.5, ease: "circOut" }}
+            className="relative z-20 flex flex-col items-center w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-6">
-              {models.map((model, index) => (
-                <CarouselItem
-                  key={model.id}
-                  className="pl-4 md:pl-6 basis-full md:basis-1/2 lg:basis-1/3"
-                >
-                  <Link href={model.route} className="group block h-full">
-                    <div className={`h-full relative overflow-hidden rounded-3xl transition-all duration-700 ease-out bg-background/95 cursor-pointer backdrop-blur-xl border border-border`}>
-                      {/* Bold gradient overlay on hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${model.accentColor} ${model.hoverColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 rounded-3xl`} />
+            {/* Model Logo */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="relative w-40 md:w-56 lg:w-72 xl:w-80 h-20 md:h-28 lg:h-36 xl:h-40"
+            >
+              <Image
+                src={activeModel.logo}
+                alt={`${activeModel.name} Logo`}
+                fill
+                className="object-contain"
+                priority
+              />
+            </motion.div>
 
-                      {/* Content */}
-                      <div className="relative z-20 h-full flex flex-col">
-                        {/* Image with dramatic effects */}
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-t-3xl">
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-                          <Image
-                            src={model.image}
-                            alt={`${model.name} Caravan`}
-                            fill
-                            className="object-contain p-6 md:p-12 group-hover:scale-115 transition-transform duration-1000 ease-out"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            priority={index === 0}
-                          />
-                          {/* Intense shine sweep */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out" />
-                        </div>
+            {/* Tagline */}
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-lg md:text-xl lg:text-4xl font-bold text-white uppercase tracking-widest text-center px-4 -mt-8"
+            >
+              {activeModel.description}
+            </motion.h2>
 
-                        {/* Lower content */}
-                        <div className="p-8 md:p-10 space-y-6 bg-gradient-to-t from-background to-background/90">
-                          <div className="relative h-20 w-full transform group-hover:scale-110 transition-transform duration-700 drop-shadow-xl">
-                            <Image
-                              src={model.logo}
-                              alt={`${model.name} Logo`}
-                              fill
-                              className="object-contain object-left"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            />
-                          </div>
+            {/* Main Model Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 50 }}
+              className="relative w-full max-w-4xl xl:max-w-5xl h-[320px] md:h-[380px] lg:h-[400px] xl:h-[400px] mt-4"
+            >
+              <img
+                src={activeModel.image}
+                alt={activeModel.name}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
-                          <textarea
-                            className="w-full bg-transparent text-muted-foreground text-base md:text-lg leading-relaxed group-hover:text-foreground transition-colors duration-700 resize-none"
-                            rows={5}
-                            readOnly
-                            defaultValue={model.description}
-                          />
-
-                          <div className="pt-4 opacity-0 group-hover:opacity-100 transform translate-y-6 group-hover:translate-y-0 transition-all duration-700 delay-200">
-                            <Button
-                              size="lg"
-                              className={`w-full justify-between font-semibold shadow-lg ${model.buttonHover} transition-all duration-500`}
-                            >
-                              <span>Explore {model.name}</span>
-                              <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Glowing border effect */}
-                      <div className={`absolute inset-0 rounded-3xl border-2 border-transparent ${model.borderHover} opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none shadow-2xl`} />
-                    </div>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-4 md:-left-4 h-14 w-14 rounded-full bg-background/95 backdrop-blur-xl border-4 border-border hover:bg-red-500/20 hover:border-red-500 hover:scale-110 transition-all duration-500 shadow-2xl" />
-            <CarouselNext className="right-4 md:-right-4 h-14 w-14 rounded-full bg-background/95 backdrop-blur-xl border-4 border-border hover:bg-red-500/20 hover:border-red-500 hover:scale-110 transition-all duration-500 shadow-2xl" />
-          </Carousel>
+        {/* Next Model Visual (Right side) */}
+        <div className="absolute right-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] translate-x-1/2">
+          <img
+            src={nextModel.image}
+            alt={nextModel.name}
+            className="w-[400px] h-[300px] object-contain"
+          />
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+
+  {/* Call to Actions */ }
+  <div className="absolute bottom-12 md:bottom-16 lg:bottom-20 left-0 right-0 z-30 flex justify-center items-center px-4">
+    <motion.div
+      key={`btn-${activeModel.id}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6 }}
+    >
+      <Button
+        asChild
+        className="bg-accent hover:bg-accent/90 text-foreground px-8 py-6 text-base font-bold rounded-full min-w-[200px] transition-transform"
+      >
+        <Link href={`/caravans/${activeModel.id}`}>
+          Explore The {activeModel.name}
+          <ChevronRight className="w-5 h-5" />
+        </Link>
+      </Button>
+    </motion.div>
+  </div>
+    </section >
   );
 }

@@ -42,21 +42,21 @@ const navigation = [
         {
           name: "Cruzer",
           href: "/models/cruzer",
-          logo: "/caravanlogos/CruzerLogo.png",
+          logo: "/header/cruzerlogo.png",
           heroImage: "/caravan/CruzerCaravan.png",
           description: "Experience ultimate luxury and comfort on the open road with our flagship Cruzer series.",
         },
         {
           name: "Rebel",
           href: "/models/rebel",
-          logo: "/caravanlogos/RebelLogo.png",
+          logo: "/header/rebelloogo.png",
           heroImage: "/caravan/RebelCaravan.png",
           description: "Built for the bold. The Rebel is designed for off-road adventures and rugged terrains.",
         },
         {
           name: "Rogue",
           href: "/models/rogue",
-          logo: "/caravanlogos/RogueLogo.png",
+          logo: "/header/rogurelogo.png",
           heroImage: "/caravan/RogueCaravan.png",
           description: "Versatile, compact, and ready for anything. The Rogue is your perfect travel companion.",
         },
@@ -125,7 +125,7 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1400px]">
-      <div className="bg-white/95 backdrop-blur-xl rounded-full border border-gray-200 shadow-lg px-4 md:px-6">
+      <div className="bg-white/95 backdrop-blur-xl rounded-full border border-gray-200 shadow-lg px-1 md:px-2">
         <div className="flex items-center h-16 relative">
           {/* Logo - Left Section */}
           <div className="flex-1 flex items-center">
@@ -142,7 +142,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation - Pill Style - Centered */}
-          <div className="hidden md:flex items-center gap-1 bg-gray-100/50 rounded-full p-1 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-2 bg-gray-100/50 rounded-full p-1 absolute left-1/2 -translate-x-1/2">
             {navigation.map((item) => {
               const active = checkActive(item);
 
@@ -156,7 +156,7 @@ export function Navbar() {
                   >
                     <DropdownMenuTrigger
                       className={cn(
-                        "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 outline-none",
+                        "flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 outline-none whitespace-nowrap",
                         active
                           ? "bg-white text-gray-900 shadow-sm"
                           : "text-gray-600 hover:text-gray-900"
@@ -292,7 +292,7 @@ export function Navbar() {
                   key={item.name}
                   href={item.href || "#"}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                    "px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap",
                     active
                       ? "bg-white text-gray-900 shadow-sm"
                       : "text-gray-600 hover:text-gray-900"

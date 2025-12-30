@@ -1,8 +1,6 @@
 "use client";
-
-import { useState, useMemo, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { useState, useMemo } from "react";
+import { caravans, Caravan } from "@/data/caravans";
 import { CaravanCard } from "@/components/caravans/CaravanCard";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Caravan } from "@/types/caravan"; // ← Use the shared full type
 
 const seriesOptions = ["All Series", "Explorer", "Outback", "Horizon", "Summit", "Compact"];
 const berthOptions = ["All Berths", "2", "4"];
@@ -31,34 +28,12 @@ export default function Caravans() {
   const [berth, setBerth] = useState("All Berths");
   const [sort, setSort] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
-  const [caravans, setCaravans] = useState<Caravan[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchCaravans = async () => {
-      setLoading(true);
-      try {
-        const snapshot = await getDocs(collection(db, "caravans"));
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Caravan[];
-
-        // Only show available caravans
-        const available = data.filter((c) => c.available !== false);
-        setCaravans(available);
-      } catch (error) {
-        console.error("Error fetching caravans:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCaravans();
-  }, []);
+  // Use static data instead of fetching from Firebase
+  const staticCaravans = caravans.filter((c) => c.available !== false);
 
   const filteredCaravans = useMemo(() => {
-    let result = [...caravans];
+    let result = [...staticCaravans];
 
     if (search) {
       const searchLower = search.toLowerCase();
@@ -98,7 +73,7 @@ export default function Caravans() {
     }
 
     return result;
-  }, [caravans, search, series, berth, sort]);
+  }, [search, series, berth, sort]);
 
   const clearFilters = () => {
     setSearch("");
@@ -112,23 +87,45 @@ export default function Caravans() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-secondary/30 py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-background py-20 -mt-24 pt-24">
+        {/* Video Background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/videos/caravans-hero.mp4" type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-background" />
+
+        {/* Content */}
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-accent font-medium mb-2">Our Range</p>
-            <h1 className="font-heading text-4xl sm:text-5xl font-bold text-foreground mb-4">
+            <div className="inline-block mb-6">
+              <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-white/15 to-white/5 border border-white/30 backdrop-blur-sm shadow-lg shadow-accent/10 group text-white text-base font-semibold cursor-pointer">
+                <span className="w-3 h-3 rounded-full bg-foreground animate-ping" />
+                Our Ranges
+              </span>
+            </div>
+            <h2 className="font-heading text-5xl sm:text-6xl lg:text-6xl font-extrabold leading-[1.1] mb-8 text-foreground">
               Find Your Perfect Caravan
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              From compact tourers to luxury family vans, discover the Equalizer RV
-              that matches your adventure style.
+            </h2>
+            <p className="text-muted-foreground text-md sm:text-lg leading-relaxed max-w-4xl mx-auto font-light mb-5">
+              From compact tourers to luxury family vans, discover the Equalizer RV that matches your adventure style.
             </p>
           </div>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="py-8 border-b border-border top-20 bg-background/95 backdrop-blur-md z-40">
+      <section className="py-8 border-b-2 border-border top-20 bg-background backdrop-blur-md z-40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
             <div className="relative w-full lg:w-80">
@@ -161,7 +158,7 @@ export default function Caravans() {
                 <SelectTrigger className="w-full lg:w-40">
                   <SelectValue placeholder="Series" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card text-foreground">
                   {seriesOptions.map((option) => (
                     <SelectItem key={option} value={option}>
                       {option}
@@ -174,7 +171,7 @@ export default function Caravans() {
                 <SelectTrigger className="w-full lg:w-32">
                   <SelectValue placeholder="Berth" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card text-foreground">
                   {berthOptions.map((option) => (
                     <SelectItem key={option} value={option}>
                       {option === "All Berths" ? option : `${option} Berth`}
@@ -187,7 +184,7 @@ export default function Caravans() {
                 <SelectTrigger className="w-full lg:w-44">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card text-foreground">
                   {sortOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
@@ -210,40 +207,17 @@ export default function Caravans() {
       {/* Results */}
       <section className="section-padding">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => (
-                <Skeleton key={i} className="h-96 w-full rounded-xl" />
-              ))}
-            </div>
-          ) : (
-            <>
-              {filteredCaravans.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredCaravans.map((caravan, index) => (
-                    <div
-                      key={caravan.id}
-                      className="animate-fade-up"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <CaravanCard caravan={caravan} />
-                    </div>
-                  ))}
-
-                  
-                </div>
-              ) : (
-                <div className="text-center py-16">
-                  <p className="text-xl text-muted-foreground mb-4">
-                    No caravans match your filters
-                  </p>
-                  <Button variant="outline" onClick={clearFilters}>
-                    Clear Filters
-                  </Button>
-                </div>
-              )}
-            </>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCaravans.map((caravan, index) => (
+              <div
+                key={caravan.id}
+                className="animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CaravanCard caravan={caravan} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
