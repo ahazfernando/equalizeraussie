@@ -1,6 +1,6 @@
-import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import Newsletter from "./Newsletter";
+import ResponsiveNav from "./Navbar/ResponsiveNav";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,8 +9,8 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1 pt-20">{children}</main>
+      <ResponsiveNav />
+      <main className="flex-1 pt-24">{children}</main>
       <Newsletter />
       <Footer />
     </div>
