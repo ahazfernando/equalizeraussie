@@ -102,92 +102,152 @@ const imageVariants = {
 export default function About() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-black py-20 overflow-hidden">
-        {/* Decorative Background Element */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 -skew-x-12 translate-x-1/2 -z-10" />
-
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
+      {/* Hero Section - Modern Professional Design */}
+      <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden -mt-24 pt-24">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
           >
-            {/* Left Column: Content */}
-            <div className="lg:col-span-7">
-              <motion.div className="inline-block mb-8">
-                <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 group text-red-500 dark:text-red-400 text-base font-semibold cursor-pointer">
-                  <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-                  About Us
-                </span>
-              </motion.div>
-
-              <motion.h2
-
-                className="font-heading text-3xl md:text-7xl font-bold tracking-tight leading-[1] mb-8 text-foreground"
-              >
-                Australian Engineered.<br />
-                <span className="text-muted-foreground/60">Adventure Approved.</span>
-              </motion.h2>
-
-              <motion.div className="space-y-6 max-w-2xl">
-                <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                  Welcome to <span className="text-foreground font-normal">Equalizer RV</span>, where we turn the dream of endless adventure into reality. As a proudly Australian company, we craft caravans tailored to every adventurer’s needs.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
-                  <div className="border border-border p-4 rounded-2xl hover:border-accent/50 cursor-pointer">
-                    <h4 className="font-bold text-foreground mb-2">100% Aussie Made</h4>
-                    <p className="text-sm text-muted-foreground">Constructed with the finest materials to withstand the rugged beauty of our country.</p>
-                  </div>
-                  <div className="border border-border p-4 rounded-2xl hover:border-accent/50 cursor-pointer">
-                    <h4 className="font-bold text-foreground mb-2">Every Terrain</h4>
-                    <p className="text-sm text-muted-foreground">From on-road touring models to full off-road beasts designed for the ultimate adventure.</p>
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground leading-relaxed font-light">
-                  Discover the joy of the open road with Equalizer RV—where your adventure begins, and memories are made.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Visual/Video */}
-            <motion.div
-
-              className="lg:col-span-5 relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
-                {/* Replace 'hero-video.mp4' with your actual file name in /public */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover scale-105"
-                >
-                  <source src="/videos/about-hero.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-
-                {/* Small Floating Card */}
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-xl rounded-xl border border-white/20">
-                  <p className="text-white text-sm font-medium italic">
-                    Built for the rugged beauty of the Australian Outback.
-                  </p>
-                </div>
-              </div>
-
-              {/* Background Accent for the image */}
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-red-500/10 rounded-full blur-3xl -z-10" />
-            </motion.div>
-          </motion.div>
+            <source src="/videos/about-hero.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Sophisticated Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+          
+          {/* Subtle Animated Gradient Overlay */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5"
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
+
+        {/* Content Container */}
+        <div className="container mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8 relative z-10">
+          <div className="max-w-7xl">
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
+              {/* Left Column: Content starting from column 0 */}
+              <div className="lg:col-start-1 lg:col-span-7 space-y-8">
+                {/* Main Heading with Enhanced Typography */}
+                <motion.div variants={itemVariants} className="space-y-6">
+                  <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.95] text-white">
+                    <span className="block">Australian</span>
+                    <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
+                      Engineered.
+                    </span>
+                    <span className="block text-white/70 mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">
+                      Adventure Approved.
+                    </span>
+                  </h1>
+                </motion.div>
+
+                {/* Description with Better Typography */}
+                <motion.div variants={itemVariants} className="space-y-6 max-w-2xl">
+                  {/* Feature Cards - Modern Design */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -4 }}
+                      className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 cursor-pointer overflow-hidden"
+                    >
+                      {/* Shimmer Effect */}
+                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                      
+                      <div className="relative">
+                        <h4 className="font-heading font-bold text-white mb-2 text-lg">100% Aussie Made</h4>
+                        <p className="text-sm text-white/70 leading-relaxed">
+                          Constructed with the finest materials to withstand the rugged beauty of our country.
+                        </p>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -4 }}
+                      className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 cursor-pointer overflow-hidden"
+                    >
+                      {/* Shimmer Effect */}
+                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                      
+                      <div className="relative">
+                        <h4 className="font-heading font-bold text-white mb-2 text-lg">Every Terrain</h4>
+                        <p className="text-sm text-white/70 leading-relaxed">
+                          From on-road touring models to full off-road beasts designed for the ultimate adventure.
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <p className="text-base sm:text-lg text-white/80 leading-relaxed font-light pt-2">
+                    Discover the joy of the open road with Equalizer RV—where your adventure begins, and memories are made.
+                  </p>
+                </motion.div>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  variants={itemVariants}
+                  className="flex flex-col sm:flex-row gap-4 pt-4"
+                >
+                  <Link href="/caravans">
+                    <Button
+                      size="lg"
+                      className="group w-full sm:w-auto h-14 px-8 rounded-full bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent text-white font-semibold shadow-2xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 border-2 border-accent/50"
+                    >
+                      Explore Our Models
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full sm:w-auto h-14 px-8 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 hover:border-white/40 text-white font-semibold transition-all duration-300"
+                    >
+                      Get in Touch
+                    </Button>
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:block"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
+          >
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 rounded-full bg-white/60"
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* 
