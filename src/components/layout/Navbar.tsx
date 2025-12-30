@@ -128,7 +128,7 @@ export function Navbar() {
       <div className="bg-white/95 backdrop-blur-xl rounded-full border border-gray-200 shadow-lg px-1 md:px-2">
         <div className="flex items-center h-16 relative">
           {/* Logo - Left Section */}
-          <div className="flex-1 flex items-center">
+          <div className="flex-1 flex items-center pl-4 md:pl-6">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/logo/Equalizerblack.png"
@@ -305,7 +305,7 @@ export function Navbar() {
           </div>
 
           {/* CTA Button - Right Section */}
-          <div className="flex-1 flex items-center justify-end">
+          <div className="flex-1 flex items-center justify-end pr-4 md:pr-6">
             <Link
               href="/contact"
               className="hidden md:block bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"

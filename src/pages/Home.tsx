@@ -127,7 +127,7 @@ export default function Home() {
         </video>
         
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
 
         {/* Content Container */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,10 +162,7 @@ export default function Home() {
                   transition={{ delay: 0.3 }}
                   className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight"
                 >
-                  Benefits of{" "}
-                  <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                    Equalizer RV
-                  </span>
+                  Benefits of Equalizer RV
                 </motion.h2>
                 
                 <motion.p
@@ -262,11 +259,106 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Connect with Experts Section */}
+      <section className="relative py-20 lg:py-32 bg-black overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
+            {/* Left Side - Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-8 z-10"
+            >
+              {/* Top CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <Link href="/dealers">
+                  <Button
+                    variant="outline"
+                    className="border-2 border-white/20 bg-transparent hover:bg-white/10 text-white rounded-full px-6 py-3 font-medium transition-all duration-300"
+                  >
+                    Start your journey
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight"
+              >
+                Connect with Experts <br />and Find Your Perfect Caravan
+              </motion.h2>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl"
+              >
+                Join thousands of adventurers across Australia who are discovering their dream caravans with guidance from our authorized dealer.
+              </motion.p>
+
+              {/* Bottom CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="pt-4"
+              >
+                <Link href="/dealers">
+                  <Button
+                    size="lg"
+                    className="bg-white hover:bg-white/90 text-black rounded-full px-8 py-6 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                  >
+                    Explore our Options
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Side - Caravan Image - Extended beyond container */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="relative lg:absolute lg:-right-[12vw] xl:-right-[18vw] lg:top-[5%] lg:-translate-y-1/2 w-full lg:w-[70vw] xl:w-[65vw] flex items-center justify-center lg:justify-end"
+            >
+              <div className="relative w-full max-w-none lg:max-w-[1400px] flex items-center">
+                <Image
+                  src="/images/taskcaravanv.png"
+                  alt="Equalizer RV Caravan"
+                  width={1600}
+                  height={1200}
+                  className="w-full h-auto object-contain drop-shadow-2xl scale-110 lg:scale-100"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
 {/* Premium Split Layout Section */}
       <section className="py-20 lg:py-32 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title Section - Above both columns */}
-          <div className="mb-12 lg:mb-16 max-w-5xl">
+          <div className="mb-12 lg:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -278,18 +370,35 @@ export default function Home() {
                 OUR STORY
               </span>
             </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight"
-            >
-              Where Adventure Meets<br />
-              <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                luxury and Exotic Comfort
-              </span>
-            </motion.h2>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.4] tracking-tight"
+              >
+                Where Adventure Meets<br />
+                <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
+                  luxury and Exotic Comfort
+                </span>
+              </motion.h2>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="space-y-4"
+              >
+                <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
+                  Adventure-ready strength meets refined family comfort in every Equalizer RV. Thoughtfully built, down to the finest detail.
+                </p>
+                <Link href="/caravans" className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors font-medium">
+                  View more
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
@@ -356,7 +465,7 @@ export default function Home() {
               >
                 <div className="relative aspect-[16/9] overflow-hidden rounded-3xl">
                   <Image
-                    src="/images/caravan-lifestyle-2.jpg"
+                    src="/images/1e20ef54f236dbbb0ef0a201e1426adb.jpg"
                     alt="Luxury caravan experience"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110 rounded-3xl"
@@ -377,8 +486,7 @@ export default function Home() {
               >
                 <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light max-w-xl">
                   Discover the perfect blend of rugged capability and refined comfort. 
-                  Every Equalizer RV is crafted with meticulous attention to detail, 
-                  ensuring your adventures are as comfortable as they are unforgettable.
+                  Every Equalizer RV is crafted with meticulous attention to detail.
                 </p>
 
                 {/* CTA Button */}
