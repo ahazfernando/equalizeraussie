@@ -1,10 +1,10 @@
 import { Layout } from "@/components/layout/Layout";
-import ModelPageComponent from "@/pages/ModelPage";
+import RVDetail from "@/components/models/RVDetail";
 
 export default function RebelPage() {
   return (
     <Layout>
-      <ModelPageComponent modelId="rebel" />
+      <RVDetail modelId="rebel" />
     </Layout>
   );
 }

@@ -1,10 +1,10 @@
 import { Layout } from "@/components/layout/Layout";
-import ModelPageComponent from "@/pages/ModelPage";
+import RVDetail from "@/components/models/RVDetail";
 
 export default function RoguePage() {
   return (
     <Layout>
-      <ModelPageComponent modelId="rogue" />
+      <RVDetail modelId="rogue" />
     </Layout>
   );
 }

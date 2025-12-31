@@ -128,74 +128,82 @@ export default function ModelPage({ modelId }: ModelPageProps) {
     },
   };
 
+  // Get logo path based on model name
+  const getLogoPath = () => {
+    if (model.name === "Cruzer") return "/header/cruzerlogo.png";
+    if (model.name === "Rebel") return "/header/rebelloogo.png";
+    if (model.name === "Rogue") return "/header/rogurelogo.png";
+    return `/caravanlogos/${model.name}Logo.png`;
+  };
+
   return (
     <div className="mx-auto w-full">
-      {/* Hero Section: Content Left, Image Right (Floating) */}
-      <section className="relative bg-background min-h-[70vh] lg:h-[80vh] w-full overflow-hidden flex flex-col lg:block -mt-24 pt-24 mb-20">
-      
-      {/* 1. Content Area (Text & Logo) */}
-      <div className="container relative z-20 flex pt-10 lg:pt-0 lg:h-full items-center justify-center lg:justify-start">
-        <div className="max-w-5xl w-full text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: easeOut }}
-            viewport={{ once: true }}
-          >
-            {/* Tagline Badge */}
+      {/* Hero Section: Model Image Background with Logo Overlay */}
+      <section className="relative min-h-[70vh] lg:h-[85vh] w-full overflow-hidden -mt-24 pt-24">
+        {/* Background Image - Model Caravan */}
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+        >
+          <Image
+            src={`/caravan/${model.name}Caravan.png`}
+            alt={`${model.name} Caravan`}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+        </motion.div>
+
+        {/* Content Overlay */}
+        <div className="container relative z-10 h-full flex items-center justify-center lg:justify-start">
+          <div className="max-w-5xl w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: easeOut }}
-              className="inline-block"
+              transition={{ duration: 1, ease: easeOut }}
+              viewport={{ once: true }}
+              className="text-center lg:text-left"
             >
-              <span className="inline-flex items-center gap-3 px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-sm lg:text-base font-semibold">
-                <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-red-500 animate-ping" />
-                {model.tagline}
-              </span>
-            </motion.div>
+              {/* Tagline Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8, ease: easeOut }}
+                viewport={{ once: true }}
+                className="inline-block mb-6"
+              >
+                <span className="inline-flex items-center gap-3 px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gradient-to-r from-accent/20 via-accent/10 to-accent/5 border border-accent/40 backdrop-blur-md shadow-2xl shadow-accent/20 text-red-500 dark:text-red-400 text-sm lg:text-base font-semibold">
+                  <span className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-red-500 animate-ping" />
+                  {model.tagline}
+                </span>
+              </motion.div>
 
-            {/* Logo - Adjusted width for mobile/tablet */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: easeOut }}
-              className="relative w-64 h-24 md:w-80 md:h-32 lg:w-96 lg:h-40 mx-auto lg:mx-0 mt-6"
-            >
-              <Image
-                src={
-                  model.name === "Cruzer" ? "/header/cruzerlogo.png" :
-                  model.name === "Rebel" ? "/header/rebelloogo.png" :
-                  model.name === "Rogue" ? "/header/rogurelogo.png" :
-                  `/caravanlogos/${model.name}Logo.png`
-                }
-                alt={`${model.name} Logo`}
-                fill
-                className="object-contain object-center lg:object-left"
-              />
+              {/* Logo - Centered on mobile, left-aligned on desktop */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
+                viewport={{ once: true }}
+                className="relative w-64 h-24 md:w-80 md:h-32 lg:w-96 lg:h-40 mx-auto lg:mx-0"
+              >
+                <Image
+                  src={getLogoPath()}
+                  alt={`${model.name} Logo`}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
-      </div>
-
-      {/* 2. Image Area (The Caravan) */}
-      {/* Mobile/Tablet: Relative position (Below text) | Desktop: Absolute position (Right side) */}
-      <motion.div
-        className="relative lg:absolute inset-0 z-0 h-[40vh] md:h-[50vh] lg:h-full mt-10 lg:mt-0 lg:mr-20"
-        variants={floatVariants}
-        animate="float"
-      >
-        <Image
-          src={`/caravan/${model.name}Caravan.png`}
-          alt={`${model.name} Caravan`}
-          fill
-          className="object-contain object-center lg:object-right px-4 lg:px-0"
-          priority
-          sizes="100vw"
-        />
-      </motion.div>
-
-    </section>
+      </section>
 
       {/* Performance Highlights */}
       <section className="py-20 bg-background">

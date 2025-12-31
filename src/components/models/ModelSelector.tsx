@@ -200,7 +200,7 @@ export function ModelSelector() {
         asChild
         className="bg-accent hover:bg-accent/90 text-foreground px-8 py-6 text-base font-bold rounded-full min-w-[200px] transition-transform"
       >
-        <Link href={`/caravans/${activeModel.id}`}>
+        <Link href={activeModel.route}>
           Explore The {activeModel.name}
           <ChevronRight className="w-5 h-5" />
         </Link>

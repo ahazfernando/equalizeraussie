@@ -22,7 +22,17 @@ export default {
   				'sans-serif'
   			],
   			heading: [
-  				'Outfit',
+  				'Bebas Neue',
+  				'system-ui',
+  				'sans-serif'
+  			],
+  			display: [
+  				'Bebas Neue',
+  				'system-ui',
+  				'sans-serif'
+  			],
+  			body: [
+  				'DM Sans',
   				'system-ui',
   				'sans-serif'
   			]
@@ -31,11 +41,17 @@ export default {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			background: 'hsl(var(--background))',
+  			background: {
+  				DEFAULT: 'hsl(var(--background))',
+  				secondary: 'hsl(var(--background-secondary))',
+  				tertiary: 'hsl(var(--background-tertiary))'
+  			},
   			foreground: 'hsl(var(--foreground))',
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				foreground: 'hsl(var(--primary-foreground))',
+  				glow: 'hsl(var(--primary-glow))',
+  				dark: 'hsl(var(--primary-dark))'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
@@ -95,7 +111,7 @@ export default {
   			'3xl': '1.5rem'
   		},
   		boxShadow: {
-  			glow: '0 0 40px hsl(0 84% 60% / 0.2)'
+  			glow: '0 0 40px hsl(340 82% 52% / 0.2)'
   		},
   		keyframes: {
   			'accordion-down': {

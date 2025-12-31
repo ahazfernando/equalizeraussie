@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import ModelPageComponent from "@/pages/ModelPage";
+import RVDetail from "@/components/models/RVDetail";
 
 interface ModelPageProps {
   params: Promise<{ model: string }>;
@@ -10,7 +10,7 @@ export default async function ModelPage({ params }: ModelPageProps) {
   
   return (
     <Layout>
-      <ModelPageComponent modelId={model} />
+      <RVDetail modelId={model} />
     </Layout>
   );
 }
