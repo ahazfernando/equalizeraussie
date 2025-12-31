@@ -280,6 +280,98 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Proof Banner */}
+      <section className="py-16 bg-zinc-900">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Avatar Group + Text */}
+            <div className="flex items-center gap-6">
+              <div className="flex -space-x-3">
+                {['JT', 'MK', 'SR', 'LC', 'PW'].map((initials, index) => (
+                  <div
+                    key={index}
+                    className="w-12 h-12 rounded-full bg-primary/80 border-2 border-zinc-900 flex items-center justify-center text-primary-foreground text-sm font-medium"
+                  >
+                    {initials}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-xl font-bold text-white tracking-wide">JOIN 1,200+ ADVENTURERS</p>
+                <p className="text-muted-foreground">Who chose Equalizer RV for their journey</p>
+              </div>
+            </div>
+            
+            {/* Stats */}
+            <div className="flex items-center gap-8 lg:gap-12">
+              <div className="text-center">
+                <p className="text-3xl font-bold text-primary flex items-center gap-1 justify-center">
+                  4.9<Star className="w-5 h-5 fill-primary" />
+                </p>
+                <p className="text-muted-foreground text-sm">Google Reviews</p>
+              </div>
+              <div className="w-px h-12 bg-zinc-700" />
+              <div className="text-center">
+                <p className="text-3xl font-bold text-white">15+</p>
+                <p className="text-muted-foreground text-sm">Years in Business</p>
+              </div>
+              <div className="w-px h-12 bg-zinc-700" />
+              <div className="text-center">
+                <p className="text-3xl font-bold text-white">50M+</p>
+                <p className="text-muted-foreground text-sm">Km Travelled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lifestyle Split Section */}
+      <section className="relative min-h-[80vh] flex items-center">
+        <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative hidden lg:block">
+            <Image
+              src="/images/caravan-interior.jpg"
+              alt="Luxury caravan interior"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background" />
+          </div>
+          <div className="bg-background" />
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="lg:ml-auto lg:w-1/2 lg:pl-16">
+            <span className="text-primary text-sm font-medium tracking-wider uppercase">LIFESTYLE</span>
+            <h2 className="font-display text-4xl lg:text-5xl mt-2 mb-8 text-foreground italic">
+              MORE THAN<br />A CARAVAN
+            </h2>
+            <div className="space-y-6 mb-10">
+              {[
+                { title: 'Freedom', desc: 'Wake up wherever you choose. No bookings, no schedules. Your Equalizer RV is your ticket to unlimited adventures across Australia.' },
+                { title: 'Connection', desc: 'Quality time with family and friends, away from the daily grind. Create lasting memories in the comfort of your own mobile home.' },
+                { title: 'Discovery', desc: 'Explore hidden gems most tourists never find. From remote outback tracks to pristine coastal spots, your adventure awaits.' },
+              ].map((item) => (
+                <div key={item.title} className="flex gap-4 items-start">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-display text-xl text-foreground">{item.title}</h4>
+                    <p className="text-muted-foreground">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Link href="/caravans">
+              <Button size="lg" className="group bg-accent hover:bg-accent/90 text-foreground">
+                Find Your RV
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Recent Blogs Section */}
       <RecentBlogs />
     </>
