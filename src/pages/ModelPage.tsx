@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Check, DollarSign, Droplets, Ruler, SolarPanel } from "lucide-react";
+import { Check, DollarSign, Droplets, SolarPanel } from "lucide-react";
 import { motion, easeInOut, easeOut } from "framer-motion";
 import { SpecificationTabs } from "@/components/models/SpecificationTabs";
 import { PlansCoupleTabs } from "@/components/models/PlansCouple";
@@ -82,29 +82,39 @@ export default function ModelPage({ modelId }: ModelPageProps) {
     return parseInt(str.replace(/[^0-9]/g, "")) || 0;
   };
 
-  // Key specifications derived from model.variants - now all values are numbers
+  // Helper function to extract solar power from electrical specifications
+  const getSolarPower = (): number => {
+    const solarSpec = model.specifications.electrical.find(spec => 
+      spec.toLowerCase().includes("solar") || spec.toLowerCase().includes("w of")
+    );
+    return solarSpec ? extractNumber(solarSpec) : 0;
+  };
+
+  // Helper function to extract water capacity from plumbing specifications
+  const getWaterCapacity = (): number => {
+    const waterSpec = model.specifications.plumbing.find(spec => 
+      spec.toLowerCase().includes("water capacity") || spec.toLowerCase().includes("l of drinking")
+    );
+    return waterSpec ? extractNumber(waterSpec) : 0;
+  };
+
+  // Key specifications derived from model data
   const keySpecs = [
     {
-      label: "Length",
-      value: extractNumber(model.variants.length),
-      suffix: "ft",
-      icon: Ruler,
-    },
-    {
       label: "Solar Power",
-      value: extractNumber(model.variants.solar),
+      value: getSolarPower(),
       suffix: "W",
       icon: SolarPanel,
     },
     {
       label: "Water Capacity",
-      value: extractNumber(model.variants.water),
+      value: getWaterCapacity(),
       suffix: "L",
       icon: Droplets,
     },
     {
       label: "Price Starting",
-      value: extractNumber(model.variants.price),
+      value: model.priceValue,
       suffix: "$",
       icon: DollarSign,
     },
@@ -333,8 +343,8 @@ export default function ModelPage({ modelId }: ModelPageProps) {
                 <div className="relative aspect-[4/5] lg:aspect-[16/10] w-full rounded-xl overflow-hidden group">
                   {/* Background Image */}
                   <img
-                    src={feature.image[0]}
-                    alt={feature.label[0]}
+                    src={model.image}
+                    alt={feature}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
@@ -344,10 +354,10 @@ export default function ModelPage({ modelId }: ModelPageProps) {
                   {/* Content Overlay */}
                   <div className="absolute bottom-0 left-0 p-8 w-full text-foreground">
                     <h3 className="text-3xl font-heading font-bold mb-4">
-                      {feature.label[0]}
+                      {feature}
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl">
-                      {feature.description[0]}
+                      {model.tagline}
                     </p>
                   </div>
                 </div>

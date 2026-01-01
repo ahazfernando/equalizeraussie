@@ -1,24 +1,7 @@
-export interface Caravan {
-  id: string;
-  name: string;
-  series: string;
-  tagline: string;
-  price: number;
-  length: string;
-  berth: number;
-  tare: string;
-  atm: string;
-  features: string[];
-  description: string;
-  images: string[];
-  specs: {
-    category: string;
-    items: { label: string; value: string }[];
-  }[];
-  variants: { name: string; priceModifier: number }[];
-  available: boolean;
-  featured: boolean;
-}
+import { Caravan } from "@/types/caravan";
+
+// Re-export for backward compatibility
+export type { Caravan };
 
 export const caravans: Caravan[] = [
   {
