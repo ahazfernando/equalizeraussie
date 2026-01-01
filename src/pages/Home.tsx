@@ -160,13 +160,15 @@ export default function Home() {
       {/* Lifestyle Split Section */}
       <section className="py-0">
         <div className="grid lg:grid-cols-2 min-h-[600px]">
-          <div className="relative h-[400px] lg:h-auto">
+          <div className="relative h-[400px] lg:h-auto overflow-hidden">
             <Image 
               src="/images/caravan-interior.jpg" 
               alt="Luxury RV Interior" 
               fill
               className="object-cover"
             />
+            {/* Gradient overlay to blend with background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-background/40 to-background" />
           </div>
           <div className="bg-background flex items-center p-12 lg:p-20">
             <div className="max-w-lg">
