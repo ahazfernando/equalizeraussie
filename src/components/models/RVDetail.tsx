@@ -52,20 +52,54 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     return `/caravan/${model.name}Caravan.png`;
   };
 
-  // Prepare images array - start with main caravan image, then add feature images
+  // Prepare images array - start with main caravan image
   const caravanImage = getCaravanImagePath();
-  const featureImages = model.features.flatMap(feature => feature.image);
-  const images = [caravanImage, ...featureImages];
+  const images = [caravanImage];
 
   // Extract key specs
   const extractNumber = (str: string): number => {
     return parseInt(str.replace(/[^0-9]/g, "")) || 0;
   };
 
+  // Extract solar power from electrical specifications
+  const extractSolarPower = (): string => {
+    const solarSpec = model.specifications.electrical.find(spec => 
+      spec.toLowerCase().includes('solar') || spec.toLowerCase().includes('w of solar')
+    );
+    if (solarSpec) {
+      const match = solarSpec.match(/(\d+)W/);
+      return match ? `${match[1]}W` : "200W";
+    }
+    return "200W"; // Default fallback
+  };
+
+  // Extract water capacity from plumbing specifications
+  const extractWaterCapacity = (): string => {
+    const waterSpec = model.specifications.plumbing.find(spec => 
+      spec.toLowerCase().includes('water capacity') || spec.toLowerCase().includes('l of drinking')
+    );
+    if (waterSpec) {
+      const match = waterSpec.match(/(\d+)L/);
+      return match ? `${match[1]}L` : "190L";
+    }
+    return "190L"; // Default fallback
+  };
+
+  // Extract length from chassis specifications or use default
+  const extractLength = (): string => {
+    // Try to find length info in chassis specs, or use model-specific defaults
+    const lengthMap: Record<string, string> = {
+      "cruzer": "17-21ft",
+      "rebel": "19-23ft", 
+      "rogue": "20-24ft"
+    };
+    return lengthMap[model.id] || "17-24ft";
+  };
+
   const keySpecs = [
     { label: "Sleeps", value: "4", icon: Users },
-    { label: "Length", value: `${model.variants.length}ft`, icon: Ruler },
-    { label: "Solar", value: `${model.variants.solar}W`, icon: Weight },
+    { label: "Length", value: extractLength(), icon: Ruler },
+    { label: "Solar", value: extractSolarPower(), icon: Weight },
     { label: "Warranty", value: "5 Years", icon: Shield },
   ];
 
@@ -127,14 +161,14 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   };
 
   const getSpecifications = () => {
-    const solar = `${model.variants.solar}W`;
+    const solar = extractSolarPower();
     const battery = extractSpecValue(model.specifications.electrical, "battery") || "Not Specified";
-    const water = `${model.variants.water}L`;
+    const water = extractWaterCapacity();
     const inverter = extractSpecValue(model.specifications.electrical, "inverter") || "Not Specified";
     const suspension = extractSpecValue(model.specifications.chassis, "suspension") || "Not Specified";
     
     // Get custom features (first 5 features)
-    const customs = model.features.slice(0, 5).map(f => f.label[0]);
+    const customs = model.features.slice(0, 5).map(f => f[0]);
 
     return { solar, battery, water, inverter, suspension, customs };
   };
