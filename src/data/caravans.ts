@@ -19,7 +19,7 @@ export interface Caravan {
   available: boolean;
   featured: boolean;
 }
-{/*}
+
 export const caravans: Caravan[] = [
   {
     id: "explorer-21",
@@ -305,5 +305,3 @@ export const caravans: Caravan[] = [
 export const getFeaturedCaravans = () => caravans.filter(c => c.featured);
 export const getCaravanById = (id: string) => caravans.find(c => c.id === id);
 export const getCaravansBySeries = (series: string) => caravans.filter(c => c.series === series);
-
-*/}
