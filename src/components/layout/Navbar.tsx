@@ -310,7 +310,7 @@ export function Navbar() {
               href="/contact"
               className="hidden md:block bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Link>
           </div>
 
@@ -408,7 +408,7 @@ export function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="block bg-gray-900 text-white text-center py-3 px-4 rounded-xl font-medium mt-4"
               >
-                Let's Talk
+                Let&apos;s Talk
               </Link>
             </div>
           </motion.div>

@@ -64,7 +64,7 @@ export default function EnquiryDrawer() {
           <DrawerHeader>
             <DrawerTitle>Make an Enquiry</DrawerTitle>
             <DrawerDescription>
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we&apos;ll get back to you as soon as possible.
             </DrawerDescription>
           </DrawerHeader>
           <form onSubmit={handleSubmit} className="p-4 space-y-4">

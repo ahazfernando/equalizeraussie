@@ -189,7 +189,7 @@ const Dealers = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-display text-2xl text-foreground mb-3">Go-Anywhere Capability</h3>
-                                    <p className="text-muted-foreground leading-relaxed">Independent suspension systems, reinforced heavy-duty chassis, and premium all-terrain tires for ultimate off-road performance across Australia's diverse terrain.</p>
+                                    <p className="text-muted-foreground leading-relaxed">Independent suspension systems, reinforced heavy-duty chassis, and premium all-terrain tires for ultimate off-road performance across Australia&apos;s diverse terrain.</p>
                                 </div>
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

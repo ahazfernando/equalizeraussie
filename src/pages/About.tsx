@@ -823,7 +823,7 @@ export default function About() {
               variants={fadeInUp}
               className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
             >
-              Our state-of-the-art manufacturing facility in Melbourne's south-east is where the magic happens. We blend traditional joinery with aerospace engineering.
+              Our state-of-the-art manufacturing facility in Melbourne&apos;s south-east is where the magic happens. We blend traditional joinery with aerospace engineering.
             </motion.p>
           </motion.div>
 

@@ -290,7 +290,7 @@ const Contact = () => {
                 </div>
                 
                 <blockquote className="text-xl md:text-2xl text-foreground italic leading-relaxed mb-8">
-                  "From the first call to picking up our RV, the team made everything seamless. Highly recommend reaching out."
+                  &ldquo;From the first call to picking up our RV, the team made everything seamless. Highly recommend reaching out.&rdquo;
                 </blockquote>
                 
                 <div className="flex items-center gap-4">
