@@ -112,6 +112,102 @@ export default function Home() {
       {/* Model Selector */}
       <ModelSelector />
 
+      {/* Social Proof Banner */}
+      <section className="py-16 bg-background border-y border-border/30">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Avatars + Text */}
+            <div className="flex items-center gap-6">
+              <div className="flex -space-x-3">
+                {['JT', 'MK', 'SR', 'LC', 'PW'].map((initials, i) => (
+                  <div 
+                    key={i} 
+                    className="w-12 h-12 rounded-full bg-primary/80 border-2 border-background flex items-center justify-center text-primary-foreground text-sm font-medium"
+                  >
+                    {initials}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-lg font-bold tracking-wide">JOIN 1,200+ ADVENTURERS</p>
+                <p className="text-muted-foreground">Who chose Equalizer RV for their journey</p>
+              </div>
+            </div>
+            
+            {/* Stats */}
+            <div className="flex items-center gap-8 lg:gap-12">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1 text-2xl font-bold text-primary">
+                  4.9<Star className="w-5 h-5 fill-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">Google Reviews</p>
+              </div>
+              <div className="h-12 w-px bg-border" />
+              <div className="text-center">
+                <p className="text-2xl font-bold">15+</p>
+                <p className="text-sm text-muted-foreground">Years in Business</p>
+              </div>
+              <div className="h-12 w-px bg-border" />
+              <div className="text-center">
+                <p className="text-2xl font-bold">50M+</p>
+                <p className="text-sm text-muted-foreground">Km Travelled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lifestyle Split Section */}
+      <section className="py-0">
+        <div className="grid lg:grid-cols-2 min-h-[600px]">
+          <div className="relative h-[400px] lg:h-auto">
+            <Image 
+              src="/images/caravan-interior.jpg" 
+              alt="Luxury RV Interior" 
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="bg-background flex items-center p-12 lg:p-20">
+            <div className="max-w-lg">
+              <span className="text-primary font-semibold tracking-widest text-sm">LIFESTYLE</span>
+              <h2 className="text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight">
+                MORE THAN<br />A CARAVAN
+              </h2>
+              <div className="space-y-6 mb-10">
+                <div className="flex items-start gap-4">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">FREEDOM</h4>
+                    <p className="text-muted-foreground">Wake up wherever you choose. No bookings, no schedules.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">CONNECTION</h4>
+                    <p className="text-muted-foreground">Quality time with family, away from the daily grind.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">ADVENTURE</h4>
+                    <p className="text-muted-foreground">Explore hidden gems that hotels will never show you.</p>
+                  </div>
+                </div>
+              </div>
+              <Link href="/caravans">
+                <Button variant="outline" size="lg" className="group">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section with Video Background */}
       <section className="relative min-h-[800px] lg:min-h-screen flex items-center overflow-hidden bg-black">
         {/* Video Background */}
