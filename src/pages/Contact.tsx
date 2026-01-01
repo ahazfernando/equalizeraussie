@@ -221,14 +221,14 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Side - FAQ */}
             <div>
-              <p className="text-primary tracking-[0.3em] uppercase text-sm font-medium mb-4">
+              <p className="text-primary tracking-[0.3em] uppercase text-lg font-medium mb-4">
                 Common Questions
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12">
+              <h2 className="text-6xl md:text-7xl font-bold text-foreground mb-12">
                 QUICK ANSWERS
               </h2>
               
-              <Accordion type="single" collapsible className="space-y-6">
+              <Accordion type="single" collapsible className="space-y-4">
                 {[
                   {
                     question: "HOW QUICKLY CAN I EXPECT A RESPONSE?",
@@ -248,21 +248,21 @@ const Contact = () => {
                     value={`faq-${index}`}
                     className="bg-card/50 border border-border/30 rounded-xl px-6"
                   >
-                    <AccordionTrigger className="hover:no-underline py-6">
-                      <div className="flex items-start gap-4 w-full text-left">
+                    <AccordionTrigger className="hover:no-underline py-4">
+                      <div className="flex items-center gap-4 w-full text-left">
                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <MessageCircle className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-foreground font-semibold text-sm tracking-wide">
+                          <h3 className="text-foreground font-semibold text-base tracking-wide">
                             {faq.question}
                           </h3>
                         </div>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pb-6 pt-0">
+                    <AccordionContent className="pb-4 pt-0">
                       <div className="pl-14">
-                        <p className="text-muted-foreground text-sm leading-relaxed">
+                        <p className="text-muted-foreground text-base leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
