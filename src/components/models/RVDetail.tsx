@@ -404,7 +404,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                       return Check;
                     };
 
-                    const IconComponent = getFeatureIcon(feature.label[0]);
+                    const IconComponent = getFeatureIcon(feature);
 
                     return (
                       <div key={index} className="flex items-start gap-4 p-4 glass rounded-xl">
@@ -412,8 +412,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                           <IconComponent className="w-6 h-6 text-primary" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-foreground uppercase">{feature.label[0]}</h4>
-                          <p className="text-sm text-muted-foreground mt-1">{feature.description[0]}</p>
+                          <h4 className="font-medium text-foreground">{feature}</h4>
                         </div>
                       </div>
                     );
