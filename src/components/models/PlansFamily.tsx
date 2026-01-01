@@ -181,10 +181,10 @@ export const PlansFamiliyTabs = ({ plansfamily }: PlansFamiliyTabsProps) => {
             </div>
 
             {/* Floor Plan Image */}
-            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden border-2 border-border bg-white">
+            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden border-2 border-border">
               <Image
                 src={viewMode === "3d" 
-                  ? `/caravanfamily/size${sizeNumber}-left.jpg`
+                  ? `/caravanfamily/RVEqual.png`
                   : `/caravanfamily/size${sizeNumber}-right.jpg`}
                 alt={`${activeLabel} - ${viewMode === "3d" ? "3D" : "Floor"} View`}
                 fill

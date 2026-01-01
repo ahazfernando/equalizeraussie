@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock, Calendar } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -208,6 +209,99 @@ const Contact = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Answers Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Side - FAQ */}
+            <div>
+              <p className="text-primary tracking-[0.3em] uppercase text-sm font-medium mb-4">
+                Common Questions
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12">
+                QUICK ANSWERS
+              </h2>
+              
+              <Accordion type="single" collapsible className="space-y-6">
+                {[
+                  {
+                    question: "HOW QUICKLY CAN I EXPECT A RESPONSE?",
+                    answer: "Our team responds within 2-4 business hours during operating hours."
+                  },
+                  {
+                    question: "CAN I VISIT WITHOUT AN APPOINTMENT?",
+                    answer: "Walk-ins welcome, but booking ensures a dedicated specialist."
+                  },
+                  {
+                    question: "DO YOU OFFER VIRTUAL CONSULTATIONS?",
+                    answer: "Yes, video calls available for interstate or remote customers."
+                  }
+                ].map((faq, index) => (
+                  <AccordionItem 
+                    key={index} 
+                    value={`faq-${index}`}
+                    className="bg-card/50 border border-border/30 rounded-xl px-6"
+                  >
+                    <AccordionTrigger className="hover:no-underline py-6">
+                      <div className="flex items-start gap-4 w-full text-left">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <MessageCircle className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-foreground font-semibold text-sm tracking-wide">
+                            {faq.question}
+                          </h3>
+                        </div>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-6 pt-0">
+                      <div className="pl-14">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+            
+            {/* Right Side - Testimonial */}
+            <div className="flex items-center">
+              <div className="bg-card/30 border border-border/30 rounded-2xl p-8 w-full">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex -space-x-1">
+                    {[...Array(4)].map((_, i) => (
+                      <div key={i} className="w-10 h-10 rounded-full bg-primary/20 border-2 border-background flex items-center justify-center">
+                        <Star className="w-4 h-4 text-primary fill-primary" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">500+ Happy Customers</p>
+                    <p className="text-muted-foreground text-sm">Trusted across Australia</p>
+                  </div>
+                </div>
+                
+                <blockquote className="text-xl md:text-2xl text-foreground italic leading-relaxed mb-8">
+                  "From the first call to picking up our RV, the team made everything seamless. Highly recommend reaching out."
+                </blockquote>
+                
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                    MK
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">Michael K.</p>
+                    <p className="text-muted-foreground text-sm">Queensland</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

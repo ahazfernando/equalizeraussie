@@ -258,6 +258,54 @@ export default function About() {
         </motion.div>
       </section>
 
+      {/* Proven Process Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold italic mb-4">
+              PROVEN PROCESS FOR SUCCESS
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              We help you on every step of the journey
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                number: "01",
+                title: "CONSULTATION",
+                description: "Share your vision with our design team. We listen to understand your needs and travel style."
+              },
+              {
+                number: "02",
+                title: "CUSTOM DESIGN",
+                description: "Receive 3D renders and detailed plans. Refine every detail until it's perfect."
+              },
+              {
+                number: "03",
+                title: "EXPERT BUILD",
+                description: "Watch your RV come to life with regular updates. Quality checks at every stage."
+              },
+              {
+                number: "04",
+                title: "HANDOVER",
+                description: "Complete walkthrough and training. Hit the road with confidence and full support."
+              }
+            ].map((step, i) => (
+              <div key={i} className="space-y-4">
+                <span className="text-7xl lg:text-8xl font-heading font-bold text-muted-foreground/20 opacity-50">
+                  {step.number}
+                </span>
+                <div className="h-px w-full bg-muted-foreground/30" />
+                <h3 className="text-lg font-bold tracking-wide pt-4">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 
       <section className="py-20 bg-background overflow-hidden">
         <div className="container mx-auto px-0">
