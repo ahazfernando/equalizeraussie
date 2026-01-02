@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -13,17 +14,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Send, ChevronLeft, ChevronRight, FileText, ArrowRight } from "lucide-react";
+import { Send, ChevronLeft, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { brochures } from "@/data/brochure";
 
-const images = [
-    "/brochure/caravan-1.jpg",
-    "/brochure/caravan-2.jpg",
-    "/brochure/caravan-3.jpg",
-    "/brochure/caravan-4.jpg",
-    "/brochure/caravan-5.jpg",
-];
 
 // Animation Variants
 const fadeInUp = {
@@ -47,16 +41,8 @@ export default function Brochure() {
         state: "",
     });
 
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
     const [showContactSection, setShowContactSection] = useState(false);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % images.length);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -202,34 +188,9 @@ export default function Brochure() {
                         </button>
 
                         <div className="grid lg:grid-cols-2 gap-16 items-start">
-                            {/* Image Slider Component (Keep your existing logic, just add motion) */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-auto lg:h-[700px]"
-                            >
-                                <AnimatePresence mode="wait">
-                                    <motion.img
-                                        key={currentImageIndex}
-                                        src={images[currentImageIndex]}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.5 }}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </AnimatePresence>
-                                <div className="absolute inset-0 bg-black/20" />
-                                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 bg-black/20 backdrop-blur-md p-2 rounded-full">
-                                    {images.map((_, i) => (
-                                        <div key={i} className={`w-2 h-2 rounded-full transition-all ${currentImageIndex === i ? "bg-white w-6" : "bg-white/50"}`} />
-                                    ))}
-                                </div>
-                            </motion.div>
-
                             {/* Form */}
                             <motion.div
-                                initial={{ opacity: 0, x: 40 }}
+                                initial={{ opacity: 0, x: -40 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
@@ -240,26 +201,78 @@ export default function Brochure() {
                                     <p className="text-muted-foreground mb-10">We{"'"}ll send the <span className="text-foreground font-semibold">{formData.brochure}</span> brochure to your inbox.</p>
 
                                     <form onSubmit={handleSubmit} className="space-y-6">
-                                        {/* ... rest of your form inputs with .form-input-premium ... */}
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label>First Name</Label>
-                                                <Input required className="rounded-xl bg-secondary/50 border-none h-12" />
+                                                <Input 
+                                                    required 
+                                                    value={formData.fname}
+                                                    onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                />
                                             </div>
                                             <div className="space-y-2">
                                                 <Label>Last Name</Label>
-                                                <Input required className="rounded-xl bg-secondary/50 border-none h-12" />
+                                                <Input 
+                                                    required 
+                                                    value={formData.lname}
+                                                    onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
                                             <Label>Email</Label>
-                                            <Input type="email" required className="rounded-xl bg-secondary/50 border-none h-12" />
+                                            <Input 
+                                                type="email" 
+                                                required 
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12" 
+                                            />
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <Label>State</Label>
+                                                <Select
+                                                    value={formData.state}
+                                                    onValueChange={(value) => setFormData({ ...formData, state: value })}
+                                                >
+                                                    <SelectTrigger className="rounded-xl bg-secondary/50 border-none h-12">
+                                                        <SelectValue placeholder="Select..." />
+                                                    </SelectTrigger>
+                                                    <SelectContent className="bg-background border-border">
+                                                        <SelectItem value="NSW">NSW</SelectItem>
+                                                        <SelectItem value="VIC">VIC</SelectItem>
+                                                        <SelectItem value="QLD">QLD</SelectItem>
+                                                        <SelectItem value="WA">WA</SelectItem>
+                                                        <SelectItem value="SA">SA</SelectItem>
+                                                        <SelectItem value="TAS">TAS</SelectItem>
+                                                        <SelectItem value="NT">NT</SelectItem>
+                                                        <SelectItem value="ACT">ACT</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label>Postcode</Label>
+                                                <Input 
+                                                    value={formData.postcode}
+                                                    onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
+                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                />
+                                            </div>
                                         </div>
 
                                         <div className="space-y-2">
                                             <Label>Message</Label>
-                                            <Textarea rows={4} className="rounded-xl bg-secondary/50 border-none resize-none" />
+                                            <Textarea 
+                                                rows={4} 
+                                                value={formData.message}
+                                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none resize-none" 
+                                            />
                                         </div>
 
                                         <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-white font-md text-md h-12">
@@ -268,6 +281,21 @@ export default function Brochure() {
                                         </Button>
                                     </form>
                                 </div>
+                            </motion.div>
+
+                            {/* Image on Right Side */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-auto lg:h-[700px]"
+                            >
+                                <Image
+                                    src="/images/1e20ef54f236dbbb0ef0a201e1426adb.jpg"
+                                    alt="Caravan"
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/10" />
                             </motion.div>
                         </div>
                     </motion.section>

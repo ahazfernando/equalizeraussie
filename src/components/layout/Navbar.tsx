@@ -129,13 +129,13 @@ export function Navbar() {
         <div className="flex items-center h-16 relative">
           {/* Logo - Left Section */}
           <div className="flex-1 flex items-center pl-4 md:pl-6">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Image
                 src="/logo/Equalizerblack.png"
                 alt="Equalizer RV"
-                width={100}
-                height={33}
-                className="h-6 w-auto object-contain"
+                width={150}
+                height={50}
+                className="h-8 md:h-10 w-auto object-contain"
                 priority
               />
             </Link>

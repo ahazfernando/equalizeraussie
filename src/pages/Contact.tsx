@@ -19,6 +19,7 @@ const Contact = () => {
     phone: "",
     interest: "",
     message: "",
+    state: "",
     postcode: "",
   });
 
@@ -31,6 +32,7 @@ const Contact = () => {
       phone: "",
       interest: "",
       message: "",
+      state: "",
       postcode: "",
     });
   };
@@ -115,13 +117,36 @@ const Contact = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <Label>Postcode</Label>
-                  <Input
-                    className="mt-1 bg-background-secondary"
-                    value={formData.postcode}
-                    onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>State</Label>
+                    <Select
+                      value={formData.state}
+                      onValueChange={(value) => setFormData({ ...formData, state: value })}
+                    >
+                      <SelectTrigger className="mt-1 bg-background-secondary">
+                        <SelectValue placeholder="Select..." />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-border">
+                        <SelectItem value="NSW">NSW</SelectItem>
+                        <SelectItem value="VIC">VIC</SelectItem>
+                        <SelectItem value="QLD">QLD</SelectItem>
+                        <SelectItem value="WA">WA</SelectItem>
+                        <SelectItem value="SA">SA</SelectItem>
+                        <SelectItem value="TAS">TAS</SelectItem>
+                        <SelectItem value="NT">NT</SelectItem>
+                        <SelectItem value="ACT">ACT</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label>Postcode</Label>
+                    <Input
+                      className="mt-1 bg-background-secondary"
+                      value={formData.postcode}
+                      onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
+                    />
+                  </div>
                 </div>
                 <div>
                   <Label>Message</Label>

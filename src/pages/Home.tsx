@@ -173,7 +173,7 @@ export default function Home() {
           <div className="bg-background flex items-center p-12 lg:p-20">
             <div className="max-w-lg">
               <span className="text-primary font-semibold tracking-widest text-sm">LIFESTYLE</span>
-              <h2 className="text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight tracking-wider">
                 MORE THAN<br />A CARAVAN
               </h2>
               <div className="space-y-6 mb-10">
