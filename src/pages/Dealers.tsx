@@ -64,7 +64,7 @@ const Dealers = () => {
                             </span>
                         </motion.div>
                         
-                        <motion.h2 variants={fadeInUp} className="font-heading text-5xl sm:text-6xl max-w-3xl lg:text-6xl font-semibold leading-[1.1] mb-8">
+                        <motion.h2 variants={fadeInUp} className="font-heading text-5xl sm:text-6xl max-w-3xl lg:text-6xl font-semibold leading-[1.1] mb-8 tracking-wider">
                             The Power of Our Authorised Dealer Network
                         </motion.h2>
                         
@@ -92,7 +92,7 @@ const Dealers = () => {
                                         <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent/20">
                                             <pillar.icon className="w-6 h-6 text-accent transition-colors" />
                                         </div>
-                                        <h3 className="font-heading font-semibold text-foreground transition-colors group-hover:text-accent">
+                                        <h3 className="font-heading font-semibold text-foreground transition-colors group-hover:text-accent tracking-wider">
                                             {pillar.title}
                                         </h3>
                                     </div>

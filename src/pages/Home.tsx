@@ -144,8 +144,8 @@ export default function Home() {
               </div>
               <div className="h-12 w-px bg-border" />
               <div className="text-center">
-                <p className="text-2xl font-bold">15+</p>
-                <p className="text-sm text-muted-foreground">Years in Business</p>
+                <p className="text-2xl font-bold">3+</p>
+                <p className="text-sm text-muted-foreground">Models</p>
               </div>
               <div className="h-12 w-px bg-border" />
               <div className="text-center">
