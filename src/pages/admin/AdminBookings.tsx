@@ -64,8 +64,8 @@ export default function AdminBookings() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="font-heading text-2xl font-bold">Booking Management</h2>
-        <p className="text-muted-foreground text-sm mt-1">
+        <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-wider">Booking Management</h2>
+        <p className="text-muted-foreground text-base md:text-lg mt-2">
           Manage customer viewing bookings and appointments
         </p>
       </div>
@@ -138,19 +138,19 @@ export default function AdminBookings() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Customer
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Caravan Model
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Preferred Date
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Status
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Actions
                 </th>
               </tr>

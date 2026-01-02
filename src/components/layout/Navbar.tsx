@@ -42,21 +42,21 @@ const navigation = [
         {
           name: "Cruzer",
           href: "/models/cruzer",
-          logo: "/header/cruzerlogo.png",
+          logo: "/caravanlogos/CruzerLogo.png",
           heroImage: "/caravan/CruzerCaravan.png",
           description: "Experience ultimate luxury and comfort on the open road with our flagship Cruzer series.",
         },
         {
           name: "Rebel",
           href: "/models/rebel",
-          logo: "/header/rebelloogo.png",
+          logo: "/caravanlogos/RebelLogo.png",
           heroImage: "/caravan/RebelCaravan.png",
           description: "Built for the bold. The Rebel is designed for off-road adventures and rugged terrains.",
         },
         {
           name: "Rogue",
           href: "/models/rogue",
-          logo: "/header/rogurelogo.png",
+          logo: "/caravanlogos/RogueLogo.png",
           heroImage: "/caravan/RogueCaravan.png",
           description: "Versatile, compact, and ready for anything. The Rogue is your perfect travel companion.",
         },
@@ -186,6 +186,35 @@ export function Navbar() {
                               <span className="font-semibold">Caravan Models</span>
                               <ChevronRight className="h-5 w-5" />
                             </div>
+                            <div className="relative w-full max-w-md h-[500px] rounded-3xl overflow-hidden group">
+                              {/* Background Image */}
+                              <Image
+                                src="/header/nighttie.jpg"
+                                alt="Construction"
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                              
+                              {/* Gradient Overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                              
+                              {/* Content */}
+                              <div className="absolute bottom-0 left-0 right-0 p-8 pb-10">
+                                <h2 className="text-2xl md:text-3xl font-black italic text-white leading-tight mb-4 tracking-wider">
+                                  Unwind, Build, and Perfect Your Journey
+                                </h2>
+                                
+                                <p className="text-white/70 text-base mb-8">
+                                  A construction experience unlike any other. Where strength meets precision in every weld.
+                                </p>
+                                
+                                <Link href="/dealers">
+                                  <button className="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors">
+                                    Discover
+                                  </button>
+                                </Link>
+                              </div>
+                            </div>
                           </div>
 
                           <div className="flex-1 overflow-y-auto p-5">
@@ -213,9 +242,9 @@ export function Navbar() {
                                     </div>
                                   </div>
 
-                                  <div className="md:col-span-5 flex flex-col justify-center space-y-8">
+                                  <div className="md:col-span-5 flex flex-col justify-center space-y-4">
                                     <div>
-                                      <h3 className="text-2xl text-gray-900 font-bold mb-3">
+                                      <h3 className="text-2xl text-gray-900 font-bold mb-3 tracking-wider">
                                         {category.name}
                                       </h3>
                                       <p className="text-gray-600 leading-relaxed">

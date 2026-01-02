@@ -23,6 +23,9 @@ const navItems = [
   { label: "Dashboard", href: "/admin/dashboard" },
   { label: "Caravans", href: "/admin/caravans" },
   { label: "Bookings", href: "/admin/bookings" },
+  { label: "Quotes", href: "/admin/quotes" },
+  { label: "Brochures", href: "/admin/brochures" },
+  { label: "Inquiries", href: "/admin/inquiries" },
   { label: "Reviews", href: "/admin/reviews" },
   { label: "Blogs", href: "/admin/blogs" },
   { label: "Finance", href: "/admin/finance" },
@@ -44,36 +47,35 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const currentPage = navItems.find((i) => i.href === pathname)?.label || "Dashboard";
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50">
-          <div className="flex items-center gap-2 px-4 flex-1">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/admin/dashboard">Admin</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{currentPage}</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+    <div className="dark min-h-screen bg-background">
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 dark:bg-card dark:border-border">
+            <div className="flex items-center gap-2 px-4 flex-1">
+              <SidebarTrigger className="-ml-1" />
+              <Separator
+                orientation="vertical"
+                className="mr-2 data-[orientation=vertical]:h-4"
+              />
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem className="hidden md:block">
+                    <BreadcrumbLink href="/admin/dashboard" className="text-foreground">Admin</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator className="hidden md:block" />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage className="text-foreground">{currentPage}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          </header>
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 md:p-8 md:pt-4 bg-background">
+            {children}
           </div>
-          <div className="px-4">
-            <ThemeToggle />
-          </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0 md:p-8 md:pt-4">
-          {children}
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+        </SidebarInset>
+      </SidebarProvider>
+    </div>
   );
 }

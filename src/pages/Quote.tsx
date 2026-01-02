@@ -15,6 +15,7 @@ import {
 import { Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+import { saveQuote } from "@/data/quotes";
 
 const images = [
     "/quote/caravan-1.jpg",
@@ -53,11 +54,24 @@ export default function Quote() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        toast.success("Thank you for your enquiry! We'll be in touch within 24 hours.");
-        setFormData({
-            name: "", email: "", phone: "", model: "",
-            message: "", postcode: "", state: "",
-        });
+        try {
+            saveQuote({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                model: formData.model,
+                message: formData.message,
+                postcode: formData.postcode,
+                state: formData.state,
+            });
+            toast.success("Thank you for your enquiry! We'll be in touch within 24 hours.");
+            setFormData({
+                name: "", email: "", phone: "", model: "",
+                message: "", postcode: "", state: "",
+            });
+        } catch (error) {
+            toast.error("There was an error submitting your enquiry. Please try again.");
+        }
     };
 
     const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);

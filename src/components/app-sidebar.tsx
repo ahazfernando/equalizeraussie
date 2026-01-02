@@ -3,8 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Caravan, Calendar, Star, DollarSign, LogOut, Moon, Sun, FileText } from "lucide-react";
-import { useTheme } from "next-themes";
+import { LayoutDashboard, Caravan, Calendar, Star, DollarSign, LogOut, FileText, FileQuestion, BookOpen, MessageSquare } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -23,6 +22,9 @@ const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
   { icon: Caravan, label: "Caravans", href: "/admin/caravans" },
   { icon: Calendar, label: "Bookings", href: "/admin/bookings" },
+  { icon: FileQuestion, label: "Quotes", href: "/admin/quotes" },
+  { icon: BookOpen, label: "Brochures", href: "/admin/brochures" },
+  { icon: MessageSquare, label: "Inquiries", href: "/admin/inquiries" },
   { icon: Star, label: "Reviews", href: "/admin/reviews" },
   { icon: FileText, label: "Blogs", href: "/admin/blogs" },
   { icon: DollarSign, label: "Finance", href: "/admin/finance" },
@@ -30,33 +32,23 @@ const navItems = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader>
+    <Sidebar collapsible="icon" variant="inset" className="bg-black border-r border-gray-800">
+      <SidebarHeader className="bg-black border-b border-gray-800">
         <div className="flex items-center gap-3 px-2">
           <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-            <span className="text-accent-foreground font-heading font-bold text-xl">E</span>
+            <span className="text-white font-heading font-bold text-xl">E</span>
           </div>
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className="font-heading font-bold text-sidebar-foreground">Equalizer RV</span>
-            <span className="text-xs text-sidebar-foreground/70">Admin Panel</span>
+            <span className="font-heading font-bold text-white">Equalizer RV</span>
+            <span className="text-xs text-gray-400">Admin Panel</span>
           </div>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-black">
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-gray-400">Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
@@ -65,9 +57,10 @@ export function AppSidebar() {
                     asChild
                     isActive={pathname === item.href}
                     tooltip={item.label}
+                    className="text-gray-300 hover:bg-gray-800 hover:text-white data-[active=true]:bg-gray-800 data-[active=true]:text-white"
                   >
                     <Link href={item.href}>
-                      <item.icon />
+                      <item.icon className="text-gray-300" />
                       <span>{item.label}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -77,27 +70,10 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-black border-t border-gray-800">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              onClick={toggleTheme}
-              tooltip={mounted ? (theme === "dark" ? "Switch to light mode" : "Switch to dark mode") : "Toggle theme"}
-            >
-              {mounted ? (
-                theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-              <span>Theme</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Exit Admin">
+            <SidebarMenuButton asChild tooltip="Exit Admin" className="text-gray-300 hover:bg-gray-800 hover:text-white">
               <Link href="/">
                 <LogOut />
                 <span>Exit Admin</span>

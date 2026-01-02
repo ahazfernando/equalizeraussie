@@ -112,22 +112,21 @@ export default function About() {
     <>
       {/* Hero Section - Modern Professional Design */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden -mt-24 pt-24 pb-0">
-        {/* Video Background */}
+        {/* Image Background */}
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            aria-hidden="true"
-          >
-            <source src="/videos/about-hero.mp4" type="video/mp4" />
-          </video>
+          <Image
+            src="/home/abousHeader(D1V1C1).jpg"
+            alt="Australian Engineered Background"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
           
           {/* Sophisticated Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
           
           {/* Subtle Animated Gradient Overlay */}
           <motion.div
@@ -157,13 +156,10 @@ export default function About() {
               <div className="lg:col-start-1 lg:col-span-7 space-y-8">
                 {/* Main Heading with Enhanced Typography */}
                 <motion.div variants={itemVariants} className="space-y-6">
-                  <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.95] text-white">
+                  <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wider leading-[0.95] text-white">
                     <span className="block">Australian</span>
                     <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
                       Engineered.
-                    </span>
-                    <span className="block text-white/70 mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">
-                      Adventure Approved.
                     </span>
                   </h1>
                 </motion.div>
@@ -180,7 +176,7 @@ export default function About() {
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                       
                       <div className="relative">
-                        <h4 className="font-heading font-bold text-white mb-2 text-lg">100% Aussie Made</h4>
+                        <h4 className="font-heading font-bold text-white mb-2 text-lg tracking-wider">100% Aussie Made</h4>
                         <p className="text-sm text-white/70 leading-relaxed">
                           Constructed with the finest materials to withstand the rugged beauty of our country.
                         </p>
@@ -195,7 +191,7 @@ export default function About() {
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                       
                       <div className="relative">
-                        <h4 className="font-heading font-bold text-white mb-2 text-lg">Every Terrain</h4>
+                        <h4 className="font-heading font-bold text-white mb-2 text-lg tracking-wider">Every Terrain</h4>
                         <p className="text-sm text-white/70 leading-relaxed">
                           From on-road touring models to full off-road beasts designed for the ultimate adventure.
                         </p>
@@ -262,7 +258,7 @@ export default function About() {
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold italic mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold italic mb-4 tracking-wider">
               PROVEN PROCESS FOR SUCCESS
             </h2>
             <p className="text-muted-foreground text-lg">
@@ -298,7 +294,7 @@ export default function About() {
                   {step.number}
                 </span>
                 <div className="h-px w-full bg-muted-foreground/30" />
-                <h3 className="text-lg font-bold tracking-wide pt-4">{step.title}</h3>
+                <h3 className="text-lg font-bold tracking-wider pt-4">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
               </div>
             ))}
@@ -520,7 +516,7 @@ export default function About() {
                               style={isLeft ? { background: 'linear-gradient(to left, rgba(239, 68, 68, 0.5), transparent)' } : {}} />
                           </div>
                           
-                          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                          <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 tracking-wider">
                             {milestone.title}
                           </h3>
                           
@@ -676,7 +672,7 @@ export default function About() {
                       <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                         <Award className="w-8 h-8 text-accent" />
                       </div>
-                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 tracking-wider">
                         {values[0].title}
                       </h3>
                       <p className="text-white/80 text-lg lg:text-xl leading-relaxed">
@@ -719,7 +715,7 @@ export default function About() {
                       <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
                         <value.icon className="w-7 h-7 text-accent" />
                       </div>
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 tracking-wider">
                         {value.title}
                       </h3>
                       <p className="text-white/70 text-base lg:text-lg leading-relaxed flex-grow">
@@ -766,7 +762,7 @@ export default function About() {
                       })()}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl lg:text-4xl font-bold text-white mb-4">
+                      <h3 className="text-2xl lg:text-4xl font-bold text-white mb-4 tracking-wider">
                         {values[3].title}
                       </h3>
                       <p className="text-white/70 text-lg lg:text-xl leading-relaxed max-w-3xl">
@@ -909,7 +905,7 @@ export default function About() {
                         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                         
                         <div className="relative z-10">
-                          <h3 className="text-2xl lg:text-4xl font-bold text-white mb-4">
+                          <h3 className="text-2xl lg:text-4xl font-bold text-white mb-4 tracking-wider">
                             {process.title}
                           </h3>
                           <p className="text-white/70 text-base lg:text-lg leading-relaxed">

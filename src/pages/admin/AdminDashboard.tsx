@@ -36,16 +36,16 @@ export default function AdminDashboard() {
       <div className="admin-card">
         <div className="flex items-center gap-2 mb-6">
           <TrendingUp className="w-5 h-5 text-accent" />
-          <h2 className="font-heading text-lg font-semibold">Recent Bookings</h2>
+          <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wider">Recent Bookings</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-3 text-sm font-medium text-muted-foreground">Customer</th>
-                <th className="text-left py-3 text-sm font-medium text-muted-foreground">Model</th>
-                <th className="text-left py-3 text-sm font-medium text-muted-foreground">Date</th>
-                <th className="text-left py-3 text-sm font-medium text-muted-foreground">Status</th>
+                <th className="text-left py-3 text-base font-bold text-muted-foreground tracking-wider">Customer</th>
+                <th className="text-left py-3 text-base font-bold text-muted-foreground tracking-wider">Model</th>
+                <th className="text-left py-3 text-base font-bold text-muted-foreground tracking-wider">Date</th>
+                <th className="text-left py-3 text-base font-bold text-muted-foreground tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody>

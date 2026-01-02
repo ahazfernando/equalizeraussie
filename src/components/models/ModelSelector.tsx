@@ -74,26 +74,62 @@ export function ModelSelector() {
         </h2>
       </div>
     </div>
-      {/* Background model images overlay for ambient effect */ }
-  <div className="absolute inset-0 z-0 opacity-10">
-    <div className="absolute top-20 left-0 w-1/3 h-1/3">
-      <img
-        src={activeModel.image}
-        alt=""
-        className="w-full h-full object-cover blur-3xl"
-      />
-    </div>
-    <div className="absolute top-40 right-0 w-1/4 h-1/4">
-      <img
-        src={activeModel.image}
-        alt=""
-        className="w-full h-full object-cover blur-3xl"
-      />
-    </div>
-  </div>
 
-  {/* Hero Carousel Container */ }
-  <div className="relative flex-1 flex items-center justify-center pt-2 pb-20 z-10">
+      {/* Background model images overlay for ambient effect */ }
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute top-20 left-0 w-1/3 h-1/3">
+          <img
+            src={activeModel.image}
+            alt=""
+            className="w-full h-full object-cover blur-3xl"
+          />
+        </div>
+        <div className="absolute top-40 right-0 w-1/4 h-1/4">
+          <img
+            src={activeModel.image}
+            alt=""
+            className="w-full h-full object-cover blur-3xl"
+          />
+        </div>
+      </div>
+
+      {/* Two Column Layout */}
+      <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-12 mt-8">
+        {/* Left Column - Portrait Widget */}
+        <div className="w-full lg:w-auto lg:flex-shrink-0">
+          <div className="relative w-full max-w-md h-[700px] rounded-3xl overflow-hidden group">
+            {/* Background Image */}
+            <Image
+              src="/header/nighttie.jpg"
+              alt="Construction"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            
+            {/* Content */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 pb-10">
+              <h2 className="text-4xl md:text-5xl font-black italic text-white leading-tight mb-4">
+                Unwind, Build, and Perfect Your Journey
+              </h2>
+              
+              <p className="text-white/70 text-base mb-8">
+                A construction experience unlike any other. Where strength meets precision in every weld.
+              </p>
+              
+              <Link href="/dealers">
+                <button className="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors">
+                  Discover
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Hero Carousel Container */}
+        <div className="relative flex-1 flex items-center justify-center pt-2 pb-20 z-10">
     {/* Navigation Arrows */}
     <button
       onClick={goToPrev}
@@ -186,7 +222,8 @@ export function ModelSelector() {
         </div>
       </div>
     </div>
-  </div>
+        </div>
+      </div>
 
   {/* Call to Actions */ }
   <div className="absolute bottom-12 md:bottom-16 lg:bottom-20 left-0 right-0 z-30 flex justify-center items-center px-4">

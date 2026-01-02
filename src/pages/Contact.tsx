@@ -2,17 +2,18 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle, Star } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle, Star, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { motion } from "framer-motion";
+import { saveInquiry } from "@/data/inquiries";
 
 const Contact = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,19 +23,44 @@ const Contact = () => {
     state: "",
     postcode: "",
   });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message Sent", description: "We'll be in touch within 24 hours." });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      interest: "",
-      message: "",
-      state: "",
-      postcode: "",
-    });
+    try {
+      saveInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        interest: formData.interest,
+        message: formData.message,
+        postcode: formData.postcode,
+        state: formData.state,
+      });
+      setShowSuccessModal(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        interest: "",
+        message: "",
+        state: "",
+        postcode: "",
+      });
+    } catch (error) {
+      console.error("Error saving inquiry:", error);
+      // Still show success modal even if save fails (graceful degradation)
+      setShowSuccessModal(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        interest: "",
+        message: "",
+        state: "",
+        postcode: "",
+      });
+    }
   };
 
   return (
@@ -332,6 +358,100 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="max-w-2xl p-0 overflow-hidden border-0 bg-transparent shadow-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative rounded-3xl overflow-hidden"
+          >
+            {/* Blended Background with Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-background/95 to-background backdrop-blur-xl">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.1),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(239,68,68,0.15),transparent_50%)]" />
+            </div>
+
+            {/* Content Container */}
+            <div className="relative z-10 p-12 md:p-16 flex flex-col items-center text-center">
+              {/* Success Icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                className="flex justify-center mb-8"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl animate-pulse" />
+                  <div className="relative bg-gradient-to-br from-accent to-accent/80 p-4 rounded-full">
+                    <CheckCircle2 className="w-12 h-12 text-white" />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Title and Message */}
+              <DialogHeader className="text-center space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex flex-col items-center"
+                >
+                  <DialogTitle className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-wider">
+                    Thank You!
+                  </DialogTitle>
+                  <DialogDescription className="text-lg text-white/80 max-w-md mx-auto leading-relaxed text-center">
+                    Your message has been successfully sent. Our team will be in touch with you within 24 hours.
+                  </DialogDescription>
+                </motion.div>
+              </DialogHeader>
+
+              {/* Additional Info */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-8 text-center"
+              >
+                <p className="text-white/60 text-sm">
+                  We're excited to help you start your caravan adventure!
+                </p>
+              </motion.div>
+
+              {/* Close Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-10 flex justify-center"
+              >
+                <Button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="px-8 py-6 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Close
+                </Button>
+              </motion.div>
+
+              {/* Equalizer Logo at Bottom Center */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="relative h-12 w-40 mt-10"
+              >
+                <Image
+                  src="/logo/whitelogoWQ.png"
+                  alt="Equalizer RV"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

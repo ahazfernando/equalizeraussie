@@ -71,7 +71,7 @@ export function HeroHeader() {
               className="space-y-4"
             >
               <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-semibold leading-tight">
-                <span className="block text-foreground tracking-wider">More Than a Caravan.</span>
+                <span className="block text-foreground tracking-wider">Your Home on Wheels.</span>
                 <span className="bg-gradient-to-r from-accent via-accent to-accent/80 bg-clip-text text-transparent relative inline-block tracking-wider">
                   It&apos;s Your World on Wheels.
                   <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-accent/20 via-accent/40 to-accent/20 blur-xl" />

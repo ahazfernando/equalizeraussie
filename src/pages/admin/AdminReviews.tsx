@@ -267,8 +267,8 @@ export default function AdminReviews() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-heading text-2xl font-bold">Review Management</h2>
-          <p className="text-muted-foreground text-sm mt-1">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-wider">Review Management</h2>
+          <p className="text-muted-foreground text-base md:text-lg mt-2">
             Manage customer reviews and ratings
           </p>
         </div>

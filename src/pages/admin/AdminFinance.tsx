@@ -78,8 +78,8 @@ export default function AdminFinance() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="font-heading text-2xl font-bold">Finance Enquiry Management</h2>
-        <p className="text-muted-foreground text-sm mt-1">
+        <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-wider">Finance Enquiry Management</h2>
+        <p className="text-muted-foreground text-base md:text-lg mt-2">
           Manage customer finance applications and loan enquiries
         </p>
       </div>
@@ -158,22 +158,22 @@ export default function AdminFinance() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Customer
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Caravan Model
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Loan Details
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Monthly Payment
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Status
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">
                   Actions
                 </th>
               </tr>

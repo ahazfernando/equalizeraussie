@@ -511,8 +511,8 @@ export default function AdminCaravans() {
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h2 className="font-heading text-2xl font-bold">Caravan Management</h2>
-            <p className="text-muted-foreground text-sm mt-1">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-wider">Caravan Management</h2>
+            <p className="text-muted-foreground text-base md:text-lg mt-2">
               Manage your caravan inventory and listings
             </p>
           </div>
@@ -947,11 +947,11 @@ export default function AdminCaravans() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Caravan</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Series</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Price</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Status</th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Actions</th>
+                    <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">Caravan</th>
+                    <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">Series</th>
+                    <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">Price</th>
+                    <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">Status</th>
+                    <th className="text-left py-3 px-4 text-base font-bold text-muted-foreground tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

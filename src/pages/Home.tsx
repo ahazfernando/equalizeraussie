@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Shield, Wrench, Award, MapPin, Star, ChevronRight, Check, Sparkles, Heart } from "lucide-react";
+import { ArrowRight, Shield, Wrench, Award, MapPin, Star, ChevronRight, Check, Sparkles, Heart, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CaravanCard } from "@/components/caravans/CaravanCard";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
@@ -75,6 +75,7 @@ export default function Home() {
   const [featuredCaravans, setFeaturedCaravans] = useState<Caravan[]>([]);
   const [loading, setLoading] = useState(true);
   const featuredReviews = reviews.slice(0, 3);
+  const destinationsScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -174,7 +175,7 @@ export default function Home() {
             <div className="max-w-lg">
               <span className="text-primary font-semibold tracking-widest text-sm">LIFESTYLE</span>
               <h2 className="text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight tracking-wider">
-                MORE THAN<br />A CARAVAN
+                YOUR HOME<br />ON WHEELS
               </h2>
               <div className="space-y-6 mb-10">
                 <div className="flex items-start gap-4">
@@ -210,19 +211,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Section with Video Background */}
+      {/* Benefits Section with Image Background */}
       <section className="relative min-h-[800px] lg:min-h-screen flex items-center overflow-hidden bg-black">
-        {/* Video Background */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-hidden="true"
-        >
-          <source src="/videos/contact-hero.mp4" type="video/mp4" />
-        </video>
+        {/* Image Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/home/d47fc3a603bcf4cc7e3da404f012fbec.jpg"
+            alt="Benefits Background"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </div>
         
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
@@ -601,6 +602,138 @@ export default function Home() {
                 </div>
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Destinations Gallery */}
+      <section className="py-20 bg-black relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-12 gap-0">
+            {/* Left side - aligned with 12 grid column */}
+            <div className="col-span-12 lg:col-span-5 xl:col-span-4">
+              {/* Arrows at the top */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex gap-2 mb-6"
+              >
+                <button
+                  onClick={() => {
+                    if (destinationsScrollRef.current) {
+                      destinationsScrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+                    }
+                  }}
+                  className="p-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => {
+                    if (destinationsScrollRef.current) {
+                      destinationsScrollRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+                    }
+                  }}
+                  className="p-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </motion.div>
+
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <p className="text-accent font-medium tracking-wider text-sm mb-2">
+                  ADVENTURE AWAITS
+                </p>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6"
+              >
+                WHERE WILL YOU GO?
+              </motion.h2>
+              
+              {/* Description and Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="space-y-6"
+              >
+                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-lg mb-4">
+                  Discover breathtaking destinations across Australia. From the iconic red center to pristine coastal escapes, your next adventure awaits.
+                </p>
+                <Link href="/dealers" className="inline-block">
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300"
+                  >
+                    Find a Dealer
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+
+          {/* Right side - extends to the very end of viewport, breaking out of grid */}
+          <div className="col-span-12 lg:col-span-7 xl:col-span-8 lg:col-start-5 xl:col-start-5 relative">
+            <div
+              ref={destinationsScrollRef}
+              className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide pl-4 sm:pl-6 lg:pl-8"
+              style={{
+                marginRight: 'calc((100vw - 100%) / -2)',
+                paddingRight: 'calc((100vw - 100%) / 2)'
+              }}
+            >
+              {[
+                { id: 1, image: '/images/caravan-lifestyle-1.jpg', distance: '2,800 km FROM BRISBANE', title: 'ULURU' },
+                { id: 2, image: '/images/caravan-lifestyle-2.jpg', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
+                { id: 3, image: '/images/caravan-lifestyle-3.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
+                { id: 4, image: '/images/caravan-lifestyle-4.jfif', distance: '4,100 km FROM BRISBANE', title: 'TASMANIA' },
+              ].map((dest, index) => (
+                <motion.div
+                  key={dest.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                  className="flex-shrink-0 w-80 group cursor-pointer"
+                >
+                  <div className="relative h-96 rounded-2xl overflow-hidden">
+                    <Image
+                      src={dest.image}
+                      alt={dest.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    {/* Content inside the card */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 pb-8">
+                      <p className="text-accent text-sm font-medium tracking-wider mb-2">
+                        {dest.distance}
+                      </p>
+                      <h3 className="text-white text-2xl font-bold">
+                        {dest.title}
+                      </h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
           </div>
         </div>
       </section>

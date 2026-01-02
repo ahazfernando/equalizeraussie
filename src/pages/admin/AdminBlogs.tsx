@@ -543,7 +543,7 @@ export default function AdminBlogs() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Blog Management</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-wider">Blog Management</h1>
           <p className="text-muted-foreground">Create and manage blog posts</p>
         </div>
         <Button onClick={() => handleOpenDialog()}>
