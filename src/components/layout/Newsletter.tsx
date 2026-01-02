@@ -36,7 +36,7 @@ const Newsletter = () => {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-wider">
                 Get the Latest <span className="bg-accent bg-clip-text text-transparent">Flavors First</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl">

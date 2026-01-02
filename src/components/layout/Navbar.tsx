@@ -133,9 +133,9 @@ export function Navbar() {
               <Image
                 src="/logo/Equalizerblack.png"
                 alt="Equalizer RV"
-                width={150}
-                height={50}
-                className="h-8 md:h-10 w-auto object-contain"
+                width={300}
+                height={100}
+                className="h-6 md:h-8 w-auto object-contain"
                 priority
               />
             </Link>

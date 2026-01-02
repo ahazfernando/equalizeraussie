@@ -180,21 +180,21 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                   <div>
-                    <h4 className="font-bold text-lg mb-1">FREEDOM</h4>
+                    <h4 className="font-bold text-lg mb-1 tracking-wider">FREEDOM</h4>
                     <p className="text-muted-foreground">Wake up wherever you choose. No bookings, no schedules.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                   <div>
-                    <h4 className="font-bold text-lg mb-1">CONNECTION</h4>
+                    <h4 className="font-bold text-lg mb-1 tracking-wider">CONNECTION</h4>
                     <p className="text-muted-foreground">Quality time with family, away from the daily grind.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                   <div>
-                    <h4 className="font-bold text-lg mb-1">ADVENTURE</h4>
+                    <h4 className="font-bold text-lg mb-1 tracking-wider">ADVENTURE</h4>
                     <p className="text-muted-foreground">Explore hidden gems that hotels will never show you.</p>
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
-                  className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight"
+                  className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight tracking-wider"
                 >
                   Benefits of Equalizer RV
                 </motion.h2>
@@ -318,7 +318,7 @@ export default function Home() {
                           <Icon className="w-4 h-4 text-white" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-base md:text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                          <h3 className="text-base md:text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors tracking-wider">
                             {benefit.title}
                           </h3>
                           <p className="text-xs md:text-sm text-white/70 leading-relaxed">
@@ -393,7 +393,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight"
+                className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-wider"
               >
                 Connect with Experts <br />and Find Your Perfect Caravan
               </motion.h2>
@@ -474,7 +474,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.4] tracking-tight"
+                className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.4] tracking-wider"
               >
                 Where Adventure Meets<br />
                 <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
@@ -669,7 +669,7 @@ export default function Home() {
                     The Equalizer Difference
                   </span>
                 </div>
-                <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+                <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight tracking-wider">
                   Built for Australia.<br />
                   Designed for You.
                 </h2>

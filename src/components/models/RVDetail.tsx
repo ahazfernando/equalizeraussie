@@ -447,7 +447,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1]"
+                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
                 >
                   Every Detail Matters
                 </motion.h2>
@@ -489,7 +489,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1]"
+                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
                 >
                   Find the Perfect Layout
                 </motion.h2>
@@ -549,7 +549,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
               <h2 className="font-heading text-3xl text-foreground mb-6">Delivery & Warranty</h2>
               <Accordion type="single" collapsible className="glass rounded-2xl overflow-hidden">
                 <AccordionItem value="delivery" className="border-border/50">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline">
+                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
                     Free Australia-Wide Delivery
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-6 text-muted-foreground">
@@ -557,7 +557,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="warranty" className="border-border/50">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline">
+                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
                     5-Year Comprehensive Warranty
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-6 text-muted-foreground">
@@ -565,7 +565,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="service" className="border-0">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline">
+                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
                     Nationwide Service Network
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-6 text-muted-foreground">

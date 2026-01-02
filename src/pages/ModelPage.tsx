@@ -413,7 +413,7 @@ export default function ModelPage({ modelId }: ModelPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-              className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1]"
+              className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
             >
               Every Detail Matters
             </motion.h2>
@@ -452,7 +452,7 @@ export default function ModelPage({ modelId }: ModelPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-              className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1]"
+              className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
             >
               Find the Perfect Layout
             </motion.h2>

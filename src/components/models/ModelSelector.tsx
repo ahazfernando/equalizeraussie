@@ -66,7 +66,7 @@ export function ModelSelector() {
             Explore Our Models
           </span>
         </div>
-        <h2 className="font-heading text-5xl sm:text-6xl -mb-10 font-semibold">
+        <h2 className="font-heading text-5xl sm:text-6xl -mb-10 font-semibold tracking-wider">
           Choose Your{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
             Caravan
