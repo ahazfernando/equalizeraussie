@@ -415,7 +415,7 @@ const Contact = () => {
                 className="mt-8 text-center"
               >
                 <p className="text-white/60 text-sm">
-                  We're excited to help you start your caravan adventure!
+                  We&apos;re excited to help you start your caravan adventure!
                 </p>
               </motion.div>
 

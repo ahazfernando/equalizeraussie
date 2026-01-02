@@ -461,7 +461,7 @@ export default function Brochure() {
                                         Thank You!
                                     </DialogTitle>
                                     <DialogDescription className="text-lg text-white/80 max-w-md mx-auto leading-relaxed text-center">
-                                        Your enquiry has been successfully sent. We'll send the <span className="text-accent font-semibold">{submittedBrochure || "brochure"}</span> to your inbox shortly.
+                                        Your enquiry has been successfully sent. We&apos;ll send the <span className="text-accent font-semibold">{submittedBrochure || "brochure"}</span> to your inbox shortly.
                                     </DialogDescription>
                                 </motion.div>
                             </DialogHeader>
