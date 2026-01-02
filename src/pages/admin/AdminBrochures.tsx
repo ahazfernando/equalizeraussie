@@ -49,7 +49,7 @@ export default function AdminBrochures() {
       fullName.includes(searchTerm.toLowerCase()) ||
       brochure.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       brochure.brochure.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      brochure.phone?.toLowerCase().includes(searchTerm.toLowerCase());
+      brochure.message.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesStatus = statusFilter === "All" || brochure.status === statusFilter;
     const matchesState = stateFilter === "All" || brochure.state === stateFilter;
