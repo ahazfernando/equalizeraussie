@@ -76,7 +76,7 @@ export default function AdminInquiries() {
       Closed: "bg-muted/20 text-muted-foreground border-muted/30",
     };
     return (
-      <Badge variant="outline" className={variants[status]}>
+      <Badge variant="outline" className={`${variants[status]} text-sm px-3 py-1`}>
         {status}
       </Badge>
     );
@@ -205,24 +205,24 @@ export default function AdminInquiries() {
                     <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 flex-1 text-left">
                       <div className="flex items-center gap-3">
                         <div>
-                          <p className="font-medium">{inquiry.name}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                            <Mail className="w-3 h-3" />
+                          <p className="text-base md:text-lg font-semibold">{inquiry.name}</p>
+                          <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
+                            <Mail className="w-4 h-4" />
                             {inquiry.email}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MessageCircle className="w-4 h-4 text-muted-foreground" />
-                        <p className="text-sm font-medium">{getInterestLabel(inquiry.interest)}</p>
+                        <MessageCircle className="w-5 h-5 text-muted-foreground" />
+                        <p className="text-base font-medium">{getInterestLabel(inquiry.interest)}</p>
                       </div>
                       <div className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4 text-muted-foreground" />
-                        <p className="text-sm">
+                        <MapPin className="w-5 h-5 text-muted-foreground" />
+                        <p className="text-base">
                           {inquiry.state} {inquiry.postcode}
                         </p>
                       </div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-muted-foreground">
                         {formatDate(inquiry.createdAt)}
                       </p>
                       {getStatusBadge(inquiry.status)}
@@ -232,52 +232,52 @@ export default function AdminInquiries() {
                 <AccordionContent className="px-4">
                   <div className="space-y-6 pt-4">
                     <div>
-                      <h4 className="text-lg font-bold mb-3 tracking-wider">Customer Information</h4>
-                      <div className="space-y-2 text-sm">
+                      <h4 className="text-xl font-bold mb-3 tracking-wider">Customer Information</h4>
+                      <div className="space-y-2 text-base">
                         <p><span className="text-muted-foreground">Name:</span> {inquiry.name}</p>
                         <p><span className="text-muted-foreground">Email:</span> {inquiry.email}</p>
                         {inquiry.phone && (
                           <p className="flex items-center gap-2">
-                            <Phone className="w-4 h-4 text-muted-foreground" />
+                            <Phone className="w-5 h-5 text-muted-foreground" />
                             <span className="text-muted-foreground">Phone:</span> {inquiry.phone}
                           </p>
                         )}
                         <p className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-muted-foreground" />
+                          <MapPin className="w-5 h-5 text-muted-foreground" />
                           <span className="text-muted-foreground">Location:</span> {inquiry.state} {inquiry.postcode}
                         </p>
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold mb-3 tracking-wider">Interest</h4>
-                      <p className="text-sm">{getInterestLabel(inquiry.interest)}</p>
+                      <h4 className="text-xl font-bold mb-3 tracking-wider">Interest</h4>
+                      <p className="text-base">{getInterestLabel(inquiry.interest)}</p>
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold mb-3 tracking-wider">Message</h4>
-                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">{inquiry.message}</p>
+                      <h4 className="text-xl font-bold mb-3 tracking-wider">Message</h4>
+                      <p className="text-base text-muted-foreground whitespace-pre-wrap">{inquiry.message}</p>
                     </div>
                     {inquiry.notes && (
                       <div>
-                        <h4 className="text-lg font-bold mb-3 tracking-wider">Admin Notes</h4>
-                        <p className="text-sm text-muted-foreground">{inquiry.notes}</p>
+                        <h4 className="text-xl font-bold mb-3 tracking-wider">Admin Notes</h4>
+                        <p className="text-base text-muted-foreground">{inquiry.notes}</p>
                       </div>
                     )}
                     <div className="flex flex-wrap gap-2 pt-2 border-t border-border/50">
                       {inquiry.status === "New" && (
                         <>
                           <Button
-                            size="sm"
+                            size="default"
                             variant="outline"
                             onClick={() => handleStatusUpdate(inquiry.id, "Contacted")}
-                            className="text-xs"
+                            className="text-sm"
                           >
                             Mark Contacted
                           </Button>
                           <Button
-                            size="sm"
+                            size="default"
                             variant="outline"
                             onClick={() => handleStatusUpdate(inquiry.id, "Resolved")}
-                            className="text-xs"
+                            className="text-sm"
                           >
                             Mark Resolved
                           </Button>
@@ -285,20 +285,20 @@ export default function AdminInquiries() {
                       )}
                       {inquiry.status === "Contacted" && (
                         <Button
-                          size="sm"
+                          size="default"
                           variant="outline"
                           onClick={() => handleStatusUpdate(inquiry.id, "Resolved")}
-                          className="text-xs"
+                          className="text-sm"
                         >
                           Mark Resolved
                         </Button>
                       )}
                       {inquiry.status !== "Closed" && (
                         <Button
-                          size="sm"
+                          size="default"
                           variant="outline"
                           onClick={() => handleStatusUpdate(inquiry.id, "Closed")}
-                          className="text-xs text-destructive"
+                          className="text-sm text-destructive"
                         >
                           Close
                         </Button>

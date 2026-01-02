@@ -220,6 +220,15 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+
+  .font-instruments-sans,
+  .font-instruments-sans * {
+    font-family: 'Instrument Sans', system-ui, sans-serif !important;
+  }
+
+  .font-instruments-sans .font-heading {
+    font-family: 'Bebas Neue', system-ui, sans-serif !important;
+  }
 }
 
 @keyframes fadeUp {

@@ -660,7 +660,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6"
+                className="text-4xl md:text-5xl font-bold text-white tracking-wider mb-6"
               >
                 WHERE WILL YOU GO?
               </motion.h2>
