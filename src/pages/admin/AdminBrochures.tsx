@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getBrochureRequests, updateBrochureStatus, BrochureRequest } from "@/data/brochures";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, FileText, CheckCircle, XCircle, Clock, Filter, Mail, Phone, MapPin, Send } from "lucide-react";
+import { Search, FileText, CheckCircle, XCircle, Clock, Filter, Mail, MapPin, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -243,12 +243,6 @@ export default function AdminBrochures() {
                       <div className="space-y-2 text-sm">
                         <p><span className="text-muted-foreground">Name:</span> {brochure.fname} {brochure.lname}</p>
                         <p><span className="text-muted-foreground">Email:</span> {brochure.email}</p>
-                        {brochure.phone && (
-                          <p className="flex items-center gap-2">
-                            <Phone className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">Phone:</span> {brochure.phone}
-                          </p>
-                        )}
                         <p className="flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-muted-foreground" />
                           <span className="text-muted-foreground">Location:</span> {brochure.state} {brochure.postcode}
