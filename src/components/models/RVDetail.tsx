@@ -54,7 +54,16 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Prepare images array - start with main caravan image
   const caravanImage = getCaravanImagePath();
-  const images = [caravanImage];
+  let images = [caravanImage];
+
+  // Specific images for Cruzer model
+  if (model.name === "Cruzer") {
+    images = [
+      "/actualmodels/cruzer-1.jpeg",
+      "/actualmodels/cruzer-2.jpeg",
+      "/actualmodels/cruzer-3.jpeg"
+    ];
+  }
 
   // Extract key specs
   const extractNumber = (str: string): number => {
