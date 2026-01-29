@@ -19,8 +19,8 @@ export function Footer() {
                 priority
               />
             </div>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Proudly Australian designed and engineered caravans, built for 
+            <p className="text-primary-foreground/90 text-sm leading-relaxed font-semibold">
+              Proudly Australian designed and engineered caravans, built for
               adventure and crafted for comfort.
             </p>
             <div className="flex items-center gap-4">
@@ -41,7 +41,7 @@ export function Footer() {
               </a>
               <a href="#" className="text-white hover:text-accent transition-colors" aria-label="TikTok">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
                 </svg>
               </a>
             </div>
@@ -55,15 +55,15 @@ export function Footer() {
               <ul className="space-y-3">
                 {["Build Your RV", "Finance Options", "Customer Reviews", "About Us", "Blog"].map((item) => {
                   // Handle special case for Blog link
-                  const href = item === "Blog" 
-                    ? "/blog" 
+                  const href = item === "Blog"
+                    ? "/blog"
                     : `/${item.toLowerCase().replace(/\s+/g, "-")}`;
-                  
+
                   return (
                     <li key={item}>
                       <Link
                         href={href}
-                        className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
+                        className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
                       >
                         {item}
                       </Link>
@@ -81,7 +81,7 @@ export function Footer() {
                   <li key={item}>
                     <Link
                       href="/contact"
-                      className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
+                      className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
                     >
                       {item}
                     </Link>
@@ -96,7 +96,7 @@ export function Footer() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                  <span className="text-primary-foreground/70 text-sm">
+                  <span className="text-primary-foreground/90 text-sm font-semibold">
                     123 Caravan Way<br />
                     Melbourne, VIC 3000<br />
                     Australia
@@ -104,13 +104,13 @@ export function Footer() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-white shrink-0" />
-                  <a href="tel:1300000000" className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
+                  <a href="tel:1300000000" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
                     1300 000 000
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-white shrink-0" />
-                  <a href="mailto:hello@equalizerrv.com.au" className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
+                  <a href="mailto:hello@equalizerrv.com.au" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
                     hello@equalizerrv.com.au
                   </a>
                 </li>
@@ -122,14 +122,14 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-primary-foreground/50 text-sm">
+            <p className="text-primary-foreground/70 text-sm font-semibold">
               © {new Date().getFullYear()} Equalizer RV. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link href="/privacy" className="text-primary-foreground/50 hover:text-accent transition-colors text-sm">
+              <Link href="/privacy" className="text-primary-foreground/70 hover:text-white transition-colors text-sm font-semibold">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-primary-foreground/50 hover:text-accent transition-colors text-sm">
+              <Link href="/terms" className="text-primary-foreground/70 hover:text-white transition-colors text-sm font-semibold">
                 Terms of Service
               </Link>
             </div>

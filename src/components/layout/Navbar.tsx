@@ -85,8 +85,8 @@ const navigation = [
       categories: [
         { name: "Warranty Information", href: "/warranty", icon: Shield, description: "Comprehensive coverage" },
         { name: "Contact Support", href: "/contact", icon: MessageSquare, description: "Get in touch" },
-        { name: "Manuals", href: "/manuals", icon: Book, description: "Download manuals" },
-        { name: "FAQ", href: "/faqs", icon: HelpCircle, description: "Common questions" },
+        // { name: "Manuals", href: "/manuals", icon: Book, description: "Download manuals" },
+        // { name: "FAQ", href: "/faqs", icon: HelpCircle, description: "Common questions" },
       ],
       description: "We're here to support you every step of the way.",
     },
@@ -99,7 +99,7 @@ const navigation = [
       categories: [
         { name: "Great Aussie Lifestyle", href: "/lifestyle", icon: Sparkles, description: "The caravan life" },
         { name: "Blog", href: "/blog", icon: BookOpen, description: "Latest insights & tips" },
-        { name: "Reviews", href: "/reviews", icon: Building2, description: "Tour our facility" },
+        // { name: "Reviews", href: "/reviews", icon: Building2, description: "Tour our facility" },
       ],
       description: "Discover more about Great Aussie Caravans.",
     },
@@ -131,7 +131,7 @@ export function Navbar() {
           <div className="flex-1 flex items-center pl-4 md:pl-6">
             <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Image
-                src="/logo/Equalizerblack.png"
+                src="/newlogos/EqualizerBlackLogo 1.png"
                 alt="Equalizer RV"
                 width={300}
                 height={100}
@@ -142,7 +142,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation - Pill Style - Centered */}
-          <div className="hidden md:flex items-center gap-2 bg-gray-100/50 rounded-full p-1 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-2 bg-gray-100/50 rounded-full p-1 absolute left-[65%] -translate-x-1/2">
             {navigation.map((item) => {
               const active = checkActive(item);
 

@@ -124,7 +124,7 @@ export function HeroHeader() {
               <Link href="/caravans">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto rounded-full px-8 py-6 text-foreground text-base font-bold shadow-2xl shadow-accent/30 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent border-2 border-accent"
+                  className="w-full sm:w-auto rounded-full px-8 py-6 text-white text-base font-bold shadow-2xl shadow-accent/30 bg-accent hover:bg-accent/90 border-2 border-accent"
                 >
                   Explore Models
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

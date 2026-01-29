@@ -1,12 +1,13 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Users, Wrench, MapPin, Briefcase, Trophy, Calendar, Drill, Sparkles, Target, Heart, Zap, Shield } from "lucide-react";
+import { ArrowRight, Award, Users, Wrench, MapPin, Briefcase, Trophy, Calendar, Drill, Target, Zap, Shield } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import { LucideIcon } from 'lucide-react';
+
 
 interface Stat {
   label: string;
@@ -97,6 +98,9 @@ const imageVariants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: "easeOut" } },
 };
+
+
+
 
 
 export default function About() {
@@ -271,12 +275,12 @@ export default function About() {
               {
                 number: "01",
                 title: "BROWSE",
-                description: "Explore our range of caravans. Compare models, features, and specifications to find your perfect match."
+                description: "Explore our range of caravans. Compare models to find your perfect match."
               },
               {
                 number: "02",
                 title: "Find a Dealer",
-                description: "Connect with authorized dealers across Australia. Get expert guidance and personalized recommendations."
+                description: "Connect with authorized dealers across Australia. Get expert guidance."
               },
               {
                 number: "03",
@@ -443,7 +447,7 @@ export default function About() {
                   title: "The Vision",
                   description: "Founded with a dream to create caravans that combine rugged Australian capability with uncompromising luxury.",
                   icon: Target,
-                  side: "left",
+                  side: "right",
                   image: "/images/caravan-lifestyle-1.jpg"
                 },
                 {
@@ -451,7 +455,7 @@ export default function About() {
                   title: "First Production",
                   description: "Launched our first model, setting new standards in Australian caravan manufacturing with hand-finished quality.",
                   icon: Zap,
-                  side: "right",
+                  side: "left",
                   image: "/images/caravan-lifestyle-2.jpg"
                 },
                 {
@@ -459,7 +463,7 @@ export default function About() {
                   title: "Grand Launch",
                   description: "Opened our state-of-the-aProudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey",
                   icon: Award,
-                  side: "left",
+                  side: "right",
                   image: "/images/caravan-lifestyle-3.jpg"
                 }
               ].map((milestone, index) => {
@@ -572,6 +576,9 @@ export default function About() {
         </div>
       </section>
 
+
+
+
       {/* Values Section - Interactive Asymmetric Layout */}
       <section className="relative py-24 lg:py-32 bg-black overflow-hidden">
         {/* Animated Background Elements */}
@@ -632,7 +639,7 @@ export default function About() {
 
           {/* Asymmetric Grid Layout */}
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Large Featured Value (Top Left) */}
               <motion.div
                 initial="hidden"
@@ -696,9 +703,9 @@ export default function About() {
                     }
                   }}
                   whileHover={{ scale: 1.03, y: -6 }}
-                  className={`lg:col-span-5 group relative ${index === 1 ? 'lg:row-span-2' : ''}`}
+                  className="lg:col-span-5 group relative"
                 >
-                  <div className="h-full p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+                  <div className="h-full p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all duration-500 overflow-hidden">
                     {/* Shimmer Effect */}
                     <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -712,14 +719,7 @@ export default function About() {
                       <p className="text-white/70 text-base lg:text-lg leading-relaxed flex-grow">
                         {value.description}
                       </p>
-                      {index === 1 && (
-                        <div className="mt-6 pt-6 border-t border-white/10">
-                          <div className="flex items-center gap-2 text-accent/80">
-                            <Heart className="w-5 h-5" />
-                            <span className="text-sm font-medium">Customer First</span>
-                          </div>
-                        </div>
-                      )}
+
                     </div>
                   </div>
                 </motion.div>
@@ -971,32 +971,7 @@ export default function About() {
               })}
             </div>
 
-            {/* Feature Highlights */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="mt-20 lg:mt-32 grid grid-cols-1 md:grid-cols-3 gap-6"
-            >
-              {[
-                "Locally-milled Australian timbers",
-                "European high-performance appliances",
-                "Precision-cut chassis engineering"
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 cursor-pointer group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
-                    <p className="text-white/80 font-medium">{feature}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+
 
             {/* CTA */}
             <motion.div

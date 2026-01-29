@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Users, ShieldCheck, Settings, MapPin, Compass, Zap } from "lucide-react";
+import { Users, ShieldCheck, Settings, MapPin, Compass, Zap, Trophy } from "lucide-react";
 import { DealerLocator } from '@/components/dealers/DealerLocator';
+import { DealerForm } from '@/components/dealers/DealerForm';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -50,7 +51,7 @@ const Dealers = () => {
             <section className="bg-background py-20 overflow-hidden">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header Section */}
-                    <motion.div 
+                    <motion.div
                         initial="initial"
                         whileInView="animate"
                         viewport={{ once: true }}
@@ -63,18 +64,18 @@ const Dealers = () => {
                                 Explore Without Limits
                             </span>
                         </motion.div>
-                        
+
                         <motion.h2 variants={fadeInUp} className="font-heading text-5xl sm:text-6xl max-w-3xl lg:text-6xl font-semibold leading-[1.1] mb-8 tracking-wider">
                             The Power of Our Authorised Dealer Network
                         </motion.h2>
-                        
+
                         <motion.p variants={fadeInUp} className="text-muted-foreground text-md leading-relaxed max-w-4xl mx-auto font-light">
                             Our authorised dealers deliver expert guidance, trusted service, and seamless support—ensuring your Equalizer RV experience is refined, reliable, and ready for every journey.
                         </motion.p>
                     </motion.div>
 
                     {/* Cards Grid */}
-                    <motion.div 
+                    <motion.div
                         variants={staggerContainer}
                         initial="initial"
                         whileInView="animate"
@@ -108,7 +109,7 @@ const Dealers = () => {
 
             <section className="py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -125,11 +126,11 @@ const Dealers = () => {
                             Find Your{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 relative inline-block">
                                 Perfect Dealer
-                                <motion.span 
+                                <motion.span
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "100%" }}
                                     transition={{ delay: 0.5, duration: 0.8 }}
-                                    className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-red-500/50 to-red-600/50 blur-xl" 
+                                    className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-red-500/50 to-red-600/50 blur-xl"
                                 />
                             </span>
                         </h2>
@@ -138,7 +139,7 @@ const Dealers = () => {
                         </p>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         id="dealer-locator"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
@@ -153,7 +154,7 @@ const Dealers = () => {
             {/* Premium Features Grid Section */}
             <section className="pt-4 pb-24 lg:pt-6 lg:pb-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-                
+
                 <div className="container mx-auto px-4 lg:px-8 relative">
                     <div className="text-center mb-16">
                         <span className="text-primary text-sm font-medium tracking-wider uppercase">Premium Features</span>
@@ -164,11 +165,11 @@ const Dealers = () => {
                         {/* Feature 1 - Large */}
                         <div className="lg:col-span-2 lg:row-span-2 relative group overflow-hidden border border-border/20">
                             <div className="absolute inset-0">
-                                <Image 
-                                    src="/images/aboutFactory.jpg" 
-                                    alt="Australian Craftsmanship" 
+                                <Image
+                                    src="/images/aboutFactory.jpg"
+                                    alt="Australian Craftsmanship"
                                     fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
                             </div>
@@ -208,6 +209,96 @@ const Dealers = () => {
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
+                    </div>
+                </div>
+            </section>
+            {/* Be a Dealer Form Section */}
+            <section className="relative py-24 lg:py-32 bg-black overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <motion.div
+                        className="absolute top-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+                        animate={{
+                            x: [0, 100, 0],
+                            y: [0, 50, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                    <motion.div
+                        className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+                        animate={{
+                            x: [0, -100, 0],
+                            y: [0, -50, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 25,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                </div>
+
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        {/* Left Content */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="space-y-8"
+                        >
+                            <motion.div className="inline-block">
+                                <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/20 via-accent/10 to-accent/5 border border-accent/40 backdrop-blur-md shadow-2xl shadow-accent/20 text-red-500 dark:text-red-400 text-sm sm:text-base font-semibold">
+                                    <span className="relative flex h-3 w-3">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
+                                    </span>
+                                    Partner With Us
+                                </span>
+                            </motion.div>
+                            <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[0.95] text-white">
+                                Be a <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white">Dealer</span>
+                            </h2>
+                            <p className="text-lg text-white/70 leading-relaxed max-w-xl">
+                                Join our network of authorized dealers and bring the Equalizer RV experience to adventurers across Australia. We&apos;re looking for passionate partners who share our commitment to quality and service.
+                            </p>
+
+                            <div className="space-y-6 pt-4">
+                                {[
+                                    { icon: ShieldCheck, title: "Exclusive Territory", desc: "Protected sales regions to ensure your growth." },
+                                    { icon: Trophy, title: "Premium Brand", desc: "Representing Australia's finest luxury caravans." },
+                                    { icon: Users, title: "Full Support", desc: "Marketing, training, and after-sales backing." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex gap-4">
+                                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                            <item.icon className="w-6 h-6 text-accent" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-lg mb-1">{item.title}</h4>
+                                            <p className="text-white/60 text-sm">{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* Right Form */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-10"
+                        >
+                            <DealerForm />
+                        </motion.div>
                     </div>
                 </div>
             </section>
