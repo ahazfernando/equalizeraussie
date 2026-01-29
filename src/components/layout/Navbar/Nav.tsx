@@ -41,21 +41,21 @@ const navigation = [
         {
           name: "Cruzer",
           href: "/models/cruzer",
-          logo: "/newlogo/CruzerNewLogo.png",
+          logo: "/newlogos/Cruzer_New.png",
           heroImage: "/caravan/CruzerCaravan.png",
           description: "Experience ultimate luxury and comfort on the open road with our flagship Cruzer series.",
         },
         {
           name: "Rebel",
           href: "/models/rebel",
-          logo: "/newlogo/RebelNewLogo.png",
+          logo: "/newlogos/Rebel_New.png",
           heroImage: "/caravan/RebelCaravan.png",
           description: "Built for the bold. The Rebel is designed for off-road adventures and rugged terrains.",
         },
         {
           name: "Rogue",
           href: "/models/rogue",
-          logo: "/newlogo/RogueNewLogo.png",
+          logo: "/newlogos/Rogue_New.png",
           heroImage: "/caravan/RogueCaravan.png",
           description: "Versatile, compact, and ready for anything. The Rogue is your perfect travel companion.",
         },
@@ -186,7 +186,7 @@ export function Nav({ openNav }: NavProps) {
                               {item.submenu.categories.map((category) => (
                                 <div
                                   key={category.name}
-                                  className="group grid grid-cols-1 md:grid-cols-9 gap-1 items-center border-b border-accent/40 pb-5 last:border-0 last:pb-0" 
+                                  className="group grid grid-cols-1 md:grid-cols-9 gap-1 items-center border-b border-accent/40 pb-5 last:border-0 last:pb-0"
                                 >
                                   <div className="md:col-span-3">
                                     <Image

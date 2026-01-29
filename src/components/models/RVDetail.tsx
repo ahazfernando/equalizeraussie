@@ -38,9 +38,9 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Get logo path based on model name
   const getLogoPath = () => {
-    if (model.name === "Cruzer") return "/header/cruzerlogo.png";
-    if (model.name === "Rebel") return "/header/rebelloogo.png";
-    if (model.name === "Rogue") return "/header/rogurelogo.png";
+    if (model.name === "Cruzer") return "/newlogos/C white.png";
+    if (model.name === "Rebel") return "/newlogos/R.png";
+    if (model.name === "Rogue") return "/newlogos/RO white.png";
     return `/caravanlogos/${model.name}Logo.png`;
   };
 
@@ -63,7 +63,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Extract solar power from electrical specifications
   const extractSolarPower = (): string => {
-    const solarSpec = model.specifications.electrical.find(spec => 
+    const solarSpec = model.specifications.electrical.find(spec =>
       spec.toLowerCase().includes('solar') || spec.toLowerCase().includes('w of solar')
     );
     if (solarSpec) {
@@ -75,7 +75,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Extract water capacity from plumbing specifications
   const extractWaterCapacity = (): string => {
-    const waterSpec = model.specifications.plumbing.find(spec => 
+    const waterSpec = model.specifications.plumbing.find(spec =>
       spec.toLowerCase().includes('water capacity') || spec.toLowerCase().includes('l of drinking')
     );
     if (waterSpec) {
@@ -90,7 +90,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     // Try to find length info in chassis specs, or use model-specific defaults
     const lengthMap: Record<string, string> = {
       "cruzer": "17-21ft",
-      "rebel": "19-23ft", 
+      "rebel": "19-23ft",
       "rogue": "20-24ft"
     };
     return lengthMap[model.id] || "17-24ft";
@@ -105,12 +105,12 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Get similar models (exclude current model)
   const allModels = [
-    { id: "cruzer", name: "Cruzer", image: "/caravan/CruzerCaravan.png", logo: "/header/cruzerlogo.png", price: 89990, description: "Perfect On Road Model" },
-    { id: "rebel", name: "Rebel", image: "/caravan/RebelCaravan.png", logo: "/header/rebelloogo.png", price: 119990, description: "Semi Offroad Model" },
-    { id: "rogue", name: "Rogue", image: "/caravan/RogueCaravan.png", logo: "/header/rogurelogo.png", price: 159990, description: "Off Road Model" },
+    { id: "cruzer", name: "Cruzer", image: "/caravan/CruzerCaravan.png", logo: "/newlogos/C white.png", price: 89990, description: "Perfect On Road Model" },
+    { id: "rebel", name: "Rebel", image: "/caravan/RebelCaravan.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
+    { id: "rogue", name: "Rogue", image: "/caravan/RogueCaravan.png", logo: "/newlogos/RO white.png", price: 159990, description: "Off Road Model" },
   ];
   const similarModels = allModels.filter(m => m.id !== modelId);
-  
+
   const activeSimilarModel = similarModels[similarModelIndex];
   const prevSimilarModel = similarModels[similarModelIndex > 0 ? similarModelIndex - 1 : similarModels.length - 1];
   const nextSimilarModel = similarModels[similarModelIndex < similarModels.length - 1 ? similarModelIndex + 1 : 0];
@@ -133,7 +133,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   const extractSpecValue = (specs: string[], keyword: string): string => {
     const found = specs.find(spec => spec.toLowerCase().includes(keyword.toLowerCase()));
     if (!found) return "";
-    
+
     // Extract numbers and units
     if (keyword === "battery") {
       const match = found.match(/(\d+)\s*Ah/i);
@@ -166,7 +166,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     const water = extractWaterCapacity();
     const inverter = extractSpecValue(model.specifications.electrical, "inverter") || "Not Specified";
     const suspension = extractSpecValue(model.specifications.chassis, "suspension") || "Not Specified";
-    
+
     // Get custom features (first 5 features)
     const customs = model.features.slice(0, 5).map(f => f[0]);
 
@@ -235,9 +235,8 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                     <button
                       key={index}
                       onClick={() => setActiveImage(index)}
-                      className={`shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all relative ${
-                        activeImage === index ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
-                      }`}
+                      className={`shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-all relative ${activeImage === index ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+                        }`}
                     >
                       <Image src={img} alt="" fill className="object-cover" sizes="96px" />
                     </button>
@@ -368,212 +367,210 @@ export default function RVDetail({ modelId }: RVDetailProps) {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-12">
-            {/* Overview */}
-            <div className="mb-16">
-              <h2 className="font-heading text-3xl text-foreground mb-6">Overview</h2>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-muted-foreground leading-relaxed mb-4">{model.description}</p>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            {model.features && model.features.length > 0 && (
+              {/* Overview */}
               <div className="mb-16">
-                <h2 className="font-heading text-3xl text-foreground mb-6">Highlights</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {model.features.map((feature, index) => {
-                    // Map feature labels to appropriate icons
-                    const getFeatureIcon = (label: string) => {
-                      const lowerLabel = label.toLowerCase();
-                      if (lowerLabel.includes('compact') || lowerLabel.includes('spacious') || lowerLabel.includes('layout') || lowerLabel.includes('space')) {
-                        return Layout;
-                      }
-                      if (lowerLabel.includes('off-road') || lowerLabel.includes('suspension') || lowerLabel.includes('terrain') || lowerLabel.includes('chassis')) {
-                        return Mountain;
-                      }
-                      if (lowerLabel.includes('solar') || lowerLabel.includes('power') || lowerLabel.includes('battery') || lowerLabel.includes('energy')) {
-                        return Sun;
-                      }
-                      if (lowerLabel.includes('kitchen') || lowerLabel.includes('cooking') || lowerLabel.includes('appliance')) {
-                        return ChefHat;
-                      }
-                      if (lowerLabel.includes('outdoor') || lowerLabel.includes('adventure')) {
-                        return Car;
-                      }
-                      // Default icon
-                      return Check;
-                    };
-
-                    const IconComponent = getFeatureIcon(feature);
-
-                    return (
-                      <div key={index} className="flex items-start gap-4 p-4 glass rounded-xl">
-                        <div className="w-12 h-12 rounded-lg bg-primary/20 border-2 border-primary/30 flex items-center justify-center shrink-0">
-                          <IconComponent className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-foreground">{feature}</h4>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <h2 className="font-heading text-3xl text-foreground mb-6">Overview</h2>
+                <div className="prose prose-invert max-w-none">
+                  <p className="text-muted-foreground leading-relaxed mb-4">{model.description}</p>
                 </div>
               </div>
-            )}
 
-            {/* Specifications - Every Detail Matters Section */}
-            <div className="mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: easeOut }}
-                className="mb-8 items-center text-center"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, ease: easeOut }}
-                  className="inline-block mb-6"
-                >
-                  <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-base font-semibold">
-                    <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-                    Detailed Specifications
-                  </span>
-                </motion.div>
-                <motion.h2
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
-                >
-                  Every Detail Matters
-                </motion.h2>
-              </motion.div>
+              {/* Highlights */}
+              {model.features && model.features.length > 0 && (
+                <div className="mb-16">
+                  <h2 className="font-heading text-3xl text-foreground mb-6">Highlights</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {model.features.map((feature, index) => {
+                      // Map feature labels to appropriate icons
+                      const getFeatureIcon = (label: string) => {
+                        const lowerLabel = label.toLowerCase();
+                        if (lowerLabel.includes('compact') || lowerLabel.includes('spacious') || lowerLabel.includes('layout') || lowerLabel.includes('space')) {
+                          return Layout;
+                        }
+                        if (lowerLabel.includes('off-road') || lowerLabel.includes('suspension') || lowerLabel.includes('terrain') || lowerLabel.includes('chassis')) {
+                          return Mountain;
+                        }
+                        if (lowerLabel.includes('solar') || lowerLabel.includes('power') || lowerLabel.includes('battery') || lowerLabel.includes('energy')) {
+                          return Sun;
+                        }
+                        if (lowerLabel.includes('kitchen') || lowerLabel.includes('cooking') || lowerLabel.includes('appliance')) {
+                          return ChefHat;
+                        }
+                        if (lowerLabel.includes('outdoor') || lowerLabel.includes('adventure')) {
+                          return Car;
+                        }
+                        // Default icon
+                        return Check;
+                      };
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 1, ease: easeOut }}
-              >
-                <SpecificationTabs specifications={model.specifications} />
-              </motion.div>
-            </div>
+                      const IconComponent = getFeatureIcon(feature);
 
-            {/* Floor Plans - Find the Perfect Layout Section */}
-            <div className="mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: easeOut }}
-                className="mb-8 items-center text-center"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, ease: easeOut }}
-                  className="inline-block mb-6"
-                >
-                  <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-base font-semibold">
-                    <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-                    Floor Plans
-                  </span>
-                </motion.div>
-                <motion.h2
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
-                  className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
-                >
-                  Find the Perfect Layout
-                </motion.h2>
-              </motion.div>
-
-              {/* Tabs Section */}
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: easeOut }}
-              >
-                {/* Tab Buttons */}
-                <div className="flex justify-center mb-12">
-                  <div className="inline-flex rounded-full bg-card p-1">
-                    <button
-                      onClick={() => setActiveTab('couples')}
-                      className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${
-                        activeTab === 'couples'
-                          ? 'bg-accent text-foreground shadow-md'
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                    >
-                      For Couples
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('families')}
-                      className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${
-                        activeTab === 'families'
-                          ? 'bg-accent text-foreground shadow-md'
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                    >
-                      For Families
-                    </button>
+                      return (
+                        <div key={index} className="flex items-start gap-4 p-4 glass rounded-xl">
+                          <div className="w-12 h-12 rounded-lg bg-primary/20 border-2 border-primary/30 flex items-center justify-center shrink-0">
+                            <IconComponent className="w-6 h-6 text-primary" />
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-foreground">{feature}</h4>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
+              )}
 
-                {/* Tab Content */}
+              {/* Specifications - Every Detail Matters Section */}
+              <div className="mb-16">
                 <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: easeOut }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: easeOut }}
+                  className="mb-8 items-center text-center"
                 >
-                  {activeTab === 'couples' ? (
-                    <PlansCoupleTabs planscouples={model.planscouples} />
-                  ) : (
-                    <PlansFamiliyTabs plansfamily={model.plansfamily} />
-                  )}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, ease: easeOut }}
+                    className="inline-block mb-6"
+                  >
+                    <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-base font-semibold">
+                      <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
+                      Detailed Specifications
+                    </span>
+                  </motion.div>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
+                    className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
+                  >
+                    Every Detail Matters
+                  </motion.h2>
                 </motion.div>
-              </motion.div>
-            </div>
 
-            {/* Delivery & Warranty */}
-            <div>
-              <h2 className="font-heading text-3xl text-foreground mb-6">Delivery & Warranty</h2>
-              <Accordion type="single" collapsible className="glass rounded-2xl overflow-hidden">
-                <AccordionItem value="delivery" className="border-border/50">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
-                    Free Australia-Wide Delivery
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6 text-muted-foreground">
-                    We offer complimentary delivery to all capital cities and major regional centres across Australia. Our team will coordinate the delivery to ensure your new caravan arrives safely and on schedule.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="warranty" className="border-border/50">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
-                    5-Year Comprehensive Warranty
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6 text-muted-foreground">
-                    Every Equalizer RV comes with our industry-leading 5-year comprehensive warranty. This covers all structural components, appliances, and workmanship. Extended warranty options are available.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="service" className="border-0">
-                  <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
-                    Nationwide Service Network
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6 text-muted-foreground">
-                    Access our network of authorised service centres across Australia. Whether you need routine maintenance or warranty repairs, help is never far away.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, duration: 1, ease: easeOut }}
+                >
+                  <SpecificationTabs specifications={model.specifications} />
+                </motion.div>
+              </div>
+
+              {/* Floor Plans - Find the Perfect Layout Section */}
+              <div className="mb-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: easeOut }}
+                  className="mb-8 items-center text-center"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, ease: easeOut }}
+                    className="inline-block mb-6"
+                  >
+                    <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-base font-semibold">
+                      <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
+                      Floor Plans
+                    </span>
+                  </motion.div>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4, duration: 0.8, ease: easeOut }}
+                    className="font-heading text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wider"
+                  >
+                    Find the Perfect Layout
+                  </motion.h2>
+                </motion.div>
+
+                {/* Tabs Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: easeOut }}
+                >
+                  {/* Tab Buttons */}
+                  <div className="flex justify-center mb-12">
+                    <div className="inline-flex rounded-full bg-card p-1">
+                      <button
+                        onClick={() => setActiveTab('couples')}
+                        className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${activeTab === 'couples'
+                          ? 'bg-accent text-foreground shadow-md'
+                          : 'text-muted-foreground hover:text-foreground'
+                          }`}
+                      >
+                        For Couples
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('families')}
+                        className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${activeTab === 'families'
+                          ? 'bg-accent text-foreground shadow-md'
+                          : 'text-muted-foreground hover:text-foreground'
+                          }`}
+                      >
+                        For Families
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Tab Content */}
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: easeOut }}
+                  >
+                    {activeTab === 'couples' ? (
+                      <PlansCoupleTabs planscouples={model.planscouples} />
+                    ) : (
+                      <PlansFamiliyTabs plansfamily={model.plansfamily} />
+                    )}
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Delivery & Warranty */}
+              <div>
+                <h2 className="font-heading text-3xl text-foreground mb-6">Delivery & Warranty</h2>
+                <Accordion type="single" collapsible className="glass rounded-2xl overflow-hidden">
+                  <AccordionItem value="delivery" className="border-border/50">
+                    <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
+                      Free Australia-Wide Delivery
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 text-muted-foreground">
+                      We offer complimentary delivery to all capital cities and major regional centres across Australia. Our team will coordinate the delivery to ensure your new caravan arrives safely and on schedule.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="warranty" className="border-border/50">
+                    <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
+                      5-Year Comprehensive Warranty
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 text-muted-foreground">
+                      Every Equalizer RV comes with our industry-leading 5-year comprehensive warranty. This covers all structural components, appliances, and workmanship. Extended warranty options are available.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="service" className="border-0">
+                    <AccordionTrigger className="px-6 text-foreground hover:no-underline tracking-wider">
+                      Nationwide Service Network
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 text-muted-foreground">
+                      Access our network of authorised service centres across Australia. Whether you need routine maintenance or warranty repairs, help is never far away.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
           </div>
         </div>
@@ -586,7 +583,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-12">
                 <h2 className="font-heading text-3xl text-foreground mb-12 text-center">Similar Models</h2>
-                
+
                 {/* Carousel Container */}
                 <div className="relative w-full">
                   {/* Navigation Arrows */}

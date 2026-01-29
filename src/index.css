@@ -43,9 +43,9 @@
     --popover: 0 0% 8%;
     --popover-foreground: 40 25% 95%;
 
-    --primary: 348 83% 47%;
-    --primary-glow: 348 83% 55%;
-    --primary-dark: 348 83% 35%;
+    --primary: 0 100% 63%;
+    --primary-glow: 0 100% 68%;
+    --primary-dark: 0 100% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 14%;
@@ -54,7 +54,7 @@
     --muted: 0 0% 14%;
     --muted-foreground: 0, 0%, 81%;
 
-    --accent: 340 82% 52%;
+    --accent: 0 100% 63%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
@@ -62,7 +62,7 @@
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 340 82% 52%;
+    --ring: 0 100% 63%;
 
     --radius: 0.75rem;
 
@@ -78,12 +78,12 @@
 
     --sidebar-background: 0 0% 0%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 340 82% 52%;
+    --sidebar-primary: 0 100% 63%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 15%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 340 82% 52%;
+    --sidebar-ring: 0 100% 63%;
 
     --badge: 0, 100%, 93%;
     --badge-foreground: 0, 0%, 0%;
@@ -213,12 +213,15 @@
   }
 
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 
   .font-instruments-sans,

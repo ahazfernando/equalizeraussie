@@ -84,7 +84,7 @@ export default function ModelPage({ modelId }: ModelPageProps) {
 
   // Helper function to extract solar power from electrical specifications
   const getSolarPower = (): number => {
-    const solarSpec = model.specifications.electrical.find(spec => 
+    const solarSpec = model.specifications.electrical.find(spec =>
       spec.toLowerCase().includes("solar") || spec.toLowerCase().includes("w of")
     );
     return solarSpec ? extractNumber(solarSpec) : 0;
@@ -92,7 +92,7 @@ export default function ModelPage({ modelId }: ModelPageProps) {
 
   // Helper function to extract water capacity from plumbing specifications
   const getWaterCapacity = (): number => {
-    const waterSpec = model.specifications.plumbing.find(spec => 
+    const waterSpec = model.specifications.plumbing.find(spec =>
       spec.toLowerCase().includes("water capacity") || spec.toLowerCase().includes("l of drinking")
     );
     return waterSpec ? extractNumber(waterSpec) : 0;
@@ -140,9 +140,9 @@ export default function ModelPage({ modelId }: ModelPageProps) {
 
   // Get logo path based on model name
   const getLogoPath = () => {
-    if (model.name === "Cruzer") return "/header/cruzerlogo.png";
-    if (model.name === "Rebel") return "/header/rebelloogo.png";
-    if (model.name === "Rogue") return "/header/rogurelogo.png";
+    if (model.name === "Cruzer") return "/newlogos/C white.png";
+    if (model.name === "Rebel") return "/newlogos/R.png";
+    if (model.name === "Rogue") return "/newlogos/RO white.png";
     return `/caravanlogos/${model.name}Logo.png`;
   };
 
@@ -472,8 +472,8 @@ export default function ModelPage({ modelId }: ModelPageProps) {
                 <button
                   onClick={() => setActiveTab('couples')}
                   className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${activeTab === 'couples'
-                      ? 'bg-accent text-foreground shadow-md'
-                      : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-accent text-foreground shadow-md'
+                    : 'text-muted-foreground hover:text-foreground'
                     }`}
                 >
                   For Couples
@@ -481,8 +481,8 @@ export default function ModelPage({ modelId }: ModelPageProps) {
                 <button
                   onClick={() => setActiveTab('families')}
                   className={`px-8 py-3 rounded-full font-semibold text-md transition-all ${activeTab === 'families'
-                      ? 'bg-accent text-foreground shadow-md'
-                      : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-accent text-foreground shadow-md'
+                    : 'text-muted-foreground hover:text-foreground'
                     }`}
                 >
                   For Families

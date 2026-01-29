@@ -118,9 +118,9 @@ export default function Home() {
       <section className="py-0">
         <div className="grid lg:grid-cols-2 min-h-[600px]">
           <div className="relative h-[400px] lg:h-auto overflow-hidden">
-            <Image 
-              src="/images/caravan-interior.jpg" 
-              alt="Luxury RV Interior" 
+            <Image
+              src="/images/caravan-interior.jpg"
+              alt="Luxury RV Interior"
               fill
               className="object-cover"
             />
@@ -180,7 +180,7 @@ export default function Home() {
             sizes="100vw"
           />
         </div>
-        
+
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
 
@@ -209,7 +209,7 @@ export default function Home() {
                     Why Choose Us
                   </span>
                 </motion.div>
-                
+
                 <motion.h2
                   initial={{ opacity: 0, y: -20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -219,7 +219,7 @@ export default function Home() {
                 >
                   Benefits of Equalizer RV
                 </motion.h2>
-                
+
                 <motion.p
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -227,7 +227,7 @@ export default function Home() {
                   transition={{ delay: 0.4 }}
                   className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl"
                 >
-                  Equalizer RV caravans are built with premium materials and engineering excellence, 
+                  Equalizer RV caravans are built with premium materials and engineering excellence,
                   designed to handle Australia&apos;s diverse terrain and climate.
                 </motion.p>
               </div>
@@ -409,7 +409,7 @@ export default function Home() {
         </div>
       </section>
 
-{/* Premium Split Layout Section */}
+      {/* Premium Split Layout Section */}
       <section className="py-20 lg:py-32 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title Section - Above both columns */}
@@ -475,10 +475,10 @@ export default function Home() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
+
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                
+
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
@@ -488,7 +488,7 @@ export default function Home() {
                   <p className="text-white/70 text-lg mb-6 max-w-md">
                     A construction experience unlike any other. Where strength meets precision in every weld.
                   </p>
-                  <Link href="/caravans">
+                  <Link href="/about">
                     <Button className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-white/90 transition-colors">
                       Discover {/*To About Us*/}
                       <ArrowRight className="w-5 h-5 ml-2" />
@@ -521,7 +521,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110 rounded-3xl"
                   />
-                  
+
                   {/* Subtle Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl" />
                 </div>
@@ -536,7 +536,7 @@ export default function Home() {
                 className="space-y-6"
               >
                 <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light max-w-xl">
-                  Discover the perfect blend of rugged capability and refined comfort. 
+                  Discover the perfect blend of rugged capability and refined comfort.
                   Every Equalizer RV is crafted with meticulous attention to detail.
                 </p>
 
@@ -616,7 +616,7 @@ export default function Home() {
               >
                 WHERE WILL YOU GO?
               </motion.h2>
-              
+
               {/* Description and Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -628,11 +628,11 @@ export default function Home() {
                 <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-lg mb-4">
                   Discover breathtaking destinations across Australia. From the iconic red center to pristine coastal escapes, your next adventure awaits.
                 </p>
-                <Link href="/dealers" className="inline-block">
+                <Link href="/contact" className="inline-block">
                   <Button
                     size="lg"
                     className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300"
-                  > 
+                  >
                     Become an Ambassador {/* To Contact Page */}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
@@ -640,52 +640,52 @@ export default function Home() {
               </motion.div>
             </div>
 
-          {/* Right side - extends to the very end of viewport, breaking out of grid */}
-          <div className="col-span-12 lg:col-span-7 xl:col-span-8 lg:col-start-5 xl:col-start-5 relative">
-            <div
-              ref={destinationsScrollRef}
-              className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide pl-4 sm:pl-6 lg:pl-8"
-              style={{
-                marginRight: 'calc((100vw - 100%) / -2)',
-                paddingRight: 'calc((100vw - 100%) / 2)'
-              }}
-            >
-              {[
-                { id: 1, image: '/images/caravan-lifestyle-1.jpg', distance: '2,800 km FROM BRISBANE', title: 'ULURU' },
-                { id: 2, image: '/images/caravan-lifestyle-2.jpg', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
-                { id: 3, image: '/images/caravan-lifestyle-3.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
-                { id: 4, image: '/images/caravan-lifestyle-4.jfif', distance: '4,100 km FROM BRISBANE', title: 'TASMANIA' },
-              ].map((dest, index) => (
-                <motion.div
-                  key={dest.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="flex-shrink-0 w-80 group cursor-pointer"
-                >
-                  <div className="relative h-96 rounded-2xl overflow-hidden">
-                    <Image
-                      src={dest.image}
-                      alt={dest.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    {/* Content inside the card */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 pb-8">
-                      <p className="text-accent text-sm font-medium tracking-wider mb-2">
-                        {dest.distance}
-                      </p>
-                      <h3 className="text-white text-2xl font-bold">
-                        {dest.title}
-                      </h3>
+            {/* Right side - extends to the very end of viewport, breaking out of grid */}
+            <div className="col-span-12 lg:col-span-7 xl:col-span-8 lg:col-start-5 xl:col-start-5 relative">
+              <div
+                ref={destinationsScrollRef}
+                className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide pl-4 sm:pl-6 lg:pl-8"
+                style={{
+                  marginRight: 'calc((100vw - 100%) / -2)',
+                  paddingRight: 'calc((100vw - 100%) / 2)'
+                }}
+              >
+                {[
+                  { id: 1, image: '/images/caravan-lifestyle-1.jpg', distance: '2,800 km FROM BRISBANE', title: 'ULURU' },
+                  { id: 2, image: '/images/caravan-lifestyle-2.jpg', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
+                  { id: 3, image: '/images/caravan-lifestyle-3.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
+                  { id: 4, image: '/images/caravan-lifestyle-4.jfif', distance: '4,100 km FROM BRISBANE', title: 'TASMANIA' },
+                ].map((dest, index) => (
+                  <motion.div
+                    key={dest.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className="flex-shrink-0 w-80 group cursor-pointer"
+                  >
+                    <div className="relative h-96 rounded-2xl overflow-hidden">
+                      <Image
+                        src={dest.image}
+                        alt={dest.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      {/* Content inside the card */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 pb-8">
+                        <p className="text-accent text-sm font-medium tracking-wider mb-2">
+                          {dest.distance}
+                        </p>
+                        <h3 className="text-white text-2xl font-bold">
+                          {dest.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </section>

@@ -65,7 +65,7 @@ const values = [
   {
     icon: MapPin,
     title: "Australian Spirit",
-    description: "Born from the Australian love of adventure and designed for our unique conditions.",
+    description: "Born from the Australian love for adventure and designed for our unique conditions.",
   },
 ];
 
@@ -122,12 +122,12 @@ export default function About() {
             priority
             sizes="100vw"
           />
-          
+
           {/* Sophisticated Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
-          
+
           {/* Subtle Animated Gradient Overlay */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5"
@@ -174,7 +174,7 @@ export default function About() {
                     >
                       {/* Shimmer Effect */}
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative">
                         <h4 className="font-heading font-bold text-white mb-2 text-lg tracking-wider">100% Aussie Made</h4>
                         <p className="text-sm text-white/70 leading-relaxed">
@@ -189,7 +189,7 @@ export default function About() {
                     >
                       {/* Shimmer Effect */}
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative">
                         <h4 className="font-heading font-bold text-white mb-2 text-lg tracking-wider">Every Terrain</h4>
                         <p className="text-sm text-white/70 leading-relaxed">
@@ -265,18 +265,18 @@ export default function About() {
               We help you on every step of the journey
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 number: "01",
                 title: "BROWSE",
-                description: "Browse our range of caravans."
+                description: "Explore our range of caravans. Compare models, features, and specifications to find your perfect match."
               },
               {
                 number: "02",
                 title: "Find a Dealer",
-                description: "Connect with an authorized dealer."
+                description: "Connect with authorized dealers across Australia. Get expert guidance and personalized recommendations."
               },
               {
                 number: "03",
@@ -415,31 +415,31 @@ export default function About() {
                 Our Journey
               </span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95] text-white mb-4"
             >
               Born From <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white">True Passion</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
             >
-              Equalizer RV started with a simple question: why choose between rugged capability and luxury?
+              As a customisation expert we cater for everyone’s needs, whether it’s tackling the Gibb River Road, heading to the Cape or going on that Christmas holiday at the caravan park.
             </motion.p>
           </motion.div>
 
           {/* Timeline */}
           <div className="max-w-5xl mx-auto relative pt-8">
             {/* Timeline Line */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-accent/50 via-accent/30 to-transparent" 
+            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-accent/50 via-accent/30 to-transparent"
               style={{ top: '2rem', bottom: '0' }} />
 
             {/* Timeline Items */}
             <div className="space-y-16 lg:space-y-24 relative">
               {[
                 {
-                  year: "2008",
+                  year: "Equalizer RV",
                   title: "The Vision",
                   description: "Founded with a dream to create caravans that combine rugged Australian capability with uncompromising luxury.",
                   icon: Target,
@@ -447,7 +447,7 @@ export default function About() {
                   image: "/images/caravan-lifestyle-1.jpg"
                 },
                 {
-                  year: "2012",
+                  year: "2025",
                   title: "First Production",
                   description: "Launched our first model, setting new standards in Australian caravan manufacturing with hand-finished quality.",
                   icon: Zap,
@@ -455,25 +455,17 @@ export default function About() {
                   image: "/images/caravan-lifestyle-2.jpg"
                 },
                 {
-                  year: "2018",
-                  title: "Expansion",
-                  description: "Opened our state-of-the-art Melbourne facility, combining traditional craftsmanship with aerospace engineering.",
+                  year: "2026",
+                  title: "Grand Launch",
+                  description: "Opened our state-of-the-aProudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey",
                   icon: Award,
                   side: "left",
                   image: "/images/caravan-lifestyle-3.jpg"
-                },
-                {
-                  year: "2024",
-                  title: "Innovation Leader",
-                  description: "Recognized as Australia's premier caravan manufacturer, with thousands of happy adventurers exploring the country.",
-                  icon: Sparkles,
-                  side: "right",
-                  image: "/images/caravan-lifestyle-4.jfif"
                 }
               ].map((milestone, index) => {
                 const Icon = milestone.icon;
                 const isLeft = milestone.side === "left";
-                
+
                 return (
                   <motion.div
                     key={milestone.year}
@@ -488,9 +480,8 @@ export default function About() {
                         transition: { duration: 0.8, delay: index * 0.2 }
                       }
                     }}
-                    className={`relative flex flex-col lg:flex-row items-center gap-8 ${
-                      isLeft ? 'lg:flex-row-reverse' : ''
-                    }`}
+                    className={`relative flex flex-col lg:flex-row items-center gap-8 ${isLeft ? 'lg:flex-row-reverse' : ''
+                      }`}
                   >
                     {/* Timeline Node */}
                     <div className="relative z-10 flex-shrink-0">
@@ -508,18 +499,18 @@ export default function About() {
                       >
                         {/* Shimmer Effect */}
                         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative">
                           <div className={`flex items-center gap-4 mb-4 ${isLeft ? 'lg:justify-end' : ''}`}>
                             <span className="text-accent font-bold text-2xl lg:text-3xl tracking-tight">{milestone.year}</span>
-                            <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent" 
+                            <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent"
                               style={isLeft ? { background: 'linear-gradient(to left, rgba(239, 68, 68, 0.5), transparent)' } : {}} />
                           </div>
-                          
+
                           <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 tracking-wider">
                             {milestone.title}
                           </h3>
-                          
+
                           <p className="text-white/70 leading-relaxed text-base lg:text-lg">
                             {milestone.description}
                           </p>
@@ -559,8 +550,8 @@ export default function About() {
               className="mt-20 lg:mt-32 grid grid-cols-2 gap-6 lg:gap-8"
             >
               {[
-                { value: "100%", label: "Hand Finished" },
-                { value: "Local", label: "Melbourne Made" }
+                { value: "100%", label: "Austyralian made" },
+                { value: "Made", label: "for Australians" }
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -631,7 +622,7 @@ export default function About() {
                 Our Values
               </span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95] text-white mb-6"
             >
@@ -666,7 +657,7 @@ export default function About() {
                       backgroundSize: '30px 30px'
                     }} />
                   </div>
-                  
+
                   <div className="relative z-10 h-full flex flex-col justify-between">
                     <div>
                       <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -710,7 +701,7 @@ export default function About() {
                   <div className="h-full p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all duration-500 overflow-hidden">
                     {/* Shimmer Effect */}
                     <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    
+
                     <div className="relative z-10 h-full flex flex-col">
                       <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
                         <value.icon className="w-7 h-7 text-accent" />
@@ -753,7 +744,7 @@ export default function About() {
                 <div className="p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-white/5 via-white/5 to-accent/5 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all duration-500 overflow-hidden">
                   {/* Animated Background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-8">
                     <div className="w-16 h-16 rounded-2xl bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       {(() => {
@@ -809,17 +800,17 @@ export default function About() {
                 Our Manufacturing
               </span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95] text-white mb-6"
             >
               Crafted in <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white">Melbourne</span>
             </motion.h2>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed"
             >
-              Our state-of-the-art manufacturing facility in Melbourne&apos;s south-east is where the magic happens. We blend traditional joinery with aerospace engineering.
+              Our state-of-the-art manufacturing facility in Melbourne&apos;s north is where the magic happens. We blend traditional joinery with cutting edge technology.
             </motion.p>
           </motion.div>
 
@@ -863,7 +854,7 @@ export default function About() {
               ].map((process, index) => {
                 const Icon = process.icon;
                 const isEven = index % 2 === 0;
-                
+
                 return (
                   <motion.div
                     key={process.step}
@@ -879,9 +870,8 @@ export default function About() {
                       }
                     }}
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
-                      isEven ? '' : 'lg:flex-row-reverse'
-                    }`}
+                    className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${isEven ? '' : 'lg:flex-row-reverse'
+                      }`}
                   >
                     {/* Step Number & Icon */}
                     <div className="flex-shrink-0 relative">
@@ -903,7 +893,7 @@ export default function About() {
                       <div className={`p-8 lg:p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all duration-500 group overflow-hidden`}>
                         {/* Shimmer Effect */}
                         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <h3 className="text-2xl lg:text-4xl font-bold text-white mb-4 tracking-wider">
                             {process.title}

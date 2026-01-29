@@ -10,17 +10,17 @@ const models = [
   {
     id: "cruzer",
     name: "Cruzer",
-    logo: "/header/cruzerlogo.png",
+    logo: "/newlogos/C white.png",
   },
   {
     id: "rebel",
     name: "Rebel",
-    logo: "/header/rebelloogo.png",
+    logo: "/newlogos/R.png",
   },
   {
     id: "rogue",
     name: "Rogue",
-    logo: "/header/rogurelogo.png",
+    logo: "/newlogos/RO white.png",
   },
 ];
 
@@ -40,7 +40,7 @@ export function HeroHeader() {
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-background/60 dark:bg-background/70" />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
           {/* Content */}
