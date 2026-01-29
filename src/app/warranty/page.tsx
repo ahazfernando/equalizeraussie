@@ -82,7 +82,7 @@ export default function Warranty() {
     return (
         <div className="bg-background text-foreground overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative h-[60vh] flex items-center overflow-hidden -mt-24 pt-24">
+            <section className="relative h-[60vh] flex items-center overflow-hidden -mt-24 pt-40">
                 <div className="absolute inset-0 z-0">
                     <video
                         autoPlay
