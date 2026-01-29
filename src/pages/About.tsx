@@ -270,17 +270,17 @@ export default function About() {
             {[
               {
                 number: "01",
-                title: "CONSULTATION",
-                description: "Share your vision with our design team. We listen to understand your needs and travel style."
+                title: "BROWSE",
+                description: "Browse our range of caravans."
               },
               {
                 number: "02",
-                title: "CUSTOM DESIGN",
-                description: "Receive 3D renders and detailed plans. Refine every detail until it's perfect."
+                title: "Find a Dealer",
+                description: "Connect with an authorized dealer."
               },
               {
                 number: "03",
-                title: "EXPERT BUILD",
+                title: "Expert Build",
                 description: "Watch your RV come to life with regular updates. Quality checks at every stage."
               },
               {

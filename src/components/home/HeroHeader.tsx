@@ -78,7 +78,7 @@ export function HeroHeader() {
                 </span>
               </h1>
               <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
-                Experience the freedom of the open road with our premium range of
+                Experience the freedom of the open road with our adventurous
                 Australian-built caravans. Quality, comfort, and adventure await.
               </p>
             </motion.div>

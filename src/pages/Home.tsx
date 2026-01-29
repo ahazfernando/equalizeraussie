@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 const trustPillars = [
   {
     icon: Shield,
-    title: "5-Year Warranty",
+    title: "2-Year Warranty",
     description: "Industry-leading coverage for complete peace of mind on the road.",
   },
   {
@@ -30,8 +30,8 @@ const trustPillars = [
   },
   {
     icon: Award,
-    title: "Award Winning",
-    description: "Recognised for excellence in design, quality and innovation.",
+    title: "Friendly Staff",
+    description: "Friendly staff who welcome you with care, and genuine support every step",
   },
   {
     icon: MapPin,
@@ -113,50 +113,6 @@ export default function Home() {
       {/* Model Selector */}
       <ModelSelector />
 
-      {/* Social Proof Banner */}
-      <section className="py-16 bg-background border-y border-border/30">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Avatars + Text */}
-            <div className="flex items-center gap-6">
-              <div className="flex -space-x-3">
-                {['JT', 'MK', 'SR', 'LC', 'PW'].map((initials, i) => (
-                  <div 
-                    key={i} 
-                    className="w-12 h-12 rounded-full bg-primary/80 border-2 border-background flex items-center justify-center text-primary-foreground text-sm font-medium"
-                  >
-                    {initials}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <p className="text-lg font-bold tracking-wide">JOIN 1,200+ ADVENTURERS</p>
-                <p className="text-muted-foreground">Who chose Equalizer RV for their journey</p>
-              </div>
-            </div>
-            
-            {/* Stats */}
-            <div className="flex items-center gap-8 lg:gap-12">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-1 text-2xl font-bold text-primary">
-                  4.9<Star className="w-5 h-5 fill-primary" />
-                </div>
-                <p className="text-sm text-muted-foreground">Google Reviews</p>
-              </div>
-              <div className="h-12 w-px bg-border" />
-              <div className="text-center">
-                <p className="text-2xl font-bold">3+</p>
-                <p className="text-sm text-muted-foreground">Models</p>
-              </div>
-              <div className="h-12 w-px bg-border" />
-              <div className="text-center">
-                <p className="text-2xl font-bold">50M+</p>
-                <p className="text-sm text-muted-foreground">Km Travelled</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Lifestyle Split Section */}
       <section className="py-0">
@@ -289,7 +245,7 @@ export default function Home() {
               <ul className="space-y-4 flex-grow">
                 {[
                   {
-                    title: "Premium Quality & Durability",
+                    title: "Superior Quality & Durability",
                     description: "Built to last with superior craftsmanship and materials",
                     icon: Shield
                   },
@@ -299,7 +255,7 @@ export default function Home() {
                     icon: Award
                   },
                   {
-                    title: "Comprehensive Warranty",
+                    title: " 2 Years Manufacturer's Warranty",
                     description: "Industry-leading coverage for complete peace of mind",
                     icon: Heart
                   }
@@ -396,7 +352,7 @@ export default function Home() {
                 transition={{ delay: 0.3 }}
                 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-wider"
               >
-                Connect with Experts <br />and Find Your Perfect Caravan
+                Connect with our dealers <br />and Find Your Perfect Caravan
               </motion.h2>
 
               {/* Description */}
@@ -407,7 +363,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl"
               >
-                Join thousands of adventurers across Australia who are discovering their dream caravans with guidance from our authorized dealer.
+                Join hands with adventurers across Australia who are discovering their dream caravans with guidance from our authorized dealers.
               </motion.p>
 
               {/* Bottom CTA Button */}
@@ -423,7 +379,7 @@ export default function Home() {
                     size="lg"
                     className="bg-white hover:bg-white/90 text-black rounded-full px-8 py-6 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
                   >
-                    Explore our Options
+                    Find a Dealer
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
@@ -479,7 +435,7 @@ export default function Home() {
               >
                 Where Adventure Meets<br />
                 <span className="bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                  luxury and Exotic Comfort
+                  luxury and Comfort
                 </span>
               </motion.h2>
               <motion.div
@@ -492,10 +448,6 @@ export default function Home() {
                 <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
                   Adventure-ready strength meets refined family comfort in every Equalizer RV. Thoughtfully built, down to the finest detail.
                 </p>
-                <Link href="/caravans" className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors font-medium">
-                  View more
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
               </motion.div>
             </div>
           </div>
@@ -538,7 +490,7 @@ export default function Home() {
                   </p>
                   <Link href="/caravans">
                     <Button className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-white/90 transition-colors">
-                      Discover
+                      Discover {/*To About Us*/}
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </Link>
@@ -680,8 +632,8 @@ export default function Home() {
                   <Button
                     size="lg"
                     className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300"
-                  >
-                    Find a Dealer
+                  > 
+                    Become an Ambassador {/* To Contact Page */}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
@@ -780,150 +732,6 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lifestyle Section – Enhanced with Framer Motion & Responsive Improvements */}
-      <section className="py-20 bg-black overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Text Content */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="space-y-8 order-2 lg:order-1"
-            >
-              <div>
-                <div className="inline-block mb-6">
-                  <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 group text-red-500 dark:text-red-400 text-base font-semibold cursor-pointer">
-                    <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-                    The Equalizer Difference
-                  </span>
-                </div>
-                <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight tracking-wider">
-                  Built for Australia.<br />
-                  Designed for You.
-                </h2>
-              </div>
-
-              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-                Every Equalizer RV is engineered from the ground up to handle
-                Australia&apos;s diverse terrain and climate. From the red dust of the
-                outback to the salt spray of coastal highways, our caravans are
-                built to go wherever your adventure takes you.
-              </p>
-
-              <ul className="space-y-5">
-                {[
-                  "Heavy-duty chassis and suspension systems",
-                  "Premium Australian-sourced materials",
-                  "Comprehensive off-grid capability",
-                  "Thoughtful, practical layouts",
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15, duration: 0.5 }}
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center shrink-0 transition-transform group-hover:scale-110">
-                      <ChevronRight className="w-5 h-5 text-foreground" />
-                    </div>
-                    <span className="text-foreground text-base sm:text-lg">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
-              <Link href="/about" className="inline-block mt-8">
-                <Button
-                  size="lg"
-                  className="border-accent bg-accent border-2 text-foreground hover:bg-accent/90 rounded-full shadow-lg"
-                >
-                  Learn Our Story
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Image Collage – Mobile-first stacking */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="relative order-1 lg:order-2"
-            >
-              <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
-                {/* Mobile: full width stacked, Tablet/Desktop: side-by-side */}
-                <div className="space-y-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <Image
-                      src="/images/caravan-lifestyle-1.jpg"
-                      alt="Caravan tackling the Australian outback"
-                      width={600}
-                      height={800}
-                      className="rounded-3xl w-full object-cover shadow-2xl hover:scale-105 transition-transform duration-500"
-                      priority
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  >
-                    <Image
-                      src="/images/caravan-lifestyle-2.jpg"
-                      alt="Couple relaxing by their caravan at sunset"
-                      width={600}
-                      height={600}
-                      className="rounded-3xl w-full object-cover shadow-2xl hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
-                </div>
-
-                <div className="space-y-6 sm:pt-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: 80 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                  >
-                    <Image
-                      src="/images/caravan-lifestyle-2.jpg"
-                      alt="Interior or off-road adventure with Equalizer caravan"
-                      width={600}
-                      height={700}
-                      className="rounded-3xl w-full object-cover shadow-2xl hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    <Image
-                      src="/images/caravan-lifestyle-1.jpg"
-                      alt="Family enjoying campsite with Equalizer caravan"
-                      width={600}
-                      height={500}
-                      className="rounded-3xl w-full object-cover shadow-2xl hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>

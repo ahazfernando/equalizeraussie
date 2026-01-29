@@ -37,10 +37,10 @@ const Newsletter = () => {
           >
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-wider">
-                Get the Latest <span className="bg-accent bg-clip-text text-transparent">Flavors First</span>
+                Get the Latest <span className="bg-accent bg-clip-text text-transparent">Updates First</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl">
-                Exclusive drops, secret recipes, and behind-the-scenes stories delivered straight to your inbox.
+                Exclusive drops, insider builds, and behind thescenes caravan stories delivered straight to your inbox
               </p>
             </div>
 
@@ -67,9 +67,9 @@ const Newsletter = () => {
                 </Button>
               </div>
 
-              <p className="text-muted-foreground text-sm mt-4">
+              {/* <p className="text-muted-foreground text-sm mt-4">
                 No spam. Unsubscribe anytime. We respect your privacy.
-              </p>
+              </p> */}
             </form>
           </motion.div>
 
