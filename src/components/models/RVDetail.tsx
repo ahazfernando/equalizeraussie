@@ -59,9 +59,21 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   // Specific images for Cruzer model
   if (model.name === "Cruzer") {
     images = [
-      "/actualmodels/cruzer-1.jpeg",
+      "/actualmodels/cruzer-3.jpeg",
       "/actualmodels/cruzer-2.jpeg",
-      "/actualmodels/cruzer-3.jpeg"
+      "/actualmodels/cruzer-1.jpeg"
+    ];
+  } else if (model.name === "Rogue") {
+    images = [
+      "/roguemodel/rogue-1.jpeg",
+      "/roguemodel/rogue-2.jpeg",
+      "/roguemodel/rogue-3.jpeg"
+    ];
+  } else if (model.name === "Rebel") {
+    images = [
+      "/rebelmodel/rebel-1.jpeg",
+      "/rebelmodel/rebel-2.jpeg",
+      "/rebelmodel/rebel-3.jpeg"
     ];
   }
 
