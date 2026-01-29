@@ -189,7 +189,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     const suspension = extractSpecValue(model.specifications.chassis, "suspension") || "Not Specified";
 
     // Get custom features (first 5 features)
-    const customs = model.features.slice(0, 5).map(f => f[0]);
+    const customs = model.features.slice(0, 5).map(f => f.title);
 
     return { solar, battery, water, inverter, suspension, customs };
   };
@@ -424,7 +424,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                         return Check;
                       };
 
-                      const IconComponent = getFeatureIcon(feature);
+                      const IconComponent = getFeatureIcon(feature.title);
 
                       return (
                         <div key={index} className="flex items-start gap-4 p-4 glass rounded-xl">
@@ -432,7 +432,8 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                             <IconComponent className="w-6 h-6 text-primary" />
                           </div>
                           <div>
-                            <h4 className="font-medium text-foreground">{feature}</h4>
+                            <h4 className="font-medium text-foreground">{feature.title}</h4>
+                            <p className="text-sm text-muted-foreground mt-1">{feature.description}</p>
                           </div>
                         </div>
                       );
