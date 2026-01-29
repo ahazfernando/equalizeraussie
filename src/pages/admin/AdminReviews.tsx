@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Review } from "@/data/reviews";
-import { 
-  getReviews, 
-  createReview, 
-  updateReview, 
+import {
+  getReviews,
+  createReview,
+  updateReview,
   deleteReview,
-  getCaravans 
+  getCaravans
 } from "@/lib/firebase/firestore";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -82,11 +82,11 @@ export default function AdminReviews() {
     return new Date().toISOString().split("T")[0];
   };
 
-  const loadReviews = async () => {
+  const loadReviews = useCallback(async () => {
     setLoading(true);
     try {
       const reviewsData = await getReviews();
-      
+
       // Convert Firestore data to Review format
       const formattedReviews = reviewsData.map((review: any) => ({
         id: review.id,
@@ -109,9 +109,9 @@ export default function AdminReviews() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const loadCaravans = async () => {
+  const loadCaravans = useCallback(async () => {
     try {
       const caravansData = await getCaravans();
       setCaravans(caravansData.map((c: any) => ({
@@ -122,12 +122,12 @@ export default function AdminReviews() {
       console.error('Error loading caravans:', error);
       toast.error("Failed to load caravans");
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadReviews();
     loadCaravans();
-  }, []);
+  }, [loadReviews, loadCaravans]);
 
   const filteredReviews = reviewList.filter(
     (review) =>
@@ -179,7 +179,7 @@ export default function AdminReviews() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!reviewForm.author || !reviewForm.title || !reviewForm.content || !reviewForm.caravanId) {
       toast.error("Please fill in all required fields");
       return;
@@ -250,8 +250,8 @@ export default function AdminReviews() {
   const averageRating =
     reviewList.length > 0
       ? (
-          reviewList.reduce((sum, r) => sum + r.rating, 0) / reviewList.length
-        ).toFixed(1)
+        reviewList.reduce((sum, r) => sum + r.rating, 0) / reviewList.length
+      ).toFixed(1)
       : "0.0";
 
   if (loading) {
@@ -347,11 +347,10 @@ export default function AdminReviews() {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${
-                          i < review.rating
-                            ? "fill-gold text-gold"
-                            : "text-border"
-                        }`}
+                        className={`w-4 h-4 ${i < review.rating
+                          ? "fill-gold text-gold"
+                          : "text-border"
+                          }`}
                       />
                     ))}
                   </div>

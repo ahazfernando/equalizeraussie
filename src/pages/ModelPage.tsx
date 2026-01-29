@@ -342,10 +342,11 @@ export default function ModelPage({ modelId }: ModelPageProps) {
               <SwiperSlide key={index}>
                 <div className="relative aspect-[4/5] lg:aspect-[16/10] w-full rounded-xl overflow-hidden group">
                   {/* Background Image */}
-                  <img
+                  <Image
                     src={model.image}
-                    alt={feature}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
                   {/* Gradient Overlay (mimics the image provided) */}
@@ -354,10 +355,10 @@ export default function ModelPage({ modelId }: ModelPageProps) {
                   {/* Content Overlay */}
                   <div className="absolute bottom-0 left-0 p-8 w-full text-foreground">
                     <h3 className="text-3xl font-heading font-bold mb-4">
-                      {feature}
+                      {feature.title}
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-2xl">
-                      {model.tagline}
+                      {feature.description}
                     </p>
                   </div>
                 </div>

@@ -14,6 +14,7 @@ import { db } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Plus, Eye, EyeOff, X, Loader2, Trash2, Edit } from "lucide-react";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -848,10 +849,12 @@ export default function AdminCaravans() {
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
                     {formState.imagePreviews.map((preview, index) => (
                       <div key={index} className="relative group">
-                        <img
+                        <Image
                           src={preview}
                           alt={`Preview ${index + 1}`}
-                          className="w-full h-48 object-cover rounded-lg shadow"
+                          fill
+                          unoptimized
+                          className="object-cover rounded-lg shadow"
                         />
                         <button
                           onClick={() => removeImage(index)}

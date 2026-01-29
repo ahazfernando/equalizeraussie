@@ -77,18 +77,20 @@ export function ModelSelector() {
 
       {/* Background model images overlay for ambient effect */}
       <div className="absolute inset-0 z-0 opacity-10">
-        <div className="absolute top-20 left-0 w-1/3 h-1/3">
-          <img
+        <div className="absolute top-20 left-0 w-1/3 h-1/3 relative">
+          <Image
             src={activeModel.image}
             alt=""
-            className="w-full h-full object-cover blur-3xl"
+            fill
+            className="object-cover blur-3xl"
           />
         </div>
-        <div className="absolute top-40 right-0 w-1/4 h-1/4">
-          <img
+        <div className="absolute top-40 right-0 w-1/4 h-1/4 relative">
+          <Image
             src={activeModel.image}
             alt=""
-            className="w-full h-full object-cover blur-3xl"
+            fill
+            className="object-cover blur-3xl"
           />
         </div>
       </div>
@@ -153,10 +155,12 @@ export function ModelSelector() {
 
               {/* Previous Model Visual (Left side) */}
               <div className="absolute left-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] -translate-x-1/2">
-                <img
+                <Image
                   src={prevModel.image}
                   alt={prevModel.name}
-                  className="w-[400px] h-[300px] object-contain"
+                  width={400}
+                  height={300}
+                  className="object-contain"
                 />
               </div>
 
@@ -203,10 +207,11 @@ export function ModelSelector() {
                     transition={{ delay: 0.4, type: "spring", stiffness: 50 }}
                     className="relative w-full max-w-4xl xl:max-w-5xl h-[320px] md:h-[380px] lg:h-[400px] xl:h-[400px] mt-4"
                   >
-                    <img
+                    <Image
                       src={activeModel.image}
                       alt={activeModel.name}
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain"
                     />
                   </motion.div>
                 </motion.div>
@@ -214,10 +219,12 @@ export function ModelSelector() {
 
               {/* Next Model Visual (Right side) */}
               <div className="absolute right-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] translate-x-1/2">
-                <img
+                <Image
                   src={nextModel.image}
                   alt={nextModel.name}
-                  className="w-[400px] h-[300px] object-contain"
+                  width={400}
+                  height={300}
+                  className="object-contain"
                 />
               </div>
             </div>

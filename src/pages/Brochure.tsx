@@ -185,10 +185,11 @@ export default function Brochure() {
                                     className="group relative bg-card rounded-3xl overflow-hidden border border-border/50 shadow-sm hover:shadow-2xl transition-all duration-500"
                                 >
                                     <div className="relative h-72 overflow-hidden">
-                                        <img
+                                        <Image
                                             src={brochure.image}
                                             alt={brochure.name}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                                             <p className="text-white/80 text-sm italic">Click to request full specifications</p>
@@ -284,32 +285,32 @@ export default function Brochure() {
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label>First Name</Label>
-                                                <Input 
-                                                    required 
+                                                <Input
+                                                    required
                                                     value={formData.fname}
                                                     onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
-                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                    className="rounded-xl bg-secondary/50 border-none h-12"
                                                 />
                                             </div>
                                             <div className="space-y-2">
                                                 <Label>Last Name</Label>
-                                                <Input 
-                                                    required 
+                                                <Input
+                                                    required
                                                     value={formData.lname}
                                                     onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
-                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                    className="rounded-xl bg-secondary/50 border-none h-12"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
                                             <Label>Email</Label>
-                                            <Input 
-                                                type="email" 
-                                                required 
+                                            <Input
+                                                type="email"
+                                                required
                                                 value={formData.email}
                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
                                             />
                                         </div>
 
@@ -337,21 +338,21 @@ export default function Brochure() {
                                             </div>
                                             <div className="space-y-2">
                                                 <Label>Postcode</Label>
-                                                <Input 
+                                                <Input
                                                     value={formData.postcode}
                                                     onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
-                                                    className="rounded-xl bg-secondary/50 border-none h-12" 
+                                                    className="rounded-xl bg-secondary/50 border-none h-12"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
                                             <Label>Message</Label>
-                                            <Textarea 
-                                                rows={4} 
+                                            <Textarea
+                                                rows={4}
                                                 value={formData.message}
                                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                                className="rounded-xl bg-secondary/50 border-none resize-none" 
+                                                className="rounded-xl bg-secondary/50 border-none resize-none"
                                             />
                                         </div>
 
@@ -376,20 +377,20 @@ export default function Brochure() {
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                
+
                                 {/* Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                                
+
                                 {/* Content */}
                                 <div className="absolute bottom-0 left-0 right-0 p-8 pb-10">
                                     <h2 className="text-2xl md:text-3xl font-black italic text-white leading-tight mb-4 tracking-wider">
                                         Connect with Our Expert Dealers
                                     </h2>
-                                    
+
                                     <p className="text-white/70 text-base mb-8">
                                         Visit one of our authorized dealers to see our caravans in person and get expert advice on finding your perfect match.
                                     </p>
-                                    
+
                                     <Link href="/dealers">
                                         <button className="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-colors inline-flex items-center gap-2">
                                             Find a Dealer

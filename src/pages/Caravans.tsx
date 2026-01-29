@@ -30,7 +30,7 @@ export default function Caravans() {
   const [showFilters, setShowFilters] = useState(false);
 
   // Use static data instead of fetching from Firebase
-  const staticCaravans = caravans.filter((c) => c.available !== false);
+  const staticCaravans = useMemo(() => caravans.filter((c) => c.available !== false), []);
 
   const filteredCaravans = useMemo(() => {
     let result = [...staticCaravans];

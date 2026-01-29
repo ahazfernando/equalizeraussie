@@ -635,10 +635,12 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                       {/* Previous Model Visual (Left side) */}
                       {similarModels.length > 1 && (
                         <div className="absolute left-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] -translate-x-1/2">
-                          <img
+                          <Image
                             src={prevSimilarModel.image}
                             alt={prevSimilarModel.name}
-                            className="w-[300px] h-[250px] object-contain"
+                            width={300}
+                            height={250}
+                            className="object-contain"
                           />
                         </div>
                       )}
@@ -700,10 +702,12 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                       {/* Next Model Visual (Right side) */}
                       {similarModels.length > 1 && (
                         <div className="absolute right-0 z-10 pointer-events-none hidden lg:block opacity-30 scale-75 blur-[2px] translate-x-1/2">
-                          <img
+                          <Image
                             src={nextSimilarModel.image}
                             alt={nextSimilarModel.name}
-                            className="w-[300px] h-[250px] object-contain"
+                            width={300}
+                            height={250}
+                            className="object-contain"
                           />
                         </div>
                       )}

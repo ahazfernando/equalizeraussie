@@ -106,7 +106,7 @@ export default function Warranty() {
                         className="max-w-3xl"
                     >
                         <h1 className="font-heading text-5xl md:text-7xl font-black mb-6 uppercase tracking-wider text-white">
-                            We've Got You <span className="text-red-600">Covered</span>
+                            We&apos;ve Got You <span className="text-red-600">Covered</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light leading-relaxed">
                             Comprehensive warranty support for your peace of mind on every journey.

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -132,8 +133,8 @@ export default function Manuals() {
                                         key={category}
                                         onClick={() => setSelectedCategory(category)}
                                         className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${selectedCategory === category
-                                                ? "bg-accent text-white shadow-lg shadow-accent/25"
-                                                : "bg-secondary hover:bg-secondary/80 text-muted-foreground"
+                                            ? "bg-accent text-white shadow-lg shadow-accent/25"
+                                            : "bg-secondary hover:bg-secondary/80 text-muted-foreground"
                                             }`}
                                     >
                                         {category === "All" ? "View All" : category}
@@ -155,10 +156,11 @@ export default function Manuals() {
                                     className="group relative bg-card rounded-3xl overflow-hidden border border-border/50 shadow-sm hover:shadow-2xl transition-all duration-500"
                                 >
                                     <div className="relative h-64 overflow-hidden">
-                                        <img
+                                        <Image
                                             src={manual.image}
                                             alt={manual.name}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                             <FileText className="text-white w-12 h-12" />

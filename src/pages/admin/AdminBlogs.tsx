@@ -42,12 +42,12 @@ interface AdminBlogCardProps {
   onDelete: (id: string) => void;
 }
 
-const AdminBlogCard: React.FC<AdminBlogCardProps> = ({ 
-  blog, 
-  formatDate, 
-  getValidImageUrl, 
-  onEdit, 
-  onDelete 
+const AdminBlogCard: React.FC<AdminBlogCardProps> = ({
+  blog,
+  formatDate,
+  getValidImageUrl,
+  onEdit,
+  onDelete
 }) => {
   const [imageLoading, setImageLoading] = useState(true);
   const formattedDate = formatDate(blog);
@@ -81,8 +81,8 @@ const AdminBlogCard: React.FC<AdminBlogCardProps> = ({
               <span
                 key={tag}
                 className="text-sm px-3 py-1 rounded-md"
-                style={{ 
-                  backgroundColor: '#F1F5F9', 
+                style={{
+                  backgroundColor: '#F1F5F9',
                   color: '#000000',
                   fontSize: '14px'
                 }}
@@ -93,8 +93,8 @@ const AdminBlogCard: React.FC<AdminBlogCardProps> = ({
             {blog.tags.length > 3 && (
               <span
                 className="text-sm px-3 py-1 rounded-md"
-                style={{ 
-                  backgroundColor: '#F1F5F9', 
+                style={{
+                  backgroundColor: '#F1F5F9',
                   color: '#000000',
                   fontSize: '14px'
                 }}
@@ -183,19 +183,19 @@ export default function AdminBlogs() {
     const dateValue = article.lastUpdated || article.createdAt || article.date;
     if (dateValue && typeof (dateValue as Timestamp).toDate === 'function') {
       const date = (dateValue as Timestamp).toDate();
-      return date.toLocaleDateString('en-GB', { 
-        day: 'numeric', 
-        month: 'short', 
-        year: 'numeric' 
+      return date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
       });
     }
     if (typeof dateValue === 'string') {
       const d = new Date(dateValue);
       if (!isNaN(d.getTime())) {
-        return d.toLocaleDateString('en-GB', { 
-          day: 'numeric', 
-          month: 'short', 
-          year: 'numeric' 
+        return d.toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
         });
       }
     }
@@ -207,7 +207,7 @@ export default function AdminBlogs() {
     if (!imageURL || imageURL.trim() === '') {
       return '/blogs/blog1.png';
     }
-    
+
     try {
       new URL(imageURL);
       return imageURL;
@@ -219,15 +219,15 @@ export default function AdminBlogs() {
     }
   };
 
-  const loadBlogs = async () => {
+  const loadBlogs = React.useCallback(async () => {
     setLoadingBlogs(true);
     try {
       const blogsRef = collection(db, 'blogs');
       const snapshot = await getDocs(blogsRef);
-      
+
       const blogsData = snapshot.docs.map(doc => {
         const data = doc.data();
-        
+
         return {
           id: doc.id,
           slug: data.slug || '',
@@ -268,11 +268,11 @@ export default function AdminBlogs() {
     } finally {
       setLoadingBlogs(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadBlogs();
-  }, []);
+  }, [loadBlogs]);
 
   const handleAddTag = () => {
     if (tagInput.trim() && !blogForm.tags.includes(tagInput.trim())) {
@@ -368,7 +368,7 @@ export default function AdminBlogs() {
     }
 
     setBlogImageFile(file);
-    
+
     // Create preview
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -423,7 +423,7 @@ export default function AdminBlogs() {
     }
 
     setAvatarFile(file);
-    
+
     // Create preview
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -475,7 +475,7 @@ export default function AdminBlogs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!blogForm.title || !blogForm.excerpt || !blogForm.content || !blogForm.authorName) {
       toast.error("Please fill all required fields");
       return;
@@ -484,7 +484,7 @@ export default function AdminBlogs() {
     try {
       const slug = blogForm.slug || generateSlug(blogForm.title);
       const now = Timestamp.now();
-      
+
       const blogData = {
         slug,
         title: blogForm.title,
@@ -509,7 +509,7 @@ export default function AdminBlogs() {
         await addDoc(collection(db, 'blogs'), blogData);
         toast.success("Blog post added successfully");
       }
-      
+
       handleCloseDialog();
       loadBlogs();
     } catch (error) {
@@ -657,10 +657,12 @@ export default function AdminBlogs() {
               <div className="space-y-3">
                 {blogImagePreview ? (
                   <div className="relative w-full h-48 rounded-lg border border-border overflow-hidden">
-                    <img
+                    <Image
                       src={blogImagePreview}
                       alt="Blog preview"
-                      className="w-full h-full object-cover"
+                      fill
+                      unoptimized
+                      className="object-cover"
                     />
                     <Button
                       type="button"
@@ -727,10 +729,12 @@ export default function AdminBlogs() {
               <div className="space-y-3">
                 {avatarPreview ? (
                   <div className="relative w-32 h-32 rounded-full border border-border overflow-hidden">
-                    <img
+                    <Image
                       src={avatarPreview}
                       alt="Avatar preview"
-                      className="w-full h-full object-cover"
+                      fill
+                      unoptimized
+                      className="object-cover"
                     />
                     <Button
                       type="button"
