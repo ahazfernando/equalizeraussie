@@ -1,66 +1,74 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { dealers } from "@/data/dealers";
+import { saveWarrantyClaim } from "@/data/warranty";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
-    ArrowRight, ChevronDown, Download, Droplets,
-    HelpCircle, Shield, Wrench, ClipboardCheck,
-    MapPin, CheckCircle2, FileSearch
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import {
+    Send, ArrowRight, CheckCircle2, MapPin,
+    Shield, FileSearch, ClipboardCheck, Phone
 } from "lucide-react";
+import { toast } from "sonner";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 
 // Animation Variants
-const fadeIn = {
+const fadeInUp = {
     initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
 };
 
-const staggerContainer = {
-    initial: {},
-    whileInView: { transition: { staggerChildren: 0.1 } }
-};
+export default function Warranty() {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        dealer: "",
+        state: "",
+        postcode: "",
+        description: "",
+        issueType: "claim"
+    });
 
-function Warranty() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const claimSteps = [
-        {
-            title: "Document the Issue",
-            desc: "Take clear photos or videos of the defect and keep your original Bill of Sale handy.",
-            icon: <FileSearch className="w-6 h-6" />,
-        },
-        {
-            title: "Locate a Service Center",
-            desc: "Find your nearest authorized EqualizerRV dealer using our interactive dealer map.",
-            icon: <MapPin className="w-6 h-6" />,
-        },
-        {
-            title: "Schedule Inspection",
-            desc: "Contact the dealer to schedule a warranty inspection. They will submit a claim on your behalf.",
-            icon: <ClipboardCheck className="w-6 h-6" />,
-        },
-        {
-            title: "Fast-Track Repair",
-            desc: "Once approved, our team works with the dealer to ensure parts are shipped priority.",
-            icon: <CheckCircle2 className="w-6 h-6" />,
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            // @ts-ignore - simple data passing
+            saveWarrantyClaim(formData);
+            setShowSuccessModal(true);
+            setFormData({
+                firstName: "", lastName: "", email: "", phone: "",
+                dealer: "", state: "", postcode: "", description: "",
+                issueType: "claim"
+            });
+        } catch (error) {
+            console.error("Error submitting claim:", error);
+            toast.error("There was an error submitting your claim. Please try again.");
         }
-    ];
-
-    const faqs = [
-        {
-            question: "Is the warranty transferable if I sell my EqualizerRV?",
-            answer: "Yes, the warranty is transferable once to a second owner with proper documentation and notification to EqualizerRV within 30 days of sale."
-        },
-        {
-            question: "What is not covered under the warranty?",
-            answer: "Normal wear and tear, misuse, neglect, accidents, unauthorized modifications, and damage from improper maintenance or storage are not covered."
-        },
-        {
-            question: "What is the Limited Lifetime Roof option?",
-            answer: "For an additional fee at purchase, you can upgrade to lifetime coverage on the roof membrane and seals against manufacturing defects."
-        }
-    ];
+    };
 
     return (
         <div className="bg-background text-foreground overflow-x-hidden">
@@ -74,200 +82,274 @@ function Warranty() {
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-background" />
 
-                <div className="relative container mx-auto px-4">
+                <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial="initial"
+                        animate="animate"
+                        variants={{
+                            animate: { transition: { staggerChildren: 0.2 } }
+                        }}
                         className="max-w-3xl"
                     >
-                        <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-white/15 to-white/5 border border-white/30 backdrop-blur-sm shadow-lg text-white text-base font-semibold">
-                            <span className="w-3 h-3 rounded-full bg-white animate-ping" />
-                            EQUALIZERRV Protection
-                        </span>
-                        <h1 className="font-heading text-5xl md:text-6xl font-extrabold text-white my-6 leading-tight">
-                            Peace of Mind On Every Journey
-                        </h1>
-                        <p className="text-gray-300 text-lg max-w-xl font-light">
-                            Our comprehensive warranty covers a wide range of components, giving you the confidence to explore further.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Coverage Cards */}
-            <section className="py-20 container mx-auto px-4">
-                <motion.div {...fadeIn} className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">Comprehensive Coverage</h2>
-                    <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
-                </motion.div>
-
-                <motion.div
-                    variants={staggerContainer}
-                    initial="initial"
-                    whileInView="whileInView"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                >
-                    {[
-                        { icon: <Shield />, title: "Structural Integrity", time: "10 Years", desc: "Frame, chassis, and body construction covered against defects." },
-                        { icon: <Wrench />, title: "Appliances & Systems", time: "03 Years", desc: "Refrigerator, AC, plumbing, and electrical factory components." },
-                        { icon: <Droplets />, title: "Roof Protection", time: "12 Years", desc: "Full roof membrane and seals against manufacturing leaks." }
-                    ].map((item, i) => (
-                        <motion.div
-                            key={i}
-                            variants={fadeIn}
-                            className="p-8 cursor-pointer rounded-3xl bg-card border border-border shadow-sm hover:shadow-xl hover:border-accent/30 transition-all group"
-                        >
-                            <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
-                                {item.icon}
-                            </div>
-                            <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                            <p className="text-muted-foreground mb-6 text-sm">{item.desc}</p>
-                            <div className="pt-6 border-t border-border flex justify-between items-center">
-                                <span className="text-2xl font-black text-accent">{item.time}</span>
-                                <span className="text-[10px] uppercase tracking-widest font-bold opacity-50">Coverage</span>
-                            </div>
+                        <motion.div variants={fadeInUp} className="inline-block mb-6">
+                            <span className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-white/15 to-white/5 border border-white/30 backdrop-blur-sm shadow-lg text-white text-base font-semibold">
+                                <span className="w-3 h-3 rounded-full bg-white animate-ping" />
+                                Warranty & Support
+                            </span>
                         </motion.div>
-                    ))}
-                </motion.div>
-            </section>
 
-            {/* HOW TO CLAIM PROCESS SECTION */}
-            <section className="py-20 relative overflow-hidden">
-                {/* Abstract Background Decoration */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-5 pointer-events-none">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
-                </div>
+                        <motion.h1 variants={fadeInUp} className="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-8 text-white">
+                            We've Got You Covered
+                        </motion.h1>
 
-                <div className="container mx-auto px-4 relative z-10">
-                    <motion.div {...fadeIn} className="text-center mb-24">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4">How to Claim Your Warranty</h2>
-
-                        <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
-
-                        <p className="text-muted-foreground mt-4">Four simple steps to get you back on the road.</p>
+                        <motion.p variants={fadeInUp} className="text-gray-200 text-lg leading-relaxed max-w-xl font-light">
+                            Experience peace of mind with our comprehensive warranty protection. Submit claims easily and get back to your adventure.
+                        </motion.p>
                     </motion.div>
-
-                    <div className="relative max-w-7xl mx-auto">
-                        {/* DESKTOP CONNECTING LINE */}
-                        <div className="hidden md:block absolute top-[48px] left-[10%] right-[10%] h-[2px] overflow-hidden">
-                            {/* Background Track */}
-                            <div className="absolute inset-0 bg-border/50" />
-                            {/* Animated Flow Layer */}
-                            <motion.div
-                                initial={{ x: "-100%" }}
-                                whileInView={{ x: "100%" }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-accent to-transparent w-1/2"
-                            />
-                        </div>
-
-                        {/* MOBILE CONNECTING LINE (Vertical) */}
-                        <div className="md:hidden absolute left-[31px] top-10 bottom-10 w-[2px] bg-border/50" />
-
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-                            {claimSteps.map((step, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.15, duration: 0.5 }}
-                                    viewport={{ once: true }}
-                                    className="relative flex flex-row md:flex-col items-start md:items-center text-left md:text-center group"
-                                >
-                                    {/* Step Icon Node */}
-                                    <div className="relative shrink-0 mb-0 md:mb-8 mr-6 md:mr-0">
-                                        <div className="w-16 h-16 rounded-2xl bg-background border-2 border-border flex items-center justify-center text-foreground z-10 relative transition-all duration-500 group-hover:border-accent group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(var(--accent),0.4)] group-hover:-rotate-6">
-                                            {step.icon}
-                                        </div>
-                                        {/* Shadow Number behind icon */}
-                                        <div className="absolute -top-6 -right-10 text-6xl font-black text-foreground/10 pointer-events-none group-hover:text-accent/20 transition-colors">
-                                            {idx + 1}
-                                        </div>
-                                    </div>
-
-                                    {/* Text Content */}
-                                    <div className="flex flex-col">
-                                        <h4 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-                                            {step.title}
-                                        </h4>
-                                        <p className="text-muted-foreground text-sm leading-relaxed md:px-4">
-                                            {step.desc}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
                 </div>
             </section>
 
-            {/* FAQ Section */}
-            <section className="py-24 container mx-auto px-4 max-w-8xl">
-                <motion.div {...fadeIn} className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">Warranty FAQ</h2>
-                    <div className="w-20 h-1 bg-accent mx-auto rounded-full" />
-                </motion.div>
-
-                <div className="space-y-4">
-                    {faqs.map((faq, index) => (
+            {/* Form Section */}
+            <section className="py-8 md:py-12 bg-background -mt-8">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid lg:grid-cols-12 gap-16 items-stretch">
+                        {/* Form */}
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="border border-border rounded-2xl overflow-hidden bg-card"
+                            transition={{ duration: 0.8 }}
+                            className="lg:col-span-7"
                         >
-                            <button
-                                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full p-6 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
-                            >
-                                <span className="font-semibold text-lg flex items-center gap-3">
-                                    <HelpCircle className="w-5 h-5 text-accent" />
-                                    {faq.question}
-                                </span>
-                                <ChevronDown className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""}`} />
-                            </button>
-                            <AnimatePresence>
-                                {openIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="p-6 pt-0 text-muted-foreground border-t border-border bg-muted/20">
-                                            {faq.answer}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+                            <div className="p-8 md:p-10 bg-card shadow-2xl border border-border rounded-3xl relative overflow-hidden h-full">
+                                <div className="absolute top-0 left-0 w-2 h-full bg-accent" />
+                                <h2 className="text-3xl font-bold mb-2">Warranty Claim / Issue</h2>
+                                <p className="text-muted-foreground mb-10">
+                                    Please fill out the form below to report an issue or submit a warranty claim.
+                                </p>
 
-            {/* CTA Footer */}
-            <section className="py-20 bg-card text-white text-center">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Need Further Assistance?</h2>
-                    <p className="mb-10 text-white/80 max-w-2xl mx-auto">
-                        Our support team is available Monday through Friday to help you with your warranty questions and claims.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <button className="px-8 py-4 bg-white text-card rounded-full font-bold transition-transform flex items-center gap-2 shadow-lg">
-                            Contact Support <ArrowRight className="w-5 h-5" />
-                        </button>
-                        <button className="px-8 py-4 bg-transparent border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-colors flex items-center gap-2">
-                            <Download className="w-5 h-5" /> Download PDF
-                        </button>
+                                <form onSubmit={handleSubmit} className="space-y-6">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label>First Name *</Label>
+                                            <Input
+                                                required
+                                                value={formData.firstName}
+                                                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label>Last Name *</Label>
+                                            <Input
+                                                required
+                                                value={formData.lastName}
+                                                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label>Email *</Label>
+                                            <Input
+                                                type="email"
+                                                required
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label>Phone Number *</Label>
+                                            <Input
+                                                type="tel"
+                                                required
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <Label>Purchased From Dealer *</Label>
+                                        <Select
+                                            value={formData.dealer}
+                                            onValueChange={(v) => setFormData({ ...formData, dealer: v })}
+                                            required
+                                        >
+                                            <SelectTrigger className="rounded-xl bg-secondary/50 border-none h-12">
+                                                <SelectValue placeholder="Select your dealer..." />
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-background border-border">
+                                                {dealers.map((dealer) => (
+                                                    <SelectItem key={dealer.id} value={dealer.name}>
+                                                        {dealer.name}
+                                                    </SelectItem>
+                                                ))}
+                                                <SelectItem value="other">Other / Direct Purchase</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label>State *</Label>
+                                            <Select
+                                                value={formData.state}
+                                                onValueChange={(value) => setFormData({ ...formData, state: value })}
+                                                required
+                                            >
+                                                <SelectTrigger className="rounded-xl bg-secondary/50 border-none h-12">
+                                                    <SelectValue placeholder="Select..." />
+                                                </SelectTrigger>
+                                                <SelectContent className="bg-background border-border">
+                                                    <SelectItem value="NSW">NSW</SelectItem>
+                                                    <SelectItem value="VIC">VIC</SelectItem>
+                                                    <SelectItem value="QLD">QLD</SelectItem>
+                                                    <SelectItem value="WA">WA</SelectItem>
+                                                    <SelectItem value="SA">SA</SelectItem>
+                                                    <SelectItem value="TAS">TAS</SelectItem>
+                                                    <SelectItem value="NT">NT</SelectItem>
+                                                    <SelectItem value="ACT">ACT</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label>Postcode *</Label>
+                                            <Input
+                                                required
+                                                value={formData.postcode}
+                                                onChange={(e) => setFormData({ ...formData, postcode: e.target.value })}
+                                                className="rounded-xl bg-secondary/50 border-none h-12"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <Label>Description of Issue *</Label>
+                                        <Textarea
+                                            required
+                                            rows={5}
+                                            value={formData.description}
+                                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                            placeholder="Please describe the issue in detail..."
+                                            className="rounded-xl bg-secondary/50 border-none resize-none"
+                                        />
+                                    </div>
+
+                                    <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-white font-md text-md h-12">
+                                        <Send className="w-5 h-5 mr-2" />
+                                        Submit Claim
+                                    </Button>
+                                </form>
+                            </div>
+                        </motion.div>
+
+                        {/* Story / Info Widget on Right Side */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="lg:col-span-5 relative w-full h-full min-h-[700px] rounded-3xl overflow-hidden group bg-black"
+                        >
+                            {/* Background Image/Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black" />
+                            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-overlay" />
+
+                            {/* Content */}
+                            <div className="absolute inset-0 p-10 flex flex-col justify-center">
+                                <div className="mb-12">
+                                    <div className="w-16 h-16 rounded-2xl bg-accent text-white flex items-center justify-center mb-6 shadow-lg shadow-accent/20">
+                                        <Shield className="w-8 h-8" />
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                                        How the Process Works
+                                    </h2>
+                                    <p className="text-white/60 text-lg">
+                                        We work closely with our dealer network to ensure your issues are resolved quickly.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    <div className="flex gap-6 group/item">
+                                        <div className="shrink-0 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white font-bold text-xl group-hover/item:border-accent group-hover/item:bg-accent transition-all duration-300">
+                                            1
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-white mb-2">Contact Your Dealer</h3>
+                                            <p className="text-white/60 leading-relaxed">
+                                                If you encounter an issue, your first step is to call the dealer you purchased your caravan from.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-6 group/item">
+                                        <div className="shrink-0 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white font-bold text-xl group-hover/item:border-accent group-hover/item:bg-accent transition-all duration-300">
+                                            2
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-white mb-2">Dealer Assessment</h3>
+                                            <p className="text-white/60 leading-relaxed">
+                                                The dealer will assess the issue. If it requires warranty work, they will contact Great Aussie directly.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-6 group/item">
+                                        <div className="shrink-0 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white font-bold text-xl group-hover/item:border-accent group-hover/item:bg-accent transition-all duration-300">
+                                            3
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-white mb-2">Approval & Repair</h3>
+                                            <p className="text-white/60 leading-relaxed">
+                                                Once processed, we approve the claim and the dealer proceeds with the repairs to get you back on the road.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-12 pt-12 border-t border-white/10">
+                                    <p className="text-white/40 text-sm mb-4">Need to find your dealer's contact info?</p>
+                                    <Link href="/dealers">
+                                        <Button variant="outline" className="rounded-full border-white/20 text-white hover:bg-white hover:text-black">
+                                            Find a Dealer <ArrowRight className="ml-2 w-4 h-4" />
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
+
+            {/* Success Modal */}
+            <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+                <DialogContent className="max-w-md p-0 overflow-hidden border-0 bg-transparent shadow-none">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="bg-card border border-border rounded-3xl p-8 relative overflow-hidden"
+                    >
+                        <div className="flex flex-col items-center text-center">
+                            <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-6 text-green-500">
+                                <CheckCircle2 className="w-8 h-8" />
+                            </div>
+                            <h2 className="text-2xl font-bold mb-2">Claim Submitted</h2>
+                            <p className="text-muted-foreground mb-6">
+                                Thank you for submitting your warranty claim. Our team has received your details and will be in contact shortly.
+                            </p>
+                            <Button
+                                onClick={() => setShowSuccessModal(false)}
+                                className="w-full rounded-full"
+                            >
+                                Close
+                            </Button>
+                        </div>
+                    </motion.div>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
-
-export default Warranty;

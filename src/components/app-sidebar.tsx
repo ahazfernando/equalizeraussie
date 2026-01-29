@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Caravan, Calendar, Star, DollarSign, LogOut, FileText, FileQuestion, BookOpen, MessageSquare } from "lucide-react";
+import { LayoutDashboard, Caravan, Calendar, Star, DollarSign, LogOut, FileText, FileQuestion, BookOpen, MessageSquare, Shield } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -28,6 +28,7 @@ const navItems = [
   { icon: Star, label: "Reviews", href: "/admin/reviews" },
   { icon: FileText, label: "Blogs", href: "/admin/blogs" },
   { icon: DollarSign, label: "Finance", href: "/admin/finance" },
+  { icon: Shield, label: "Warranty", href: "/admin/warranty" },
 ];
 
 export function AppSidebar() {

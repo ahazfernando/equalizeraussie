@@ -22,6 +22,11 @@ import {
 } from "@/components/ui/dialog";
 import { COUNTRY_CODES } from "@/components/common/countryCodes";
 
+// Filter out duplicate country codes, keeping the first occurrence (which is usually the main country due to alphabetical sorting)
+const uniqueCountryCodes = COUNTRY_CODES.filter((obj, index, self) =>
+    index === self.findIndex((t) => (t.code === obj.code))
+);
+
 const AUSTRALIAN_STATES = [
     { value: "NSW", label: "New South Wales" },
     { value: "VIC", label: "Victoria" },
@@ -113,8 +118,8 @@ export function DealerForm() {
                                 <SelectValue placeholder="Code" />
                             </SelectTrigger>
                             <SelectContent className="max-h-[300px]">
-                                {COUNTRY_CODES.map((item) => (
-                                    <SelectItem key={`${item.code}-${item.name}`} value={item.code}>
+                                {uniqueCountryCodes.map((item) => (
+                                    <SelectItem key={item.code} value={item.code}>
                                         <div className="flex items-center">
                                             <span className="mr-2 text-lg">{item.flag}</span>
                                             <span className="text-sm">{item.code}</span>

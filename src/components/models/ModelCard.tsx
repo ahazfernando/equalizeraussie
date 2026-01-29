@@ -39,7 +39,7 @@ export const ModelCard = ({ model, index = 0 }: ModelCardProps) => {
               key={i}
               className="px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full"
             >
-              {feature}
+              {feature.title}
             </span>
           ))}
         </div>

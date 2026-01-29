@@ -29,6 +29,7 @@ const navItems = [
   { label: "Reviews", href: "/admin/reviews" },
   { label: "Blogs", href: "/admin/blogs" },
   { label: "Finance", href: "/admin/finance" },
+  { label: "Warranty", href: "/admin/warranty" },
 ];
 
 interface AdminLayoutProps {

@@ -22,38 +22,28 @@ export const DealerLocator = () => {
   return (
     <section className="min-h-screen px-4 sm:px-6 lg:px-8">
       <div>
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center lg:items-start justify-center">
-          {/* Map Section */}
-          <div className="relative transition-all duration-500 ease-out flex items-center justify-center lg:w-1/2">
-            <div className="w-full flex flex-col items-center">
-              <div className="w-full">
-                <AustraliaMap
-                  selectedRegion={selectedRegion}
-                  onRegionClick={handleRegionClick}
-                />
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            {/* Dealers Panel - Always visible */}
+            <div className="w-full max-w-5xl">
+              {/* Panel Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-2xl font-display font-bold text-foreground">
+                    {selectedRegionName}
+                  </h2>
+                  <p className="text-muted-foreground text-sm mt-1">
+                    {dealers.length} dealer{dealers.length !== 1 ? "s" : ""} available
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* Dealers Panel - Always visible */}
-          <div className="w-full lg:w-1/2 max-w-lg">
-            {/* Panel Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-display font-bold text-foreground">
-                  {selectedRegionName}
-                </h2>
-                <p className="text-muted-foreground text-sm mt-1">
-                  {dealers.length} dealer{dealers.length !== 1 ? "s" : ""} available
-                </p>
+              {/* Dealer Cards */}
+              <div className="space-y-4">
+                {dealers.map((dealer, index) => (
+                  <DealerCard key={dealer.id} dealer={dealer} index={index} />
+                ))}
               </div>
-            </div>
-
-            {/* Dealer Cards */}
-            <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-              {dealers.map((dealer, index) => (
-                <DealerCard key={dealer.id} dealer={dealer} index={index} />
-              ))}
             </div>
           </div>
         </div>
