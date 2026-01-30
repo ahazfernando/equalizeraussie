@@ -266,8 +266,8 @@ export function Navbar() {
                         </div>
                       ) : (
                         <div className="container mx-auto px-8 py-8">
-                          <div className="grid grid-cols-4 gap-8">
-                            <div className="col-span-3 grid grid-cols-2 gap-4">
+                          <div className="flex gap-12">
+                            <div className="grid grid-cols-2 gap-4 w-full max-w-3xl">
                               {item.submenu.categories.map((category) => {
                                 const Icon = category.icon;
                                 return (
@@ -292,7 +292,7 @@ export function Navbar() {
                                 );
                               })}
                             </div>
-                            <div className="col-span-1 bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col gap-4 h-fit self-start">
+                            <div className="w-80 bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col gap-4 h-fit self-start shrink-0">
                               <div>
                                 <h3 className="font-bold text-xl text-gray-900 mb-3">
                                   {item.name}
