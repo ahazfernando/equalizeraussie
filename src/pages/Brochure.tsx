@@ -156,20 +156,7 @@ export default function Brochure() {
                             </div>
 
                             {/* Modern Category Pills */}
-                            <div className="flex flex-wrap gap-2">
-                                {categories.map((category) => (
-                                    <button
-                                        key={category}
-                                        onClick={() => setSelectedCategory(category)}
-                                        className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${selectedCategory === category
-                                            ? "bg-accent text-white shadow-lg shadow-accent/25"
-                                            : "bg-secondary hover:bg-secondary/80 text-muted-foreground"
-                                            }`}
-                                    >
-                                        {category === "All" ? "View All" : category}
-                                    </button>
-                                ))}
-                            </div>
+
                         </div>
 
                         <motion.div

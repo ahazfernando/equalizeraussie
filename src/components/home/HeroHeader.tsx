@@ -10,17 +10,17 @@ const models = [
   {
     id: "cruzer",
     name: "Cruzer",
-    logo: "/newlogos/C white.png",
+    logo: "/header/cruzerlogo.png",
   },
   {
     id: "rebel",
     name: "Rebel",
-    logo: "/newlogos/R.png",
+    logo: "/header/rebelloogo.png",
   },
   {
     id: "rogue",
     name: "Rogue",
-    logo: "/newlogos/RO white.png",
+    logo: "/header/rogurelogo.png",
   },
 ];
 
@@ -40,7 +40,7 @@ export function HeroHeader() {
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-background/60 dark:bg-background/70" />
       </div>
-
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
           {/* Content */}
@@ -79,7 +79,7 @@ export function HeroHeader() {
               </h1>
               <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
                 Experience the freedom of the open road with our adventurous
-                Australian-built caravans. Quality, comfort, and adventure await.
+                Australian-built caravans. Quality, comfort, and adventure awaits.
               </p>
             </motion.div>
 
@@ -124,7 +124,7 @@ export function HeroHeader() {
               <Link href="/caravans">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto rounded-full px-8 py-6 text-white text-base font-bold shadow-2xl shadow-accent/30 bg-accent hover:bg-accent/90 border-2 border-accent"
+                  className="w-full sm:w-auto rounded-full px-8 py-6 text-foreground text-base font-bold shadow-2xl shadow-accent/30 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent border-2 border-accent"
                 >
                   Explore Models
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

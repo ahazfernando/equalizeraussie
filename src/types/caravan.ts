@@ -18,7 +18,7 @@ export interface SpecCategory {
 export interface Caravan {
   id: string;
   name: string;
-  series: "Explorer" | "Outback" | "Horizon" | "Summit" | "Compact";
+  series: "Cruzer" | "Rebel" | "Rogue";
   tagline: string;
   price: number;
   length: string;

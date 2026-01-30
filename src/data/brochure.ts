@@ -69,42 +69,4 @@ export const brochures: Brochure[] = [
       "Full Ensuite"
     ],
   },
-  {
-    id: "4",
-    name: "Family Range",
-    category: "Family",
-    image: "/caravan/CruzerCaravan.png",
-    description: "Spacious family caravans with bunk beds",
-    tagline: "Built for Adventure",
-    length: "23ft",
-    berth: 4,
-    tare: "2,850kg",
-    features: [
-      "Off-Road Suspension",
-      "Dual Batteries",
-      "300W Solar",
-      "Bunk Beds",
-      "Large Kitchen",
-      "Full Ensuite"
-    ],
-  },
-  {
-    id: "5",
-    name: "Couples Range",
-    category: "Couples",
-    image: "/caravan/RebelCaravan.png",
-    description: "Compact and cozy caravans for couples",
-    tagline: "Perfect for Two",
-    length: "21ft",
-    berth: 2,
-    tare: "2,450kg",
-    features: [
-      "Queen Island Bed",
-      "Full Ensuite",
-      "Diesel Heater",
-      "200W Solar",
-      "150L Fresh Water",
-      "LED Lighting Throughout"
-    ],
-  },
 ];

@@ -7,6 +7,7 @@ export interface WarrantyClaim {
     dealer: string;
     state: string;
     postcode: string;
+    chassisNumber: string;
     description: string;
     issueType: "claim" | "general";
     status: "New" | "Contacted" | "In Progress" | "Resolved" | "Closed"; // Added status

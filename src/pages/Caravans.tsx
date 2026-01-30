@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const seriesOptions = ["All Series", "Explorer", "Outback", "Horizon", "Summit", "Compact"];
+const seriesOptions = ["All Series", "Cruzer", "Rebel", "Rogue"];
 const berthOptions = ["All Berths", "2", "4"];
 const sortOptions = [
   { value: "featured", label: "Featured First" },

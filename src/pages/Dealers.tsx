@@ -281,7 +281,7 @@ const Dealers = () => {
                                             <item.icon className="w-6 h-6 text-accent" />
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-bold text-lg mb-1">{item.title}</h4>
+                                            <h4 className="text-white font-bold text-lg mb-1 tracking-widest">{item.title}</h4>
                                             <p className="text-white/60 text-sm">{item.desc}</p>
                                         </div>
                                     </div>

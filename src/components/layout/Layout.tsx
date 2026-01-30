@@ -1,4 +1,3 @@
-import { Footer } from "./Footer";
 import Newsletter from "./Newsletter";
 import ResponsiveNav from "./Navbar/ResponsiveNav";
 
@@ -12,7 +11,6 @@ export function Layout({ children }: LayoutProps) {
       <ResponsiveNav />
       <main className="flex-1 pt-24">{children}</main>
       <Newsletter />
-      <Footer />
     </div>
   );
 }

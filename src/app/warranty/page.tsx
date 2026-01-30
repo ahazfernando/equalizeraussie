@@ -25,6 +25,22 @@ import {
 } from "@/components/ui/dialog";
 import { dealers } from "@/data/dealers";
 import { saveWarrantyClaim } from "@/data/warranty";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { COUNTRY_CODES } from "@/components/common/countryCodes";
 
 export default function Warranty() {
     const [formData, setFormData] = useState({
@@ -35,10 +51,13 @@ export default function Warranty() {
         dealer: "",
         state: "",
         postcode: "",
+        chassisNumber: "",
         description: "",
         issueType: "claim" as const,
     });
 
+    const [countryCode, setCountryCode] = useState("+61");
+    const [open, setOpen] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,7 +78,12 @@ export default function Warranty() {
             return;
         }
 
-        const success = saveWarrantyClaim(formData);
+        const payload = {
+            ...formData,
+            phone: `${countryCode} ${formData.phone}`
+        };
+
+        const success = saveWarrantyClaim(payload);
 
         if (success) {
             setShowSuccess(true);
@@ -71,6 +95,7 @@ export default function Warranty() {
                 dealer: "",
                 state: "",
                 postcode: "",
+                chassisNumber: "",
                 description: "",
                 issueType: "claim",
             });
@@ -172,30 +197,66 @@ export default function Warranty() {
                                         </div>
                                         <div className="space-y-2">
                                             <Label htmlFor="phone">Phone Number</Label>
-                                            <Input
-                                                id="phone"
-                                                name="phone"
-                                                type="tel"
-                                                placeholder="0400 000 000"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                            />
+                                            <div className="flex gap-2">
+                                                <Popover open={open} onOpenChange={setOpen}>
+                                                    <PopoverTrigger asChild>
+                                                        <Button
+                                                            variant="outline"
+                                                            role="combobox"
+                                                            aria-expanded={open}
+                                                            className="w-[110px] justify-between px-3 py-3 rounded-xl border-border bg-card"
+                                                        >
+                                                            <span className="flex items-center gap-2 truncate">
+                                                                <span className="text-lg">{COUNTRY_CODES.find((country) => country.code === countryCode)?.flag}</span>
+                                                                <span className="text-muted-foreground">{countryCode}</span>
+                                                            </span>
+                                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                        </Button>
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-[300px] p-0" align="start">
+                                                        <Command>
+                                                            <CommandInput placeholder="Search country..." />
+                                                            <CommandList>
+                                                                <CommandEmpty>No country found.</CommandEmpty>
+                                                                <CommandGroup>
+                                                                    {COUNTRY_CODES.map((country) => (
+                                                                        <CommandItem
+                                                                            key={country.name}
+                                                                            value={country.name}
+                                                                            onSelect={() => {
+                                                                                setCountryCode(country.code);
+                                                                                setOpen(false);
+                                                                            }}
+                                                                        >
+                                                                            <Check
+                                                                                className={cn(
+                                                                                    "mr-2 h-4 w-4",
+                                                                                    countryCode === country.code
+                                                                                        ? "opacity-100"
+                                                                                        : "opacity-0"
+                                                                                )}
+                                                                            />
+                                                                            <span className="mr-2 text-lg">{country.flag}</span>
+                                                                            <span className="flex-1 truncate">{country.name}</span>
+                                                                            <span className="text-muted-foreground ml-2">{country.code}</span>
+                                                                        </CommandItem>
+                                                                    ))}
+                                                                </CommandGroup>
+                                                            </CommandList>
+                                                        </Command>
+                                                    </PopoverContent>
+                                                </Popover>
+                                                <Input
+                                                    id="phone"
+                                                    name="phone"
+                                                    type="tel"
+                                                    placeholder="0400 000 000"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    className="flex-1"
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="dealer">Purchased From Dealer *</Label>
-                                        <Select onValueChange={(value) => handleSelectChange("dealer", value)} value={formData.dealer}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select a dealer" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {dealers.map(dealer => (
-                                                    <SelectItem key={dealer.id} value={dealer.name}>{dealer.name}</SelectItem>
-                                                ))}
-                                                <SelectItem value="Other">Other / Direct</SelectItem>
-                                            </SelectContent>
-                                        </Select>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -224,6 +285,33 @@ export default function Warranty() {
                                                 name="postcode"
                                                 placeholder="0000"
                                                 value={formData.postcode}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="dealer">Purchased From Dealer *</Label>
+                                            <Select onValueChange={(value) => handleSelectChange("dealer", value)} value={formData.dealer}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select a dealer" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    {dealers.map(dealer => (
+                                                        <SelectItem key={dealer.id} value={dealer.name}>{dealer.name}</SelectItem>
+                                                    ))}
+                                                    <SelectItem value="Other">Other / Direct</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="chassisNumber">Chassis Number</Label>
+                                            <Input
+                                                id="chassisNumber"
+                                                name="chassisNumber"
+                                                placeholder="Enter Chassis Number"
+                                                value={formData.chassisNumber}
                                                 onChange={handleChange}
                                             />
                                         </div>
@@ -266,21 +354,21 @@ export default function Warranty() {
                                     <div className="space-y-8 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border">
                                         <div className="relative pl-12">
                                             <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-background border-2 border-red-600 flex items-center justify-center font-bold text-red-600 z-10">1</div>
-                                            <h4 className="font-bold text-lg mb-2">Claim Submission</h4>
+                                            <h4 className="font-sans font-bold text-lg mb-2 tracking-wide">Claim Submission</h4>
                                             <p className="text-muted-foreground text-sm leading-relaxed">
                                                 Submit your warranty claim using the form. Provide as much detail as possible to help us assess your case quickly.
                                             </p>
                                         </div>
                                         <div className="relative pl-12">
                                             <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-background border-2 border-border flex items-center justify-center font-bold text-muted-foreground z-10">2</div>
-                                            <h4 className="font-bold text-lg mb-2">Dealer Assessment</h4>
+                                            <h4 className="font-sans font-bold text-lg mb-2 tracking-wide">Dealer Assessment</h4>
                                             <p className="text-muted-foreground text-sm leading-relaxed">
                                                 Your preferred dealer will be notified. They will contact you to arrange an inspection or assessment of the issue.
                                             </p>
                                         </div>
                                         <div className="relative pl-12">
                                             <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-background border-2 border-border flex items-center justify-center font-bold text-muted-foreground z-10">3</div>
-                                            <h4 className="font-bold text-lg mb-2">Approval & Repair</h4>
+                                            <h4 className="font-sans font-bold text-lg mb-2 tracking-wide">Approval & Repair</h4>
                                             <p className="text-muted-foreground text-sm leading-relaxed">
                                                 Once assessed and approved, repairs will be scheduled. We work with our dealer network to get you back on the road.
                                             </p>
