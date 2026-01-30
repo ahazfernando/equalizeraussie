@@ -79,7 +79,7 @@ export const caravans: Caravan[] = [
       "Premium Audio System"
     ],
     description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style.",
-    images: ["/caravan/RebelCaravan.png"],
+    images: ["/rebelmodel/rebel-1.jpeg"],
     specs: [
       {
         category: "Dimensions",
@@ -135,7 +135,7 @@ export const caravans: Caravan[] = [
       "Club Lounge"
     ],
     description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
-    images: ["/caravan/RogueCaravan.png"],
+    images: ["/roguemodel/rogue-1.jpeg"],
     specs: [
       {
         category: "Dimensions",

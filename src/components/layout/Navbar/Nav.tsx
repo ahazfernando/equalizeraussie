@@ -84,8 +84,6 @@ const navigation = [
       categories: [
         { name: "Warranty Information", href: "/warranty", icon: Shield, description: "Comprehensive coverage" },
         { name: "Contact Support", href: "/contact", icon: MessageSquare, description: "Get in touch" },
-        { name: "Manuals", href: "/manuals", icon: Book, description: "Download manuals" },
-        { name: "FAQ", href: "/faqs", icon: HelpCircle, description: "Common questions" },
       ],
       description: "We're here to support you every step of the way.",
     },
@@ -96,7 +94,6 @@ const navigation = [
     hasSubmenu: true,
     submenu: {
       categories: [
-        { name: "Great Aussie Lifestyle", href: "/lifestyle", icon: Sparkles, description: "The caravan life" },
         { name: "Blog", href: "/blog", icon: BookOpen, description: "Latest insights & tips" },
         { name: "Reviews", href: "/reviews", icon: Building2, description: "Tour our facility" },
       ],
@@ -248,7 +245,7 @@ export function Nav({ openNav }: NavProps) {
                                 );
                               })}
                             </div>
-                            <div className="col-span-1 bg-accent/10 rounded-2xl p-6 border border-accent/20 flex flex-col justify-between">
+                            <div className="col-span-1 bg-accent/10 rounded-2xl p-4 border border-accent/20 flex flex-col justify-between">
                               <div>
                                 <h3 className="font-bold text-xl text-foreground mb-3">{item.name}</h3>
                                 <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{item.submenu.description}</p>

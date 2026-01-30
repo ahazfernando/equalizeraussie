@@ -721,7 +721,7 @@ export default function Home() {
                     <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent/20">
                       <pillar.icon className="w-6 h-6 text-accent transition-colors" />
                     </div>
-                    <h3 className="font-heading font-semibold text-foreground transition-colors group-hover:text-accent">
+                    <h3 className="font-bold text-foreground uppercase tracking-wider transition-colors group-hover:text-accent">
                       {pillar.title}
                     </h3>
                   </div>

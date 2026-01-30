@@ -39,7 +39,7 @@ export function CaravanCard({ caravan }: CaravanCardProps) {
       <div className="p-6 space-y-4">
         <div>
           <p className="text-sm text-accent font-medium mb-1">{caravan.series} Series</p>
-          <h3 className="font-heading text-xl font-semibold text-foreground">
+          <h3 className="font-heading text-3xl font-black uppercase text-foreground">
             {caravan.name}
           </h3>
           <p className="text-muted-foreground text-sm mt-1">{caravan.tagline}</p>
@@ -51,11 +51,10 @@ export function CaravanCard({ caravan }: CaravanCardProps) {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(rating)
-                      ? "fill-yellow-500 text-yellow-500"
-                      : "text-gray-300"
-                  }`}
+                  className={`w-4 h-4 ${i < Math.floor(rating)
+                    ? "fill-yellow-500 text-yellow-500"
+                    : "text-gray-300"
+                    }`}
                 />
               ))}
             </div>
@@ -74,32 +73,21 @@ export function CaravanCard({ caravan }: CaravanCardProps) {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {caravan.features.slice(0, 3).map((feature) => (
+          {caravan.features.slice(0, caravan.id === 'cruzer' ? 2 : 3).map((feature) => (
             <span key={feature} className="badge-sage text-xs px-3 py-1 rounded-full bg-green-100 text-green-800">
               {feature}
             </span>
           ))}
-          {caravan.features.length > 3 && (
+          {caravan.features.length > (caravan.id === 'cruzer' ? 2 : 3) && (
             <span className="text-xs text-muted-foreground">
-              +{caravan.features.length - 3} more
+              +{caravan.features.length - (caravan.id === 'cruzer' ? 2 : 3)} more
             </span>
           )}
         </div>
 
-        <div className="pt-4 border-t border-border flex items-center justify-between">
-          <div>
-            <p className="text-sm text-muted-foreground">From</p>
-            <p className="font-heading text-2xl font-bold text-foreground">
-              ${caravan.price.toLocaleString()}
-            </p>
-            {caravan.variants.length > 1 && (
-              <p className="text-xs text-muted-foreground mt-1">
-                + options available
-              </p>
-            )}
-          </div>
+        <div className="pt-4 border-t border-border flex items-center justify-end">
           <Link
-            href={`/caravans/${caravan.id}`}
+            href={`/models/${caravan.id}`}
             className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
           >
             View Details

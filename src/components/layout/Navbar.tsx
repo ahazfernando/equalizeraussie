@@ -70,7 +70,7 @@ const navigation = [
     submenu: {
       categories: [
         { name: "Dealers", href: "/dealers", icon: Store, description: "Find a dealer near you" },
-        { name: "Sale", href: "/sale", icon: Tag, description: "Special offers & deals" },
+        // { name: "Sale", href: "/sale", icon: Tag, description: "Special offers & deals" },
         { name: "Get a Quote", href: "/quote", icon: FileText, description: "Request pricing information" },
         { name: "Request a Brochure", href: "/brochure", icon: Download, description: "Download our catalog" },
       ],
@@ -97,7 +97,7 @@ const navigation = [
     hasSubmenu: true,
     submenu: {
       categories: [
-        { name: "Great Aussie Lifestyle", href: "/lifestyle", icon: Sparkles, description: "The caravan life" },
+
         { name: "Blog", href: "/blog", icon: BookOpen, description: "Latest insights & tips" },
         // { name: "Reviews", href: "/reviews", icon: Building2, description: "Tour our facility" },
       ],
@@ -292,12 +292,12 @@ export function Navbar() {
                                 );
                               })}
                             </div>
-                            <div className="col-span-1 bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between">
+                            <div className="col-span-1 bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col gap-4 h-fit self-start">
                               <div>
                                 <h3 className="font-bold text-xl text-gray-900 mb-3">
                                   {item.name}
                                 </h3>
-                                <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                                <p className="text-sm text-gray-600 leading-relaxed">
                                   {item.submenu.description}
                                 </p>
                               </div>

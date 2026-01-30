@@ -212,23 +212,13 @@ export const PlansCoupleTabs = ({ planscouples }: PlansCoupleTabsProps) => {
               >
                 3D View
               </button>
-              <button
-                onClick={() => setViewMode("floor")}
-                className={cn(
-                  "px-6 py-2 rounded-lg text-sm font-medium transition-all",
-                  viewMode === "floor"
-                    ? "bg-accent text-foreground"
-                    : "bg-background text-muted-foreground hover:text-foreground"
-                )}
-              >
-                Floor View
-              </button>
+
             </div>
 
             {/* Floor Plan Image */}
             <div className="relative w-full h-[500px] rounded-2xl overflow-hidden border-2 border-border">
               <Image
-                src={viewMode === "3d" 
+                src={viewMode === "3d"
                   ? `/caravanfamily/RVEqual.png`
                   : `/caravancouple/size${sizeNumber}-right.jpg`}
                 alt={`${activeLabel} - ${viewMode === "3d" ? "3D" : "Floor"} View`}
