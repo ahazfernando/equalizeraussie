@@ -224,7 +224,7 @@ export function Nav({ openNav }: NavProps) {
                       ) : (
                         <div className="container mx-auto px-8 py-8">
                           <div className="grid grid-cols-4 gap-8">
-                            <div className="col-span-3 grid grid-cols-2 gap-4">
+                            <div className={cn("col-span-3 grid gap-4", item.name === "Support and Services" ? "grid-cols-1" : "grid-cols-2")}>
                               {item.submenu.categories.map((category) => {
                                 const Icon = category.icon;
                                 return (

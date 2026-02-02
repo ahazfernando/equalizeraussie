@@ -267,7 +267,7 @@ export function Navbar() {
                       ) : (
                         <div className="container mx-auto px-8 py-8">
                           <div className="flex gap-12">
-                            <div className="grid grid-cols-2 gap-4 w-full max-w-3xl">
+                            <div className={cn("grid gap-4 w-full max-w-3xl", item.name === "Support and Services" ? "grid-cols-1" : "grid-cols-2")}>
                               {item.submenu.categories.map((category) => {
                                 const Icon = category.icon;
                                 return (
