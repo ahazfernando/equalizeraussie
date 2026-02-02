@@ -44,7 +44,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     return `/caravanlogos/${model.name}Logo.png`;
   };
 
-  // Get caravan image path based on model name (keep original caravan images in this section)
+  // Get caravan image path based on model name (fallback for hero/similar)
   const getCaravanImagePath = () => {
     if (model.name === "Cruzer") return "/caravan/CruzerCaravan.png";
     if (model.name === "Rebel") return "/caravan/RebelCaravan.png";
@@ -52,9 +52,9 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     return `/caravan/${model.name}Caravan.png`;
   };
 
-  // Prepare images array - single main caravan image (original)
+  // Gallery: use newmodels images when available, else single caravan image
   const caravanImage = getCaravanImagePath();
-  const images = [caravanImage];
+  const images = (model.images && model.images.length > 0) ? model.images : [caravanImage];
 
   // Extract key specs
   const extractNumber = (str: string): number => {

@@ -11,6 +11,8 @@ export interface CaravanModel {
   price: string;
   priceValue: number;
   image: string;
+  /** Gallery images for model detail page (from public/newmodels) */
+  images?: string[];
   features: {
     title: string;
     description: string;
@@ -54,6 +56,7 @@ export const caravanModels: CaravanModel[] = [
     price: "From $89,990",
     priceValue: 89990,
     image: "/newmodels/CruzerD1.png",
+    images: ["/newmodels/CruzerD1.png", "/newmodels/CruzerD2.png"],
     features: [
       {
         title: "Compact yet spacious design",
@@ -180,6 +183,7 @@ export const caravanModels: CaravanModel[] = [
     price: "From $119,990",
     priceValue: 119990,
     image: "/newmodels/RebelD1.png",
+    images: ["/newmodels/RebelD1.png", "/newmodels/RebelD2.png"],
     features: [
       {
         title: "Heavy-duty off-road chassis",
@@ -309,6 +313,7 @@ export const caravanModels: CaravanModel[] = [
     price: "From $159,990",
     priceValue: 159990,
     image: "/newmodels/RogureD1.png",
+    images: ["/newmodels/RogureD1.png", "/newmodels/RogureD2.png"],
     features: [
       {
         title: "Flagship luxury features",
