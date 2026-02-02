@@ -266,32 +266,62 @@ export function Navbar() {
                         </div>
                       ) : (
                         <div className="container mx-auto px-8 py-8">
-                          <div className="flex gap-12">
-                            <div className={cn("grid gap-4 w-full max-w-3xl", item.name === "Support and Services" ? "grid-cols-1" : "grid-cols-2")}>
-                              {item.submenu.categories.map((category) => {
-                                const Icon = category.icon;
-                                return (
-                                  <Link
-                                    key={category.name}
-                                    href={category.href || "#"}
-                                    className="group flex items-start gap-4 p-4 rounded-xl border border-transparent hover:bg-gray-50 hover:border-gray-200 transition-all"
-                                    onClick={() => setOpenDropdown(null)}
-                                  >
-                                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100">
-                                      {Icon && <Icon className="h-5 w-5 text-gray-900" />}
-                                    </div>
-                                    <div>
-                                      <div className="font-semibold text-gray-900 group-hover:text-gray-900">
-                                        {category.name}
+                          <div className="flex gap-12 items-stretch">
+                            {item.name !== "Explore" && (
+                              <div className={cn("grid gap-4 w-full", item.name === "Support and Services" ? "grid-cols-1 max-w-3xl" : "grid-cols-2 max-w-3xl")}>
+                                {item.submenu.categories.map((category) => {
+                                  const Icon = category.icon;
+                                  return (
+                                    <Link
+                                      key={category.name}
+                                      href={category.href || "#"}
+                                      className="group flex items-start gap-4 p-4 rounded-xl border border-transparent hover:bg-gray-50 hover:border-gray-200 transition-all"
+                                      onClick={() => setOpenDropdown(null)}
+                                    >
+                                      <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100">
+                                        {Icon && <Icon className="h-5 w-5 text-gray-900" />}
                                       </div>
-                                      <div className="text-sm text-gray-600">
-                                        {category.description}
+                                      <div>
+                                        <div className="font-semibold text-gray-900 group-hover:text-gray-900">
+                                          {category.name}
+                                        </div>
+                                        <div className="text-sm text-gray-600">
+                                          {category.description}
+                                        </div>
                                       </div>
-                                    </div>
-                                  </Link>
-                                );
-                              })}
-                            </div>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            )}
+                            {item.name === "Explore" && (
+                              <Link
+                                href="/blog"
+                                onClick={() => setOpenDropdown(null)}
+                                className="flex-1 min-w-0 relative rounded-2xl overflow-hidden group"
+                              >
+                                <div className="absolute inset-0 z-0">
+                                  <Image
+                                    src="/mainlogo/Image_fx-5.png"
+                                    alt=""
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                  />
+                                  <div className="absolute inset-0 bg-black/50" />
+                                </div>
+                                <div className="relative z-10 h-full min-h-[140px] flex flex-col justify-end p-6">
+                                  <h3 className="font-heading text-4xl md:text-5xl font-normal text-white mb-2 tracking-wider uppercase">
+                                    Blog
+                                  </h3>
+                                  <p className="text-sm text-white/90 mb-3">
+                                    Latest insights & tips for your next adventure.
+                                  </p>
+                                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:gap-3 transition-all">
+                                    Explore blog <ArrowRight className="h-4 w-4" />
+                                  </span>
+                                </div>
+                              </Link>
+                            )}
                             <div className="w-80 bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col gap-4 h-fit self-start shrink-0">
                               <div>
                                 <h3 className="font-bold text-xl text-gray-900 mb-3">
