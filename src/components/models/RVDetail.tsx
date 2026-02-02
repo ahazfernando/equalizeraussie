@@ -44,7 +44,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     return `/caravanlogos/${model.name}Logo.png`;
   };
 
-  // Get caravan image path based on model name
+  // Get caravan image path based on model name (keep original caravan images in this section)
   const getCaravanImagePath = () => {
     if (model.name === "Cruzer") return "/caravan/CruzerCaravan.png";
     if (model.name === "Rebel") return "/caravan/RebelCaravan.png";
@@ -52,30 +52,9 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     return `/caravan/${model.name}Caravan.png`;
   };
 
-  // Prepare images array - start with main caravan image
+  // Prepare images array - single main caravan image (original)
   const caravanImage = getCaravanImagePath();
-  let images = [caravanImage];
-
-  // Specific images for Cruzer model
-  if (model.name === "Cruzer") {
-    images = [
-      "/actualmodels/cruzer-3.jpeg",
-      "/actualmodels/cruzer-2.jpeg",
-      "/actualmodels/cruzer-1.jpeg"
-    ];
-  } else if (model.name === "Rogue") {
-    images = [
-      "/roguemodel/rogue-1.jpeg",
-      "/roguemodel/rogue-2.jpeg",
-      "/roguemodel/rogue-3.jpeg"
-    ];
-  } else if (model.name === "Rebel") {
-    images = [
-      "/rebelmodel/rebel-1.jpeg",
-      "/rebelmodel/rebel-2.jpeg",
-      "/rebelmodel/rebel-3.jpeg"
-    ];
-  }
+  const images = [caravanImage];
 
   // Extract key specs
   const extractNumber = (str: string): number => {
@@ -124,7 +103,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
     { label: "Warranty", value: "5 Years", icon: Shield },
   ];
 
-  // Get similar models (exclude current model)
+  // Get similar models (exclude current model) - keep original caravan images
   const allModels = [
     { id: "cruzer", name: "Cruzer", image: "/caravan/CruzerCaravan.png", logo: "/newlogos/C white.png", price: 89990, description: "Perfect On Road Model" },
     { id: "rebel", name: "Rebel", image: "/caravan/RebelCaravan.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
@@ -432,7 +411,7 @@ export default function RVDetail({ modelId }: RVDetailProps) {
                             <IconComponent className="w-6 h-6 text-primary" />
                           </div>
                           <div>
-                            <h4 className="font-medium text-foreground">{feature.title}</h4>
+                            <p className="text-base font-bold text-foreground">{feature.title}</p>
                             <p className="text-sm text-muted-foreground mt-1">{feature.description}</p>
                           </div>
                         </div>

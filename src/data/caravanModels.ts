@@ -53,7 +53,7 @@ export const caravanModels: CaravanModel[] = [
     description: "The Cruzer by Equalizer RV is the perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style",
     price: "From $89,990",
     priceValue: 89990,
-    image: "/actualmodels/cruzer-3.jpeg",
+    image: "/newmodels/CruzerD1.png",
     features: [
       {
         title: "Compact yet spacious design",
@@ -179,7 +179,7 @@ export const caravanModels: CaravanModel[] = [
     description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style.",
     price: "From $119,990",
     priceValue: 119990,
-    image: "/caravan/RebelCaravan.png",
+    image: "/newmodels/RebelD1.png",
     features: [
       {
         title: "Heavy-duty off-road chassis",
@@ -308,7 +308,7 @@ export const caravanModels: CaravanModel[] = [
     description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
     price: "From $159,990",
     priceValue: 159990,
-    image: "/caravan/RogueCaravan.png",
+    image: "/newmodels/RogureD1.png",
     features: [
       {
         title: "Flagship luxury features",
