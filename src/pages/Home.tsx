@@ -315,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* Connect with Experts Section */}
-      <section className="relative py-20 lg:py-32 bg-black overflow-hidden">
+      <section className="relative min-h-[90vh] lg:min-h-[95vh] pt-8 lg:pt-12 pb-20 lg:pb-32 bg-black overflow-x-hidden overflow-y-visible">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
             {/* Left Side - Text Content */}
@@ -336,7 +336,7 @@ export default function Home() {
                 <Link href="/dealers">
                   <Button
                     variant="outline"
-                    className="border-2 border-white/20 bg-transparent hover:bg-white/10 text-white rounded-full px-6 py-3 font-medium transition-all duration-300"
+                    className="border-0 p-0 bg-transparent hover:bg-white/10 text-white rounded-full font-medium transition-all duration-300"
                   >
                     Start your journey
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -361,7 +361,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl"
+                className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl -mt-3"
               >
                 Join hands with adventurers across Australia who are discovering their dream caravans with guidance from our authorized dealers.
               </motion.p>
@@ -392,11 +392,11 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative lg:absolute lg:-right-[12vw] xl:-right-[18vw] lg:top-[5%] lg:-translate-y-1/2 w-full lg:w-[70vw] xl:w-[65vw] flex items-center justify-center lg:justify-end"
+              className="relative lg:absolute lg:-right-[12vw] xl:-right-[18vw] lg:top-0 lg:-translate-y-[95%] w-full lg:w-[70vw] xl:w-[65vw] flex items-center justify-center lg:justify-end"
             >
               <div className="relative w-full max-w-none lg:max-w-[1400px] flex items-center">
                 <Image
-                  src="/images/taskcaravanv.png"
+                  src="/newmodels/eq.png"
                   alt="Equalizer RV Caravan"
                   width={1600}
                   height={1200}
