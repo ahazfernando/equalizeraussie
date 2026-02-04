@@ -53,23 +53,22 @@ export function Footer() {
             <div>
               <h4 className="font-heading font-semibold mb-4 tracking-wider">Quick Links</h4>
               <ul className="space-y-3">
-                {["Build Your RV", "Finance Options", "Customer Reviews", "About Us", "Blog"].map((item) => {
-                  // Handle special case for Blog link
-                  const href = item === "Blog"
-                    ? "/blog"
-                    : `/${item.toLowerCase().replace(/\s+/g, "-")}`;
-
-                  return (
-                    <li key={item}>
-                      <Link
-                        href={href}
-                        className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {[
+                  { label: "Cruzer", href: "/models/cruzer" },
+                  { label: "Rebel", href: "/models/rebel" },
+                  { label: "Rogue", href: "/models/rogue" },
+                  { label: "About Us", href: "/about" },
+                  { label: "Blog", href: "/blog" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -77,16 +76,22 @@ export function Footer() {
             <div>
               <h4 className="font-heading font-semibold mb-4 tracking-wider">Support</h4>
               <ul className="space-y-3">
-                {["Parts & Service", "Owner Resources", "FAQ", "Contact Us"].map((item) => (
-                  <li key={item}>
-                    <Link
-                      href="/contact"
-                      className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    href="/warranty"
+                    className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
+                  >
+                    Warranty Information
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
               </ul>
             </div>
 

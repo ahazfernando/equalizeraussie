@@ -47,8 +47,8 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   // Get caravan image path based on model name (fallback for hero/similar)
   const getCaravanImagePath = () => {
     if (model.name === "Cruzer") return "/newnew/NewCruzer.png";
-    if (model.name === "Rebel") return "/newnew/NewRebel.png";
-    if (model.name === "Rogue") return "/newnew/NewRogue.png";
+    if (model.name === "Rebel") return "/newnew/NewRogue.png";
+    if (model.name === "Rogue") return "/newnew/NewRebel.png";
     return `/caravan/${model.name}Caravan.png`;
   };
 
@@ -106,8 +106,8 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   // Get similar models (exclude current model) - use new model images
   const allModels = [
     { id: "cruzer", name: "Cruzer", image: "/newnew/NewCruzer.png", logo: "/newlogos/C white.png", price: 89990, description: "Perfect On Road Model" },
-    { id: "rebel", name: "Rebel", image: "/newnew/NewRebel.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
-    { id: "rogue", name: "Rogue", image: "/newnew/NewRogue.png", logo: "/newlogos/RO white.png", price: 159990, description: "Off Road Model" },
+    { id: "rebel", name: "Rebel", image: "/newnew/NewRogue.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
+    { id: "rogue", name: "Rogue", image: "/newnew/NewRebel.png", logo: "/newlogos/RO white.png", price: 159990, description: "Off Road Model" },
   ];
   const similarModels = allModels.filter(m => m.id !== modelId);
 
