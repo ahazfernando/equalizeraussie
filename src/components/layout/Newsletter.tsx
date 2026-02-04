@@ -86,8 +86,8 @@ const Newsletter = () => {
               <div className="absolute inset-0 bg-red-400/30 blur-3xl scale-105 -z-10 animate-pulse" />
 
               <Image
-                src="/footer/RebelEqualizerD1V2.png"
-                alt="Rebel Equalizer RV - Latest Flavor Drop"
+                src="/newmodels/EqualizerRed.png"
+                alt="Equalizer RV - Get the Latest Updates"
                 width={900}
                 height={900}
                 className="w-full h-auto object-contain drop-shadow-2xl"
