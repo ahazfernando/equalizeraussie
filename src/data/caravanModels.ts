@@ -188,12 +188,12 @@ export const caravanModels: CaravanModel[] = [
     description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style.",
     price: "From $119,990",
     priceValue: 119990,
-    image: "/newmodels/RebelD1V1.png",
+    image: "/rebelnew/RB-D1.png",
     images: [
-      "/newmodels/RebelD1V!C1.png",
-      "/newmodels/RebelD1V1.png",
-      "/newmodels/RebelD1V5.png",
-      "/newmodels/RevelD1V3.png"
+      "/rebelnew/RB-D1.png",
+      "/rebelnew/RB-D2.png",
+      "/rebelnew/RB-D3.png",
+      "/rebelnew/RB-D4.png"
     ],
     features: [
       {
@@ -323,12 +323,12 @@ export const caravanModels: CaravanModel[] = [
     description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
     price: "From $159,990",
     priceValue: 159990,
-    image: "/newmodels/RogueD1V1.png",
+    image: "/Rogue/RO-D1.png",
     images: [
-      "/newmodels/RogueD1V1.png",
-      "/newmodels/RogueD1V2.png",
-      "/newmodels/RogueD1V3.png",
-      "/newmodels/RogueD1V5.png"
+      "/Rogue/RO-D1.png",
+      "/Rogue/RO-D2.png",
+      "/Rogue/RO-D3.png",
+      "/Rogue/RO-D4.png"
     ],
     features: [
       {

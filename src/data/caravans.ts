@@ -23,7 +23,7 @@ export const caravans: Caravan[] = [
       "Full Ensuite"
     ],
     description: "The Cruzer by Equalizer RV is the perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style",
-    images: ["/newmodels/CruzerD1.png", "/newmodels/CruzerD2.png"],
+    images: ["/Equalizermodels/CR-D1.png", "/Equalizermodels/CR-D2.png"],
     specs: [
       {
         category: "Dimensions",
@@ -79,7 +79,7 @@ export const caravans: Caravan[] = [
       "Premium Audio System"
     ],
     description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style.",
-    images: ["/newmodels/RebelD1.png", "/newmodels/RebelD2.png"],
+    images: ["/rebelnew/RB-D1.png", "/rebelnew/RB-D2.png"],
     specs: [
       {
         category: "Dimensions",
@@ -135,7 +135,7 @@ export const caravans: Caravan[] = [
       "Club Lounge"
     ],
     description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
-    images: ["/newmodels/RogureD1.png", "/newmodels/RogureD2.png"],
+    images: ["/Rogue/RO-D1.png", "/Rogue/RO-D2.png"],
     specs: [
       {
         category: "Dimensions",
