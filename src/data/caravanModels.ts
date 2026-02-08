@@ -55,13 +55,13 @@ export const caravanModels: CaravanModel[] = [
     description: "The Cruzer by Equalizer RV is the perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style",
     price: "From $89,990",
     priceValue: 89990,
-    image: "/newmodels/CruzerD1V1.png",
+    image: "/Equalizermodels/CR-D1.png",
     images: [
-      "/newmodels/CruzerD1V!C1.png",
-      "/newmodels/CruzerD1V1.png",
-      "/newmodels/CruzerD1V2.png",
-      "/newmodels/CruzerD1V3.png",
-      "/newmodels/CruzerD1V5.png"
+      "/Equalizermodels/CR-D1.png",
+      "/Equalizermodels/CR-D2.png",
+      "/Equalizermodels/CR-D3.png",
+      "/Equalizermodels/CR-D4.png",
+      "/Equalizermodels/CR-D5.png"
     ],
     features: [
       {
