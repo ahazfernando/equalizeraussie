@@ -391,7 +391,7 @@ export default function About() {
                   image: "/images/caravan-lifestyle-2.jpg"
                 },
                 {
-                  year: "2026",
+                  year: "2023",
                   title: "Grand Launch",
                   description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
                   icon: Award,
