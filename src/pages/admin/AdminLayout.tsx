@@ -30,6 +30,7 @@ const navItems = [
   { label: "Blogs", href: "/admin/blogs" },
   { label: "Finance", href: "/admin/finance" },
   { label: "Warranty", href: "/admin/warranty" },
+  { label: "Newsletter", href: "/admin/newsletter" },
 ];
 
 interface AdminLayoutProps {

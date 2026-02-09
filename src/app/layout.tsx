@@ -1,55 +1,46 @@
-import type { Metadata } from "next";
+"use client";
+
+import { usePathname } from "next/navigation";
+import Head from "next/head";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "../index.css";
-
-export const metadata: Metadata = {
-  title: "Equalizer RV - Australian Caravans",
-  description: "Premium Australian caravans built for adventure",
-  icons: {
-    icon: "/logo/Equalizerblack.png",
-    shortcut: "/logo/Equalizerblack.png",
-    apple: "/logo/Equalizerblack.png",
-  },
-  openGraph: {
-    title: "Equalizer RV - Australian Caravans",
-    description: "Premium Australian caravans built for adventure",
-    images: [
-      {
-        url: "/logo/Equalizerblack.png",
-        width: 1200,
-        height: 630,
-        alt: "Equalizer RV Logo",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Equalizer RV - Australian Caravans",
-    description: "Premium Australian caravans built for adventure",
-    images: ["/logo/Equalizerblack.png"],
-  },
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith("/admin");
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        <title>Equalizer RV - Australian Caravans</title>
+        <meta name="description" content="Premium Australian caravans built for adventure" />
+        <link rel="icon" href="/logo/Equalizerblack.png" />
+        <link rel="shortcut icon" href="/logo/Equalizerblack.png" />
+        <link rel="apple-touch-icon" href="/logo/Equalizerblack.png" />
+        <meta property="og:title" content="Equalizer RV - Australian Caravans" />
+        <meta property="og:description" content="Premium Australian caravans built for adventure" />
+        <meta property="og:image" content="/logo/Equalizerblack.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Equalizer RV - Australian Caravans" />
+        <meta name="twitter:description" content="Premium Australian caravans built for adventure" />
+        <meta name="twitter:image" content="/logo/Equalizerblack.png" />
+      </Head>
       <body>
         <Providers>
           <div className="relative flex min-h-screen flex-col">
-            <Navbar />
+            {!isAdminRoute && <Navbar />}
             <main className="flex-1">{children}</main>
-            <Footer />
+            {!isAdminRoute && <Footer />}
           </div>
         </Providers>
       </body>
     </html>
   );
 }
-

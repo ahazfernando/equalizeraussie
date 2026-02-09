@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dialog";
 import { dealers } from "@/data/dealers";
 import { saveWarrantyClaim } from "@/data/warranty";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, X, Upload, Loader2, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
     Command,
@@ -40,6 +40,14 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+    Breadcrumb,
+    BreadcrumbList,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { COUNTRY_CODES } from "@/components/common/countryCodes";
 
 export default function Warranty() {
@@ -59,6 +67,41 @@ export default function Warranty() {
     const [countryCode, setCountryCode] = useState("+61");
     const [open, setOpen] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [files, setFiles] = useState<File[]>([]);
+    const [uploading, setUploading] = useState(false);
+    const [newsletterEmail, setNewsletterEmail] = useState("");
+    const [subscribing, setSubscribing] = useState(false);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const newFiles = Array.from(e.target.files);
+            setFiles((prev) => [...prev, ...newFiles]);
+        }
+    };
+
+    const removeFile = (index: number) => {
+        setFiles((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const uploadToCloudinary = async (file: File) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "equalizeraussie");
+        formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "");
+
+        const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dp5dkchm3";
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to upload image");
+        }
+
+        const data = await response.json();
+        return data.secure_url;
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -69,7 +112,7 @@ export default function Warranty() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // Basic validation
@@ -78,29 +121,67 @@ export default function Warranty() {
             return;
         }
 
-        const payload = {
-            ...formData,
-            phone: `${countryCode} ${formData.phone}`
-        };
+        setUploading(true);
 
-        const success = saveWarrantyClaim(payload);
+        try {
+            const uploadedUrls = await Promise.all(
+                files.map((file) => uploadToCloudinary(file))
+            );
 
-        if (success) {
-            setShowSuccess(true);
-            setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: "",
-                dealer: "",
-                state: "",
-                postcode: "",
-                chassisNumber: "",
-                description: "",
-                issueType: "claim",
-            });
-        } else {
-            toast.error("Something went wrong. Please try again.");
+            const payload = {
+                ...formData,
+                phone: `${countryCode} ${formData.phone}`,
+                attachments: uploadedUrls,
+            };
+
+            const success = saveWarrantyClaim(payload);
+
+            if (success) {
+                setShowSuccess(true);
+                setFormData({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    phone: "",
+                    dealer: "",
+                    state: "",
+                    postcode: "",
+                    chassisNumber: "",
+                    description: "",
+                    issueType: "claim",
+                });
+                setFiles([]);
+            } else {
+                toast.error("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Upload error:", error);
+            toast.error("Failed to upload images. Please try again.");
+            setUploading(false);
+        }
+    };
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newsletterEmail) return;
+
+        setSubscribing(true);
+        try {
+            // Dynamically import to avoid server-side issues if any
+            const { subscribeToNewsletter } = await import("@/lib/firebase/firestore");
+            const result = await subscribeToNewsletter(newsletterEmail);
+
+            if (result.success) {
+                toast.success("Subscribed to newsletter!");
+                setNewsletterEmail("");
+            } else {
+                toast.info(result.message || "Already subscribed.");
+            }
+        } catch (error) {
+            console.error("Newsletter error:", error);
+            toast.error("Failed to subscribe. Please try again.");
+        } finally {
+            setSubscribing(false);
         }
     };
 
@@ -130,7 +211,19 @@ export default function Warranty() {
                         transition={{ duration: 0.8 }}
                         className="max-w-3xl"
                     >
-                        <h1 className="font-heading text-5xl md:text-7xl font-black mb-6 uppercase tracking-wider text-white">
+                        <Breadcrumb className="mb-4 text-gray-300">
+                            <BreadcrumbList>
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink href="/" className="text-gray-300 hover:text-white">Home</BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbSeparator className="text-gray-400" />
+                                <BreadcrumbItem>
+                                    <BreadcrumbPage className="text-white">Warranty</BreadcrumbPage>
+                                </BreadcrumbItem>
+                            </BreadcrumbList>
+                        </Breadcrumb>
+
+                        <h1 className="font-heading text-5xl md:text-7xl font-black mb-2 uppercase tracking-wider text-white">
                             We&apos;ve Got You <span className="text-red-600">Covered</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light leading-relaxed">
@@ -330,8 +423,66 @@ export default function Warranty() {
                                         />
                                     </div>
 
-                                    <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-6 text-lg rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-600/30">
-                                        Submit Warranty Claim <ArrowRight className="ml-2 h-5 w-5" />
+                                    <div className="space-y-4">
+                                        <Label>Photos / Attachments</Label>
+                                        <div className="border-2 border-dashed border-border rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-muted/50 transition-colors cursor-pointer relative">
+                                            <input
+                                                type="file"
+                                                multiple
+                                                accept="image/*"
+                                                className="absolute inset-0 opacity-0 cursor-pointer"
+                                                onChange={handleFileChange}
+                                            />
+                                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                                                <Upload className="w-6 h-6 text-primary" />
+                                            </div>
+                                            <p className="text-sm font-medium">Click to upload images</p>
+                                            <p className="text-xs text-muted-foreground mt-1">SVG, PNG, JPG or GIF (max. 10MB)</p>
+                                        </div>
+
+                                        {files.length > 0 && (
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                                {files.map((file, index) => (
+                                                    <div key={index} className="relative group rounded-lg overflow-hidden border border-border bg-muted">
+                                                        <div className="aspect-square flex items-center justify-center bg-muted/50 relative">
+                                                            <img
+                                                                src={URL.createObjectURL(file)}
+                                                                alt={file.name}
+                                                                className="w-full h-full object-cover"
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => removeFile(index)}
+                                                            className="absolute top-1 right-1 bg-black/50 hover:bg-red-500 text-white rounded-full p-1 transition-colors"
+                                                        >
+                                                            <X className="w-3 h-3" />
+                                                        </button>
+                                                        <p className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] p-1 truncate px-2">
+                                                            {file.name}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <Button
+                                        type="submit"
+                                        size="lg"
+                                        disabled={uploading}
+                                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-6 text-lg rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-600/30 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                                    >
+                                        {uploading ? (
+                                            <>
+                                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                                Uploading...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Submit Warranty Claim <ArrowRight className="ml-2 h-5 w-5" />
+                                            </>
+                                        )}
                                     </Button>
                                 </form>
                             </div>
@@ -388,13 +539,47 @@ export default function Warranty() {
                                     </Button>
                                 </div>
                             </div>
+
+                            {/* Newsletter Subscription Card */}
+                            <div className="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-2xl shadow-sm relative overflow-hidden mt-8">
+                                <div className="relative z-10">
+                                    <h3 className="font-heading text-2xl font-bold mb-2">Internal News</h3>
+                                    <p className="text-muted-foreground mb-6">
+                                        Subscribe to our internal newsletter for the latest updates on claims, policies repairs and standard operating procedures.
+                                    </p>
+
+                                    <form onSubmit={handleSubscribe} className="space-y-3">
+                                        <Input
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            value={newsletterEmail}
+                                            onChange={(e) => setNewsletterEmail(e.target.value)}
+                                            required
+                                        />
+                                        <Button
+                                            type="submit"
+                                            disabled={subscribing}
+                                            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
+                                        >
+                                            {subscribing ? (
+                                                <>
+                                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                    Subscribing...
+                                                </>
+                                            ) : (
+                                                "Subscribe Now"
+                                            )}
+                                        </Button>
+                                    </form>
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Success Modal */}
-            <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
+            < Dialog open={showSuccess} onOpenChange={setShowSuccess} >
                 <DialogContent className="sm:max-w-md">
                     <DialogHeader>
                         <div className="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
@@ -421,7 +606,7 @@ export default function Warranty() {
                         </Button>
                     </DialogFooter>
                 </DialogContent>
-            </Dialog>
-        </div>
+            </Dialog >
+        </div >
     );
 }

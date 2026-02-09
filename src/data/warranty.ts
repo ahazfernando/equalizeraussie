@@ -12,7 +12,8 @@ export interface WarrantyClaim {
     issueType: "claim" | "general";
     status: "New" | "Contacted" | "In Progress" | "Resolved" | "Closed"; // Added status
     createdAt: string; // Added date
-    notes?: string; // Added admin notes
+    notes?: string;
+    attachments?: string[]; // Added image attachments
 }
 
 export const saveWarrantyClaim = (claim: Omit<WarrantyClaim, "id" | "status" | "createdAt">): boolean => {

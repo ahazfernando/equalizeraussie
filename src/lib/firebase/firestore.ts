@@ -35,7 +35,7 @@ export const getDocument = async <T>(
 ): Promise<T | null> => {
   const docRef = doc(db, collectionName, documentId);
   const docSnap = await getDoc(docRef);
-  
+
   if (docSnap.exists()) {
     return { id: docSnap.id, ...docSnap.data() } as T;
   }
@@ -48,7 +48,7 @@ export const getDocuments = async <T>(
 ): Promise<T[]> => {
   const q = query(collection(db, collectionName), ...constraints);
   const querySnapshot = await getDocs(q);
-  
+
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
@@ -81,6 +81,29 @@ export const bookingsCollection = "bookings";
 export const reviewsCollection = "reviews";
 export const articlesCollection = "articles";
 export const blogsCollection = "blogs";
+export const newsletterCollection = "newsletter_subscribers";
+
+// Newsletter
+export const subscribeToNewsletter = async (email: string) => {
+  // Check if already subscribed
+  const q = query(collection(db, newsletterCollection), where("email", "==", email));
+  const querySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    return { success: false, message: "Email already subscribed" };
+  }
+
+  await addDoc(collection(db, newsletterCollection), {
+    email,
+    createdAt: Timestamp.now(),
+  });
+
+  return { success: true };
+};
+
+export const getNewsletterSubscribers = async () => {
+  return getDocuments(newsletterCollection, [orderBy("createdAt", "desc")]);
+};
 
 // Caravans
 export const getCaravans = async () => {
@@ -173,10 +196,10 @@ export const createReview = async (reviewData: any) => {
   // Convert date string to Timestamp if provided
   const data = {
     ...reviewData,
-    date: reviewData.date 
-      ? (typeof reviewData.date === 'string' 
-          ? Timestamp.fromDate(new Date(reviewData.date))
-          : reviewData.date)
+    date: reviewData.date
+      ? (typeof reviewData.date === 'string'
+        ? Timestamp.fromDate(new Date(reviewData.date))
+        : reviewData.date)
       : Timestamp.now(),
   };
   return createDocument(reviewsCollection, data);
@@ -186,10 +209,10 @@ export const updateReview = async (id: string, reviewData: any) => {
   // Convert date string to Timestamp if provided
   const data = {
     ...reviewData,
-    date: reviewData.date 
-      ? (typeof reviewData.date === 'string' 
-          ? Timestamp.fromDate(new Date(reviewData.date))
-          : reviewData.date)
+    date: reviewData.date
+      ? (typeof reviewData.date === 'string'
+        ? Timestamp.fromDate(new Date(reviewData.date))
+        : reviewData.date)
       : undefined,
   };
   // Remove undefined values

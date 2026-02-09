@@ -40,7 +40,7 @@ export function HeroHeader() {
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-background/60 dark:bg-background/70" />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
           {/* Content */}

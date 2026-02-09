@@ -614,7 +614,7 @@ export default function About() {
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/5 to-transparent" />
-          <div className="hidden lg:block absolute -bottom-20 right-12 text-[20rem] font-bold text-white/5 select-none pointer-events-none uppercase tracking-tighter">
+          <div className="hidden lg:block absolute -bottom-20 left-1/2 -translate-x-1/2 text-[16rem] font-bold text-white/5 select-none pointer-events-none uppercase tracking-tighter">
             Melbourne
           </div>
         </div>

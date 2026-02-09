@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Shield, Wrench, Award, MapPin, Star, ChevronRight, Check, Sparkles, Heart, ChevronLeft } from "lucide-react";
+import { ArrowRight, Shield, Wrench, Award, MapPin, Star, ChevronRight, Check, Sparkles, Heart, ChevronLeft, Zap, Grid, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CaravanCard } from "@/components/caravans/CaravanCard";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
@@ -125,34 +125,53 @@ export default function Home() {
               className="object-cover"
             />
             {/* Gradient overlay to blend with background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-background/40 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black" />
           </div>
-          <div className="bg-background flex items-center p-12 lg:p-20">
+          <div className="bg-black flex items-center p-12 lg:p-20">
             <div className="max-w-lg">
-              <span className="text-primary font-semibold tracking-widest text-sm">LIFESTYLE</span>
-              <h2 className="text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight tracking-wider">
-                YOUR HOME<br />ON WHEELS
-              </h2>
-              <div className="space-y-6 mb-10">
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+              <span className="text-primary font-semibold tracking-widest text-sm">CONSTRUCTION</span>
+              <div className="flex items-center mb-16 mt-4 gap-6">
+                <div className="relative w-[180px] h-16">
+                  <Image
+                    src="/mainlogo/PT.png"
+                    alt="Polly Tech"
+                    fill
+                    className="object-contain object-left"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-4xl font-bold text-white leading-none">Makes Your</h3>
+                  <h3 className="text-4xl font-bold text-white leading-none">Caravan Timber-Free</h3>
+                </div>
+              </div>
+              <div className="space-y-8 mb-10">
+                <div className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300">
+                    <Zap className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
+                  </div>
                   <div>
-                    <h4 className="font-bold text-lg mb-1 tracking-wider">FREEDOM</h4>
-                    <p className="text-muted-foreground">Wake up wherever you choose. No bookings, no schedules.</p>
+                    <h4 className="font-heading font-bold text-2xl mb-1 tracking-wider text-white uppercase group-hover:text-primary transition-colors duration-300">New Tech (Polytech)</h4>
+                    <p className="text-gray-400 leading-relaxed">Advanced 100% timber-free construction ensuring zero rot and maximum longevity.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+
+                <div className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300">
+                    <Grid className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
+                  </div>
                   <div>
-                    <h4 className="font-bold text-lg mb-1 tracking-wider">CONNECTION</h4>
-                    <p className="text-muted-foreground">Quality time with family, away from the daily grind.</p>
+                    <h4 className="font-heading font-bold text-2xl mb-1 tracking-wider text-white uppercase group-hover:text-primary transition-colors duration-300">Honeycomb Floor</h4>
+                    <p className="text-gray-400 leading-relaxed">One-piece lightweight flooring system that delivers exceptional strength without the weight.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+
+                <div className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300">
+                    <Layers className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
+                  </div>
                   <div>
-                    <h4 className="font-bold text-lg mb-1 tracking-wider">ADVENTURE</h4>
-                    <p className="text-muted-foreground">Explore hidden gems that hotels will never show you.</p>
+                    <h4 className="font-heading font-bold text-2xl mb-1 tracking-wider text-white uppercase group-hover:text-primary transition-colors duration-300">Sandwich Panelling</h4>
+                    <p className="text-gray-400 leading-relaxed">Superior thermal insulation and structural rigidity to keep you comfortable in any climate.</p>
                   </div>
                 </div>
               </div>
