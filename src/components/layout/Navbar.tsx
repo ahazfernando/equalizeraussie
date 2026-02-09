@@ -295,32 +295,63 @@ export function Navbar() {
                               </div>
                             )}
                             {item.name === "Explore" && (
-                              <Link
-                                href="/blog"
-                                onClick={() => setOpenDropdown(null)}
-                                className="flex-1 min-w-0 relative rounded-2xl overflow-hidden group"
-                              >
-                                <div className="absolute inset-0 z-0">
-                                  <Image
-                                    src="/mainlogo/Image_fx-5.png"
-                                    alt=""
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                  />
-                                  <div className="absolute inset-0 bg-black/50" />
-                                </div>
-                                <div className="relative z-10 h-full min-h-[140px] flex flex-col justify-end p-6">
-                                  <h3 className="font-heading text-4xl md:text-5xl font-normal text-white mb-2 tracking-wider uppercase">
-                                    Blog
-                                  </h3>
-                                  <p className="text-sm text-white/90 mb-3">
-                                    Latest insights & tips for your next adventure.
-                                  </p>
-                                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:gap-3 transition-all">
-                                    Explore blog <ArrowRight className="h-4 w-4" />
-                                  </span>
-                                </div>
-                              </Link>
+                              <>
+                                {/* Great Aussie Lifestyle Widget */}
+                                <Link
+                                  href="/lifestyle"
+                                  onClick={() => setOpenDropdown(null)}
+                                  className="flex-1 min-w-0 relative rounded-2xl overflow-hidden group"
+                                >
+                                  <div className="absolute inset-0 z-0">
+                                    <Image
+                                      src="/caravan/Gemini_Generated_Image_6dp2uf6dp2uf6dp2.png"
+                                      alt="Great Aussie Lifestyle"
+                                      fill
+                                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-black/50" />
+                                  </div>
+                                  <div className="relative z-10 h-full min-h-[140px] flex flex-col justify-end p-6">
+                                    <h3 className="font-heading text-2xl md:text-3xl font-normal text-white mb-2 tracking-wider uppercase">
+                                      Great Aussie Lifestyle
+                                    </h3>
+                                    <p className="text-sm text-white/90 mb-3">
+                                      Discover the freedom of the open road.
+                                    </p>
+                                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:gap-3 transition-all">
+                                      Explore lifestyle <ArrowRight className="h-4 w-4" />
+                                    </span>
+                                  </div>
+                                </Link>
+
+                                {/* Blog Widget */}
+                                <Link
+                                  href="/blog"
+                                  onClick={() => setOpenDropdown(null)}
+                                  className="flex-1 min-w-0 relative rounded-2xl overflow-hidden group"
+                                >
+                                  <div className="absolute inset-0 z-0">
+                                    <Image
+                                      src="/mainlogo/Image_fx-5.png"
+                                      alt="Blog"
+                                      fill
+                                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-black/50" />
+                                  </div>
+                                  <div className="relative z-10 h-full min-h-[140px] flex flex-col justify-end p-6">
+                                    <h3 className="font-heading text-2xl md:text-3xl font-normal text-white mb-2 tracking-wider uppercase">
+                                      Blog
+                                    </h3>
+                                    <p className="text-sm text-white/90 mb-3">
+                                      Latest insights & tips for your next adventure.
+                                    </p>
+                                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:gap-3 transition-all">
+                                      Explore blog <ArrowRight className="h-4 w-4" />
+                                    </span>
+                                  </div>
+                                </Link>
+                              </>
                             )}
                             <div className="w-80 bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col gap-4 h-fit self-start shrink-0">
                               <div>

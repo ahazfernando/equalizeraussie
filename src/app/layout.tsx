@@ -14,6 +14,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
+  const isAuthRoute = pathname === "/signup";
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -35,9 +36,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="relative flex min-h-screen flex-col">
-            {!isAdminRoute && <Navbar />}
+            {!isAdminRoute && !isAuthRoute && <Navbar />}
             <main className="flex-1">{children}</main>
-            {!isAdminRoute && <Footer />}
+            {!isAdminRoute && !isAuthRoute && <Footer />}
           </div>
         </Providers>
       </body>

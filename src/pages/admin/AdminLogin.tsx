@@ -47,7 +47,7 @@ export default function AdminLogin() {
       }
 
       toast.success("Logged in successfully");
-      router.push("/admin");
+      router.push("/admin/dashboard");
     } catch (error: any) {
       console.error(error);
       toast.error(error.message || "Failed to login");
@@ -59,8 +59,8 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-black flex relative overflow-hidden">
       {/* Animated gradient orbs for ambient effect */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
       {/* Left Panel - Image with margins and rounded corners */}
       <div className="hidden lg:flex lg:w-[60%] p-4 pl-6 pt-6 pb-6">
@@ -152,9 +152,9 @@ export default function AdminLogin() {
 
           <div className="mt-6">
             <p className="text-gray-400 text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
-                href="/admin/signup"
+                href="/signup"
                 className="text-white hover:text-blue-400 font-semibold transition-colors duration-200 underline-offset-4 hover:underline"
               >
                 Sign Up

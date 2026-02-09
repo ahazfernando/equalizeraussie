@@ -445,11 +445,7 @@ export default function Warranty() {
                                                 {files.map((file, index) => (
                                                     <div key={index} className="relative group rounded-lg overflow-hidden border border-border bg-muted">
                                                         <div className="aspect-square flex items-center justify-center bg-muted/50 relative">
-                                                            <img
-                                                                src={URL.createObjectURL(file)}
-                                                                alt={file.name}
-                                                                className="w-full h-full object-cover"
-                                                            />
+                                                            <ImageIcon className="w-8 h-8 text-muted-foreground" />
                                                         </div>
                                                         <button
                                                             type="button"
