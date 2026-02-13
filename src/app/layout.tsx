@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isAdminRoute = pathname?.startsWith("/admin");
-  const isAuthRoute = pathname === "/signup";
+  const isAdminRoute = pathname?.startsWith("/admin") ?? false;
+  const isAuthRoute = pathname === "/signup" || pathname === "/reset";
 
   return (
     <html lang="en" suppressHydrationWarning>

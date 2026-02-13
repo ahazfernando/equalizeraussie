@@ -132,6 +132,16 @@ export default function AdminLogin() {
                 </button>
               </div>
               <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters</p>
+
+              {/* Forgot Password Link */}
+              <div className="text-right text-sm mt-1">
+                <Link
+                  href="/reset"
+                  className="text-white hover:text-blue-400 font-semibold transition-colors duration-200 underline-offset-4 hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
             </div>
 
             <Button
