@@ -124,8 +124,8 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1400px]">
-      <div className="bg-white/95 backdrop-blur-xl rounded-full border border-gray-200 shadow-lg px-1 md:px-2">
+    <nav className="fixed top-4 lg:left-1/2 lg:-translate-x-1/2 w-[92%] lg:w-full z-50 mx-auto container">
+      <div className="bg-white/95 backdrop-blur-xl rounded-full border border-gray-200 shadow-lg px-2 lg:px-0">
         <div className="flex items-center h-16 relative">
           {/* Logo - Left Section */}
           <div className="flex-1 flex items-center pl-4 md:pl-6">
@@ -142,7 +142,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation - Pill Style - Centered */}
-          <div className="hidden md:flex items-center gap-2 bg-gray-100/50 rounded-full p-1 absolute left-[65%] -translate-x-1/2">
+          <div className="hidden lg:flex items-center gap-2 bg-gray-100/50 rounded-full p-1 absolute left-[65%] -translate-x-1/2">
             {navigation.map((item) => {
               const active = checkActive(item);
 
@@ -398,7 +398,7 @@ export function Navbar() {
           <div className="flex-1 flex items-center justify-end pr-4 md:pr-6">
             <Link
               href="/contact"
-              className="hidden md:block bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+              className="hidden lg:block bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
             >
               Let&apos;s Talk
             </Link>
@@ -407,7 +407,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-900"
+            className="lg:hidden p-2 text-gray-900"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -418,10 +418,10 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mt-2 bg-white/95 backdrop-blur-xl rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="mt-2 bg-white/95 backdrop-blur-xl rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
           >
             <div className="p-4 space-y-2">
               {navigation.map((item) => {
