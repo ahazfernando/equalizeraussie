@@ -3,6 +3,7 @@ export interface Brochure {
   name: string;
   category: string;
   image: string;
+  pdfUrl?: string;
   description?: string;
   tagline?: string;
   length?: string;
@@ -17,6 +18,7 @@ export const brochures: Brochure[] = [
     name: "Cruzer Model",
     category: "On-Road",
     image: "/caravan/CruzerCaravan.png",
+    pdfUrl: "/brochures/EqualizerRV_Brochure_Latest(A4)_compressed.pdf",
     description: "Perfect entry-level caravan for on-road adventures",
     tagline: "Perfect On Road Model",
     length: "17-21ft",
@@ -36,6 +38,7 @@ export const brochures: Brochure[] = [
     name: "Rebel Model",
     category: "Semi-Offroad",
     image: "/caravan/RebelCaravan.png",
+    pdfUrl: "/brochures/EqualizerRV_Brochure_Latest(A4)_compressed.pdf",
     description: "Semi-offroad capability with luxury features",
     tagline: "Semi Offroad Model",
     length: "19-23ft",
@@ -55,6 +58,7 @@ export const brochures: Brochure[] = [
     name: "Rogue Model",
     category: "Off-Road",
     image: "/caravan/RogueCaravan.png",
+    pdfUrl: "/brochures/EqualizerRV_Brochure_Latest(A4)_compressed.pdf",
     description: "Ultimate off-road expedition caravan",
     tagline: "Off Road Model",
     length: "20-24ft",

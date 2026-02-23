@@ -382,6 +382,14 @@ export default function About() {
                   side: "right",
                   image: "/images/caravan-lifestyle-1.jpg"
                 },
+                                {
+                  year: "2022",
+                  title: "Grand Launch",
+                  description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
+                  icon: Award,
+                  side: "right",
+                  image: "/images/caravan-lifestyle-3.jpg"
+                },
                 {
                   year: "2021",
                   title: "First Production",
@@ -390,14 +398,6 @@ export default function About() {
                   side: "left",
                   image: "/images/caravan-lifestyle-2.jpg"
                 },
-                {
-                  year: "2023",
-                  title: "Grand Launch",
-                  description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
-                  icon: Award,
-                  side: "right",
-                  image: "/images/caravan-lifestyle-3.jpg"
-                }
               ].map((milestone, index) => {
                 const Icon = milestone.icon;
                 const isLeft = milestone.side === "left";

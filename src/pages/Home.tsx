@@ -19,11 +19,6 @@ import { motion } from "framer-motion";
 
 const trustPillars = [
   {
-    icon: Shield,
-    title: "2-Year Warranty",
-    description: "Industry-leading coverage for complete peace of mind on the road.",
-  },
-  {
     icon: Wrench,
     title: "Australian Made",
     description: "Designed and built right here in Australia for our unique conditions.",
@@ -594,7 +589,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     if (destinationsScrollRef.current) {
-                      destinationsScrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+                      destinationsScrollRef.current.scrollBy({ behavior: 'smooth' });
                     }
                   }}
                   className="p-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
@@ -650,7 +645,7 @@ export default function Home() {
                 <Link href="/contact" className="inline-block">
                   <Button
                     size="lg"
-                    className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300"
+                    className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 mb-4"
                   >
                     Become an Ambassador {/* To Contact Page */}
                     <ArrowRight className="w-5 h-5 ml-2" />
@@ -711,8 +706,8 @@ export default function Home() {
 
       {/* Trust Pillars */}
       <section className="py-16 bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 xl:px-24 max-w-[1400px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {trustPillars.map((pillar, index) => (
               <motion.div
                 key={pillar.title}
