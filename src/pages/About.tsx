@@ -379,15 +379,15 @@ export default function About() {
                   description: "Founded with a dream to create caravans that combine rugged Australian capability with uncompromising luxury.",
                   icon: Target,
                   side: "right",
-                  image: "/images/caravan-lifestyle-1.jpg"
+                  image: "/caravan/caravan_coloring_negative.png"
                 },
                 {
-                  year: "2022",
+                  year: "2021",
                   title: "Grand Launch",
                   description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
                   icon: Award,
                   side: "right",
-                  image: "/images/caravan-lifestyle-3.jpg"
+                  image: "/logo/whitelogoWQ.png"
                 },
                 {
                   year: "2021",
@@ -395,7 +395,7 @@ export default function About() {
                   description: "Launched our first model, setting new standards in Australian caravan manufacturing with hand-finished quality.",
                   icon: Zap,
                   side: "left",
-                  image: "/images/caravan-lifestyle-2.jpg"
+                  image: "/caravan/GAC-SET-126.jpg"
                 },
               ].map((milestone, index) => {
                 const Icon = milestone.icon;

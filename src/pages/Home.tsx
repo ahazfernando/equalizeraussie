@@ -191,7 +191,7 @@ export default function Home() {
         {/* Image Background */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/home/d47fc3a603bcf4cc7e3da404f012fbec.jpg"
+            src="/home/benefits-bg.png"
             alt="Benefits Background"
             fill
             className="object-cover"
