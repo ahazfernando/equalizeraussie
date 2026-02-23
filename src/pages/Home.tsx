@@ -690,7 +690,7 @@ export default function Home() {
                 }}
               >
                 {[
-                  { id: 1, image: '/locations/GreatOcean.jpg', distance: '900 km FROM MELBOURNE', title: 'GREAT OCEAN ROAD' },
+                  { id: 1, image: '/locations/GreatOcean.jpg', distance: '100 km FROM MELBOURNE', title: 'GREAT OCEAN ROAD', titleNode: <>GREAT <br /> OCEAN ROAD</> },
                   { id: 2, image: '/locations/Blue mountains.jpg.webp', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
                   { id: 3, image: '/locations/kimberley.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
                   { id: 4, image: '/locations/Daly Waters.jpg', distance: '3,100 km FROM BRISBANE', title: 'DALY WATERS' },
@@ -718,7 +718,7 @@ export default function Home() {
                           {dest.distance}
                         </p>
                         <h3 className="text-white text-4xl lg:text-5xl font-black tracking-wide leading-tight mt-1">
-                          {dest.title}
+                          {dest.titleNode || dest.title}
                         </h3>
                       </div>
 
