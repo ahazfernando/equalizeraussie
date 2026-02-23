@@ -33,22 +33,24 @@ export function HeroHeader() {
           src="/header/nighttimervfeealing.png"
           alt="Header Background"
           fill
-          className="object-cover"
+          className="object-cover scale-105 animate-[zoom_20s_ease-in-out_infinite_alternate]"
           priority
           sizes="100vw"
         />
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/70" />
+        {/* Enhanced Gradient Overlay for better depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60" />
+        {/* Vignette effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-40" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl">
+        <div className="max-w-5xl">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8 text-center lg:text-left"
+            className="space-y-10 text-center lg:text-left"
           >
             {/* Premium Badge */}
             <motion.div
@@ -57,8 +59,11 @@ export function HeroHeader() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-block"
             >
-              <span className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-accent/15 to-accent/5 border border-accent/30 backdrop-blur-sm shadow-lg shadow-accent/10 text-red-500 dark:text-red-400 text-sm sm:text-base font-semibold">
-                <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
+              <span className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-gradient-to-r from-accent/20 to-accent/10 border-2 border-accent/40 backdrop-blur-md shadow-2xl shadow-accent/20 text-white text-sm sm:text-base font-bold hover:scale-105 transition-transform duration-300">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-accent shadow-lg shadow-accent/50"></span>
+                </span>
                 Premium Australian Caravans
               </span>
             </motion.div>
@@ -68,19 +73,28 @@ export function HeroHeader() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="space-y-4"
+              className="space-y-6"
             >
-              <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-semibold leading-tight">
-                <span className="block text-foreground tracking-wider">Your Home on Wheels.</span>
-                <span className="bg-gradient-to-r from-accent via-accent to-accent/80 bg-clip-text text-transparent relative inline-block tracking-wider">
-                  It&apos;s Your World on Wheels.
-                  <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-accent/20 via-accent/40 to-accent/20 blur-xl" />
+              <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight">
+                <span className="block text-white mb-3 drop-shadow-2xl">Your Home on Wheels.</span>
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-accent via-red-400 to-accent bg-clip-text text-transparent drop-shadow-2xl font-black tracking-tight">
+                    It&apos;s Your World on Wheels.
+                  </span>
+                  {/* Multiple glow layers for stronger effect */}
+                  <span className="absolute -bottom-4 left-0 right-0 h-6 bg-gradient-to-r from-accent/30 via-accent/60 to-accent/30 blur-3xl" />
+                  <span className="absolute -bottom-2 left-0 right-0 h-4 bg-gradient-to-r from-accent/40 via-accent/70 to-accent/40 blur-2xl" />
                 </span>
               </h1>
-              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="text-gray-200 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light drop-shadow-lg"
+              >
                 Experience the freedom of the open road with our adventurous
-                Australian-built caravans. Quality, comfort, and adventure awaits.
-              </p>
+                Australian-built caravans. <span className="text-white font-medium">Quality, comfort, and adventure awaits.</span>
+              </motion.p>
             </motion.div>
 
             {/* Model Selector */}
@@ -88,26 +102,27 @@ export function HeroHeader() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.7 }}
-              className="space-y-4"
+              className="space-y-6 pt-4"
             >
-              <p className="text-sm font-semibold text-foreground tracking-wider uppercase">
+              <p className="text-sm font-bold text-white/90 tracking-widest uppercase drop-shadow-md">
                 See Our Categories
               </p>
-              <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6 flex-wrap">
+              <div className="flex items-center justify-center lg:justify-start gap-6 sm:gap-8 flex-wrap">
                 {models.map((model, index) => (
                   <motion.div
                     key={model.id}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
-                    className="cursor-pointer"
+                    transition={{ delay: 1 + index * 0.15, duration: 0.5 }}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    className="cursor-pointer transition-all duration-300"
                   >
                     <Image
                       src={model.logo}
                       alt={model.name}
                       width={180}
                       height={126}
-                      className="object-contain w-32 h-auto sm:w-44 sm:h-auto"
+                      className="object-contain w-36 h-auto sm:w-48 sm:h-auto drop-shadow-lg"
                     />
                   </motion.div>
                 ))}
@@ -118,31 +133,39 @@ export function HeroHeader() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              transition={{ delay: 1.3, duration: 0.7 }}
+              className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-6"
             >
               <Link href="/caravans">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto rounded-full px-8 py-6 text-foreground text-base font-bold shadow-2xl shadow-accent/30 bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent border-2 border-accent"
+                  className="group w-full sm:w-auto rounded-full px-10 py-7 text-white text-lg font-black shadow-2xl shadow-accent/40 bg-gradient-to-r from-accent via-red-500 to-accent/90 hover:from-accent/90 hover:via-red-400 hover:to-accent border-2 border-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 hover:shadow-accent/60"
                 >
                   Explore Models
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto rounded-full px-8 py-6 text-base text-white font-semibold border border-white/24 bg-white/12 backdrop-blur-[35px] hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+                  className="group w-full sm:w-auto rounded-full px-10 py-7 text-lg text-white font-bold border-2 border-white/30 bg-white/15 backdrop-blur-md hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
                 >
                   Book a Viewing
+                  <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes zoom {
+          0%, 100% { transform: scale(1.05); }
+          50% { transform: scale(1.1); }
+        }
+      `}</style>
     </section>
   );
 }

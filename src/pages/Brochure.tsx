@@ -54,6 +54,17 @@ export default function Brochure() {
     const [showContactSection, setShowContactSection] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [submittedBrochure, setSubmittedBrochure] = useState<string>("");
+    const [selectedPdfUrl, setSelectedPdfUrl] = useState<string>("");
+
+    const triggerDownload = (pdfUrl: string, brochureName: string) => {
+        if (!pdfUrl) return;
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = `${brochureName.replace(/\s+/g, "-").toLowerCase()}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -67,16 +78,14 @@ export default function Brochure() {
                 postcode: formData.postcode,
                 state: formData.state,
             });
-            setSubmittedBrochure(formData.brochure);
-            setShowSuccessModal(true);
-            setFormData({ fname: "", lname: "", email: "", brochure: "", message: "", postcode: "", state: "" });
         } catch (error) {
             console.error("Error saving brochure request:", error);
-            // Still show success modal even if save fails (graceful degradation)
-            setSubmittedBrochure(formData.brochure);
-            setShowSuccessModal(true);
-            setFormData({ fname: "", lname: "", email: "", brochure: "", message: "", postcode: "", state: "" });
         }
+        // Trigger PDF download automatically
+        triggerDownload(selectedPdfUrl, formData.brochure);
+        setSubmittedBrochure(formData.brochure);
+        setShowSuccessModal(true);
+        setFormData({ fname: "", lname: "", email: "", brochure: "", message: "", postcode: "", state: "" });
     };
 
     // Get model logo based on brochure name
@@ -90,8 +99,9 @@ export default function Brochure() {
         return "/caravanlogos/CruzerLogo.png"; // Default
     };
 
-    const handleGetBrochure = (brochureName: string) => {
+    const handleGetBrochure = (brochureName: string, pdfUrl?: string) => {
         setFormData((prev) => ({ ...prev, brochure: brochureName }));
+        setSelectedPdfUrl(pdfUrl || "");
         setShowContactSection(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -226,7 +236,7 @@ export default function Brochure() {
                                         )}
 
                                         <Button
-                                            onClick={() => handleGetBrochure(brochure.name)}
+                                            onClick={() => handleGetBrochure(brochure.name, brochure.pdfUrl)}
                                             className="w-full group/btn bg-secondary hover:bg-accent hover:text-white text-foreground rounded-xl py-6 transition-all duration-300"
                                         >
                                             Get Brochure
@@ -449,7 +459,7 @@ export default function Brochure() {
                                         Thank You!
                                     </DialogTitle>
                                     <DialogDescription className="text-lg text-white/80 max-w-md mx-auto leading-relaxed text-center">
-                                        Your enquiry has been successfully sent. We&apos;ll send the <span className="text-accent font-semibold">{submittedBrochure || "brochure"}</span> to your inbox shortly.
+                                        Your enquiry has been successfully sent. The <span className="text-accent font-semibold">{submittedBrochure || "brochure"}</span> is downloading now — we&apos;ll also send a copy to your inbox shortly.
                                     </DialogDescription>
                                 </motion.div>
                             </DialogHeader>
