@@ -63,7 +63,7 @@ export default function AdminReset() {
 
       <div className="flex-1 flex items-center justify-center p-8 relative z-10">
         <div className="w-full max-w-md">
-          
+
           <Button
             variant="ghost"
             className="mb-8 text-gray-400 hover:text-white"
@@ -88,7 +88,7 @@ export default function AdminReset() {
               RESET PASSWORD
             </h2>
             <p className="text-gray-400">
-              Enter your email and we'll send you a link to reset your password
+              Enter your email and we&apos;ll send you a link to reset your password
             </p>
           </div>
 
