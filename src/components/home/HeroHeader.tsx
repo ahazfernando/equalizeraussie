@@ -139,20 +139,20 @@ export function HeroHeader() {
               <Link href="/caravans">
                 <Button
                   size="lg"
-                  className="group w-full sm:w-auto rounded-full px-10 py-7 text-white text-lg font-black shadow-2xl shadow-accent/40 bg-gradient-to-r from-accent via-red-500 to-accent/90 hover:from-accent/90 hover:via-red-400 hover:to-accent border-2 border-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 hover:shadow-accent/60"
+                  className="group w-full sm:w-auto rounded-full px-6 py-4 sm:px-10 sm:py-7 text-white text-base sm:text-lg font-black shadow-2xl shadow-accent/40 bg-gradient-to-r from-accent via-red-500 to-accent/90 hover:from-accent/90 hover:via-red-400 hover:to-accent border-2 border-white/20 hover:border-white/40 hover:scale-105 transition-all duration-300 hover:shadow-accent/60"
                 >
                   Explore Models
-                  <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group w-full sm:w-auto rounded-full px-10 py-7 text-lg text-white font-bold border-2 border-white/30 bg-white/15 backdrop-blur-md hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+                  className="group w-full sm:w-auto rounded-full px-6 py-4 sm:px-10 sm:py-7 text-base sm:text-lg text-white font-bold border-2 border-white/30 bg-white/15 backdrop-blur-md hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
                 >
                   Book a Viewing
-                  <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
             </motion.div>

@@ -124,7 +124,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-[96%] sm:w-[98%] max-w-[1400px] px-2 sm:px-0">
+    <nav className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] sm:w-[98%] max-w-[1400px] px-2 sm:px-0">
       <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-full border border-gray-200 shadow-lg px-2 md:px-2">
         <div className="flex items-center h-16 relative">
           {/* Logo - Left Section */}
