@@ -379,7 +379,8 @@ export default function About() {
                   description: "Founded with a dream to create caravans that combine rugged Australian capability with uncompromising luxury.",
                   icon: Target,
                   side: "right",
-                  image: "/caravan/caravan_coloring_negative.png"
+                  image: "/caravan/caravan_coloring_negative.png",
+                  contain: true
                 },
                 {
                   year: "2021",
@@ -387,7 +388,8 @@ export default function About() {
                   description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
                   icon: Award,
                   side: "right",
-                  image: "/logo/whitelogoWQ.png"
+                  image: "/logo/whitelogoWQ.png",
+                  contain: true
                 },
                 {
                   year: "2021",
@@ -395,7 +397,8 @@ export default function About() {
                   description: "Launched our first model, setting new standards in Australian caravan manufacturing with hand-finished quality.",
                   icon: Zap,
                   side: "left",
-                  image: "/caravan/GAC-SET-126.jpg"
+                  image: "/caravan/GAC-SET-126.jpg",
+                  contain: false
                 },
               ].map((milestone, index) => {
                 const Icon = milestone.icon;
@@ -403,7 +406,7 @@ export default function About() {
 
                 return (
                   <div
-                    key={milestone.year}
+                    key={index}
                     className={`relative flex flex-col lg:flex-row items-center gap-8 ${isLeft ? 'lg:flex-row-reverse' : ''
                       }`}
                   >
@@ -443,9 +446,9 @@ export default function About() {
 
                     {/* Image */}
                     <div className={`hidden lg:block flex-1 max-w-sm ${isLeft ? 'lg:order-first' : ''}`}>
-                      {milestone.image.includes('/logo/') || milestone.image.includes('/mainlogo/') ? (
-                        /* Logo image — no crop, fully contained */
-                        <div className="relative flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-2xl p-6 aspect-[4/3]">
+                      {milestone.contain ? (
+                        /* Contain image — no crop, black bg */
+                        <div className="relative flex items-center justify-center rounded-2xl border border-white/10 bg-black shadow-2xl aspect-[4/3]">
                           <Image
                             src={milestone.image}
                             alt={milestone.title}
