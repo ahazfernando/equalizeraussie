@@ -443,17 +443,29 @@ export default function About() {
 
                     {/* Image */}
                     <div className={`hidden lg:block flex-1 max-w-sm ${isLeft ? 'lg:order-first' : ''}`}>
-                      <div
-                        className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border border-white/10 group"
-                      >
-                        <Image
-                          src={milestone.image}
-                          alt={milestone.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      </div>
+                      {milestone.image.includes('/logo/') || milestone.image.includes('/mainlogo/') ? (
+                        /* Logo image — no crop, fully contained */
+                        <div className="relative flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-2xl p-6 aspect-[4/3]">
+                          <Image
+                            src={milestone.image}
+                            alt={milestone.title}
+                            fill
+                            className="object-contain p-4"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border border-white/10 group"
+                        >
+                          <Image
+                            src={milestone.image}
+                            alt={milestone.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

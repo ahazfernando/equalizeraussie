@@ -325,15 +325,16 @@ export default function RVDetail({ modelId }: RVDetailProps) {
               </p>
             </div>
 
-            {/* Inverter */}
-            <div className="flex flex-col items-start text-left border-r border-border/30 pr-4 md:pr-6">
-              <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                INVERTER
-              </h3>
-              <p className="text-base md:text-lg lg:text-xl font-bold text-foreground">
-                {specs.inverter}
-              </p>
-            </div>
+            {specs.inverter !== "Not Specified" && (
+              <div className="flex flex-col items-start text-left border-r border-border/30 pr-4 md:pr-6">
+                <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  INVERTER
+                </h3>
+                <p className="text-base md:text-lg lg:text-xl font-bold text-foreground">
+                  {specs.inverter}
+                </p>
+              </div>
+            )}
 
             {/* Suspension */}
             <div className="flex flex-col items-start text-left border-r border-border/30 pr-4 md:pr-6">
