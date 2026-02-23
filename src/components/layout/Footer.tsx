@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -32,12 +32,6 @@ export function Footer() {
               </a>
               <a href="#" className="text-white hover:text-accent transition-colors">
                 <Youtube className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
-                <Twitter className="w-5 h-5" />
               </a>
               <a href="#" className="text-white hover:text-accent transition-colors" aria-label="TikTok">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -102,21 +96,21 @@ export function Footer() {
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
                   <span className="text-primary-foreground/90 text-sm font-semibold">
-                    123 Caravan Way<br />
-                    Melbourne, VIC 3000<br />
+                    Unit 5/220-230 Barry Rd<br />
+                    Campbellfield VIC 3061<br />
                     Australia
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-white shrink-0" />
-                  <a href="tel:1300000000" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
-                    1300 000 000
+                  <a href="tel:0391238370" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
+                    (03) 9123 8370
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-white shrink-0" />
-                  <a href="mailto:hello@equalizerrv.com.au" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
-                    hello@equalizerrv.com.au
+                  <a href="mailto:admin@eqializerrv.com.au" className="text-primary-foreground/90 hover:text-white transition-colors text-sm font-semibold">
+                    admin@eqializerrv.com.au
                   </a>
                 </li>
               </ul>

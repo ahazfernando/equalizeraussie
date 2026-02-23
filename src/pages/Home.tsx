@@ -72,6 +72,11 @@ export default function Home() {
   const featuredReviews = reviews.slice(0, 3);
   const destinationsScrollRef = useRef<HTMLDivElement>(null);
 
+  // Drag to scroll refs
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
   useEffect(() => {
     const fetchFeatured = async () => {
       setLoading(true);
@@ -114,13 +119,13 @@ export default function Home() {
         <div className="grid lg:grid-cols-2 min-h-[600px]">
           <div className="relative h-[400px] lg:h-auto overflow-hidden">
             <Image
-              src="/images/caravan-interior.jpg"
+              src="/caravan/_DSC1431.jpg"
               alt="Luxury RV Interior"
               fill
               className="object-cover"
             />
             {/* Gradient overlay to blend with background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent from-70% via-black/40 via-90% to-black" />
           </div>
           <div className="bg-black flex items-center p-12 lg:p-20">
             <div className="max-w-lg">
@@ -460,7 +465,7 @@ export default function Home() {
                 className="space-y-4"
               >
                 <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
-                  Adventure-ready strength meets refined family comfort in every Equalizer RV. Thoughtfully built, down to the finest detail.
+                  Adventure ready strength meets refined family comfort in every Equalizer RV. Thoughtfully built, down to the finest detail.
                 </p>
               </motion.div>
             </div>
@@ -484,22 +489,22 @@ export default function Home() {
               >
                 {/* Background Image */}
                 <Image
-                  src="/images/caravan-lifestyle-3.jpg"
+                  src="/caravan/COnture.png"
                   alt="Premium caravan lifestyle"
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover object-bottom transition-transform duration-700 group-hover:scale-110"
                 />
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                <div className="absolute bottom-0 left-0 right-0 px-8 pb-10 pt-0 z-10">
+                  <h2 className="font-sans text-3xl md:text-4xl font-bold text-white leading-tight">
                     Unwind, Build, and<br />
                     Perfect Your Journey
                   </h2>
-                  <p className="text-white/70 text-lg mb-6 max-w-md">
+                  <p className="text-white/70 text-lg mb-4 max-w-md">
                     A construction experience unlike any other. Where strength meets precision in every weld.
                   </p>
                   <Link href="/about">
@@ -589,7 +594,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     if (destinationsScrollRef.current) {
-                      destinationsScrollRef.current.scrollBy({ behavior: 'smooth' });
+                      destinationsScrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
                     }
                   }}
                   className="p-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
@@ -658,17 +663,37 @@ export default function Home() {
             <div className="col-span-12 lg:col-span-7 xl:col-span-8 lg:col-start-5 xl:col-start-5 relative">
               <div
                 ref={destinationsScrollRef}
-                className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide pl-4 sm:pl-6 lg:pl-8"
+                className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide pl-4 sm:pl-6 lg:pl-8 cursor-grab active:cursor-grabbing"
                 style={{
                   marginRight: 'calc((100vw - 100%) / -2)',
                   paddingRight: 'calc((100vw - 100%) / 2)'
                 }}
+                onMouseDown={(e) => {
+                  isDragging.current = true;
+                  startX.current = e.pageX - (destinationsScrollRef.current?.offsetLeft || 0);
+                  scrollLeft.current = destinationsScrollRef.current?.scrollLeft || 0;
+                }}
+                onMouseLeave={() => {
+                  isDragging.current = false;
+                }}
+                onMouseUp={() => {
+                  isDragging.current = false;
+                }}
+                onMouseMove={(e) => {
+                  if (!isDragging.current) return;
+                  e.preventDefault();
+                  const x = e.pageX - (destinationsScrollRef.current?.offsetLeft || 0);
+                  const walk = (x - startX.current) * 2;
+                  if (destinationsScrollRef.current) {
+                    destinationsScrollRef.current.scrollLeft = scrollLeft.current - walk;
+                  }
+                }}
               >
                 {[
-                  { id: 1, image: '/images/caravan-lifestyle-1.jpg', distance: '2,800 km FROM BRISBANE', title: 'ULURU' },
-                  { id: 2, image: '/images/caravan-lifestyle-2.jpg', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
-                  { id: 3, image: '/images/caravan-lifestyle-3.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
-                  { id: 4, image: '/images/caravan-lifestyle-4.jfif', distance: '4,100 km FROM BRISBANE', title: 'TASMANIA' },
+                  { id: 1, image: '/locations/GreatOcean.jpg', distance: '900 km FROM MELBOURNE', title: 'GREAT OCEAN ROAD' },
+                  { id: 2, image: '/locations/Blue mountains.jpg.webp', distance: '1,200 km FROM BRISBANE', title: 'BLUE MOUNTAINS' },
+                  { id: 3, image: '/locations/kimberley.jpg', distance: '3,500 km FROM BRISBANE', title: 'KIMBERLEY' },
+                  { id: 4, image: '/locations/Daly Waters.jpg', distance: '3,100 km FROM BRISBANE', title: 'DALY WATERS' },
                 ].map((dest, index) => (
                   <motion.div
                     key={dest.id}
@@ -684,6 +709,7 @@ export default function Home() {
                         alt={dest.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        draggable={false}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                       {/* Content inside the card */}
@@ -691,7 +717,7 @@ export default function Home() {
                         <p className="text-accent text-sm font-medium tracking-wider mb-2">
                           {dest.distance}
                         </p>
-                        <h3 className="text-white text-2xl font-bold">
+                        <h3 className="text-white text-4xl lg:text-5xl font-black tracking-wide leading-tight mt-1">
                           {dest.title}
                         </h3>
                       </div>

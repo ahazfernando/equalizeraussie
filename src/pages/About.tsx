@@ -382,7 +382,7 @@ export default function About() {
                   side: "right",
                   image: "/images/caravan-lifestyle-1.jpg"
                 },
-                                {
+                {
                   year: "2022",
                   title: "Grand Launch",
                   description: "Opened our state-of-the-art facility and proudly announced the Grand Launch of Equalizer RV Caravans in Australia — where innovation, comfort, and freedom came together for the ultimate journey.",
@@ -734,12 +734,12 @@ export default function About() {
                     {index === 0 && (
                       <div className="hidden lg:block flex-shrink-0 w-64">
                         <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl border border-white/10 group">
-                          <video
-                            autoPlay loop muted playsInline
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          >
-                            <source src="/videos/about-manu.mp4" type="video/mp4" />
-                          </video>
+                          <Image
+                            src="/locations/lebourne.png"
+                            alt="Melbourne Facility"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                           <div className="absolute bottom-4 left-4 right-4">
                             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white opacity-80">
