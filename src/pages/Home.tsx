@@ -589,7 +589,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     if (destinationsScrollRef.current) {
-                      destinationsScrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+                      destinationsScrollRef.current.scrollBy({ behavior: 'smooth' });
                     }
                   }}
                   className="p-3 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
@@ -645,7 +645,7 @@ export default function Home() {
                 <Link href="/contact" className="inline-block">
                   <Button
                     size="lg"
-                    className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300"
+                    className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-full px-8 py-6 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 mb-4"
                   >
                     Become an Ambassador {/* To Contact Page */}
                     <ArrowRight className="w-5 h-5 ml-2" />
