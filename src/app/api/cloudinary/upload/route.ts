@@ -49,11 +49,11 @@ export async function POST(request: NextRequest) {
 
     const result = await uploadImage(file, folder);
 
-    console.log('Upload successful:', result.public_id);
+    console.log('Upload successful. public_id:', result.public_id, 'secure_url:', result.secure_url, 'url:', result.url);
 
     return NextResponse.json({
       success: true,
-      url: result.secure_url,
+      url: result.secure_url || result.url,
       public_id: result.public_id,
       width: result.width,
       height: result.height,

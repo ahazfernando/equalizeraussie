@@ -8,6 +8,7 @@ import { getBlogs } from "@/lib/firebase/firestore";
 import { Article } from "@/types/article";
 import { Skeleton } from "@/components/ui/skeleton";
 import { motion } from "framer-motion";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary-client";
 
 const formatDate = (article: Article): string => {
   const dateValue = article.lastUpdated || article.createdAt || article.date;
@@ -32,21 +33,7 @@ const formatDate = (article: Article): string => {
   return 'DATE NOT AVAILABLE';
 };
 
-const getValidImageUrl = (imageURL: string): string => {
-  if (!imageURL || imageURL.trim() === '') {
-    return '/blogs/blog1.png';
-  }
-
-  try {
-    new URL(imageURL);
-    return imageURL;
-  } catch {
-    if (imageURL.startsWith('/')) {
-      return imageURL;
-    }
-    return `/blogs/${imageURL}`;
-  }
-};
+// Using getCloudinaryImageUrl for images
 
 interface BlogCardProps {
   article: Article;
@@ -73,20 +60,21 @@ const BlogCard = ({ article, index }: BlogCardProps) => {
             <Skeleton className="absolute inset-0 w-full h-full" />
           )}
           <Image
-            src={getValidImageUrl(article.imageURL)}
+            src={getCloudinaryImageUrl(article.imageURL, { width: 800, format: 'webp', crop: 'fill' })}
             alt={article.title}
             fill
+            unoptimized
             className="object-cover transition-transform duration-700 group-hover:scale-110 rounded-3xl"
             onLoad={() => setImageLoading(false)}
             onError={() => setImageLoading(false)}
           />
-          
+
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 rounded-3xl" />
-          
+
           {/* Bottom Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent rounded-3xl" />
-          
+
           {/* Category - Top Right */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -99,7 +87,7 @@ const BlogCard = ({ article, index }: BlogCardProps) => {
               {categoryTag}
             </span>
           </motion.div>
-          
+
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10">
             {/* Date */}
@@ -112,18 +100,18 @@ const BlogCard = ({ article, index }: BlogCardProps) => {
             >
               {formattedDate}
             </motion.span>
-            
+
             {/* Title */}
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 + index * 0.1 }}
-              className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 line-clamp-2 leading-tight group-hover:text-accent transition-colors duration-300"
+              className="font-sans uppercase tracking-wide text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 line-clamp-2 leading-tight group-hover:text-accent transition-colors duration-300"
             >
               {article.title}
             </motion.h3>
-            
+
             {/* Tags */}
             {article.tags && article.tags.length > 1 && (
               <motion.div
@@ -269,7 +257,7 @@ export function RecentBlogs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-heading text-5xl sm:text-6xl lg:text-6xl font-semibold leading-[1.1] mb-8"
+            className="font-sans text-5xl sm:text-6xl lg:text-6xl font-semibold leading-[1.1] mb-8"
           >
             Explore Insights in Our Blog
           </motion.h2>

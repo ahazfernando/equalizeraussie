@@ -32,12 +32,12 @@ import { Trash2, Edit, Plus, Loader2, Upload, X, Image as ImageIcon } from "luci
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary-client";
 
 // Admin Blog Card Component
 interface AdminBlogCardProps {
   blog: Article;
   formatDate: (article: Article) => string;
-  getValidImageUrl: (imageURL: string) => string;
   onEdit: (blog: Article) => void;
   onDelete: (id: string) => void;
 }
@@ -45,7 +45,6 @@ interface AdminBlogCardProps {
 const AdminBlogCard: React.FC<AdminBlogCardProps> = ({
   blog,
   formatDate,
-  getValidImageUrl,
   onEdit,
   onDelete
 }) => {
@@ -59,20 +58,21 @@ const AdminBlogCard: React.FC<AdminBlogCardProps> = ({
           <Skeleton className="absolute inset-0 w-full h-full" />
         )}
         <Image
-          src={getValidImageUrl(blog.imageURL)}
+          src={getCloudinaryImageUrl(blog.imageURL, { width: 600, crop: 'fill' })}
           alt={blog.title}
           fill
+          unoptimized
           className="object-cover"
           onLoad={() => setImageLoading(false)}
           onError={() => setImageLoading(false)}
         />
       </div>
       <CardContent className="pt-6 px-6 pb-6 flex-grow flex flex-col">
-        <p className="text-sm text-gray-500 mb-1">{formattedDate}</p>
-        <h3 className="text-xl font-bold text-black mb-3 line-clamp-2 leading-tight">
+        <p className="text-sm text-gray-400 mb-1">{formattedDate}</p>
+        <h3 className="font-heading text-xl font-bold text-white mb-3 line-clamp-2 leading-tight uppercase tracking-wide">
           {blog.title}
         </h3>
-        <p className="text-base text-gray-700 mb-4 flex-grow line-clamp-3 leading-relaxed">
+        <p className="text-base text-gray-300 mb-4 flex-grow line-clamp-3 leading-relaxed">
           {blog.excerpt}
         </p>
         {blog.tags && blog.tags.length > 0 && (
@@ -202,22 +202,7 @@ export default function AdminBlogs() {
     return 'Date not available';
   };
 
-  // Get valid image URL helper
-  const getValidImageUrl = (imageURL: string): string => {
-    if (!imageURL || imageURL.trim() === '') {
-      return '/blogs/blog1.png';
-    }
-
-    try {
-      new URL(imageURL);
-      return imageURL;
-    } catch {
-      if (imageURL.startsWith('/')) {
-        return imageURL;
-      }
-      return `/blogs/${imageURL}`;
-    }
-  };
+  // Get valid image URL helper handled by getCloudinaryImageUrl
 
   const loadBlogs = React.useCallback(async () => {
     setLoadingBlogs(true);
@@ -394,7 +379,8 @@ export default function AdminBlogs() {
         throw new Error(data.error?.message || data.error || 'Upload failed');
       }
 
-      setBlogForm({ ...blogForm, imageURL: data.url });
+      setBlogForm(prev => ({ ...prev, imageURL: data.public_id || data.url }));
+      setBlogImagePreview(data.url); // Set preview to the actual Cloudinary URL
       toast.success("Blog image uploaded successfully");
     } catch (error: any) {
       console.error('Error uploading blog image:', error);
@@ -449,7 +435,8 @@ export default function AdminBlogs() {
         throw new Error(data.error?.message || data.error || 'Upload failed');
       }
 
-      setBlogForm({ ...blogForm, authorAvatarURL: data.url });
+      setBlogForm(prev => ({ ...prev, authorAvatarURL: data.public_id || data.url }));
+      setAvatarPreview(data.url); // Set preview to the actual Cloudinary URL
       toast.success("Author avatar uploaded successfully");
     } catch (error: any) {
       console.error('Error uploading avatar:', error);
@@ -464,13 +451,13 @@ export default function AdminBlogs() {
   const removeBlogImage = () => {
     setBlogImagePreview(null);
     setBlogImageFile(null);
-    setBlogForm({ ...blogForm, imageURL: '' });
+    setBlogForm(prev => ({ ...prev, imageURL: '' }));
   };
 
   const removeAvatar = () => {
     setAvatarPreview(null);
     setAvatarFile(null);
-    setBlogForm({ ...blogForm, authorAvatarURL: '' });
+    setBlogForm(prev => ({ ...prev, authorAvatarURL: '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -485,7 +472,7 @@ export default function AdminBlogs() {
       const slug = blogForm.slug || generateSlug(blogForm.title);
       const now = Timestamp.now();
 
-      const blogData = {
+      const baseData = {
         slug,
         title: blogForm.title,
         excerpt: blogForm.excerpt,
@@ -496,17 +483,20 @@ export default function AdminBlogs() {
           name: blogForm.authorName,
           avatarURL: blogForm.authorAvatarURL || '',
         },
-        date: editingBlog ? undefined : now, // Only set date on creation
-        createdAt: editingBlog ? undefined : now,
         lastUpdated: now,
         isPopular: blogForm.isPopular,
       };
 
       if (editingBlog) {
-        await updateDoc(doc(db, 'blogs', editingBlog.id), blogData);
+        await updateDoc(doc(db, 'blogs', editingBlog.id), baseData);
         toast.success("Blog post updated successfully");
       } else {
-        await addDoc(collection(db, 'blogs'), blogData);
+        const newBlogData = {
+          ...baseData,
+          date: now,
+          createdAt: now,
+        };
+        await addDoc(collection(db, 'blogs'), newBlogData);
         toast.success("Blog post added successfully");
       }
 
@@ -573,7 +563,6 @@ export default function AdminBlogs() {
               key={blog.id}
               blog={blog}
               formatDate={formatDate}
-              getValidImageUrl={getValidImageUrl}
               onEdit={handleOpenDialog}
               onDelete={handleDeleteClick}
             />
@@ -658,7 +647,7 @@ export default function AdminBlogs() {
                 {blogImagePreview ? (
                   <div className="relative w-full h-48 rounded-lg border border-border overflow-hidden">
                     <Image
-                      src={blogImagePreview}
+                      src={getCloudinaryImageUrl(blogImagePreview)}
                       alt="Blog preview"
                       fill
                       unoptimized
@@ -730,7 +719,7 @@ export default function AdminBlogs() {
                 {avatarPreview ? (
                   <div className="relative w-32 h-32 rounded-full border border-border overflow-hidden">
                     <Image
-                      src={avatarPreview}
+                      src={getCloudinaryImageUrl(avatarPreview)}
                       alt="Avatar preview"
                       fill
                       unoptimized
