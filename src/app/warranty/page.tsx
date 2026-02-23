@@ -245,7 +245,7 @@ export default function Warranty() {
                             className="lg:col-span-7"
                         >
                             <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-2xl relative z-20">
-                                <h2 className="font-heading text-4xl lg:text-5xl font-bold mb-4 tracking-wider">Submit a Claim</h2>
+                                <h2 className="font-heading text-4xl lg:text-5xl font-bold mb-4 tracking-wide">Submit a Claim</h2>
                                 <p className="text-muted-foreground mb-8">
                                     Please fill out the form below detailing your issue.
                                 </p>
@@ -493,7 +493,7 @@ export default function Warranty() {
                         >
                             <div className="sticky top-24 space-y-8">
                                 <div className="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-2xl">
-                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-6 flex items-center gap-3 tracking-wider">
+                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-6 flex items-center gap-3 tracking-wide">
                                         <Shield className="w-8 h-8 text-red-600" />
                                         The Process
                                     </h3>
@@ -526,7 +526,7 @@ export default function Warranty() {
                                 <div className="bg-red-600 text-white p-8 rounded-2xl shadow-xl overflow-hidden relative group">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16 transition-transform group-hover:scale-150" />
 
-                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-4 relative z-10 tracking-wider">Urgent Assistance?</h3>
+                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-4 relative z-10 tracking-wide">Urgent Assistance?</h3>
                                     <p className="text-white/80 mb-6 relative z-10">
                                         If you require immediate assistance or are stranded, please contact our emergency support line.
                                     </p>
@@ -539,7 +539,7 @@ export default function Warranty() {
                             {/* Newsletter Subscription Card */}
                             <div className="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-2xl shadow-sm relative overflow-hidden mt-8">
                                 <div className="relative z-10">
-                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-3 tracking-wider">Internal News</h3>
+                                    <h3 className="font-heading text-3xl lg:text-4xl font-bold mb-3 tracking-wide">Internal News</h3>
                                     <p className="text-muted-foreground mb-6">
                                         Subscribe to our internal newsletter for the latest updates on claims, policies repairs and standard operating procedures.
                                     </p>
