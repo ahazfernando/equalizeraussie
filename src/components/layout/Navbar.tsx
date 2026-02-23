@@ -304,7 +304,7 @@ export function Navbar() {
                                 >
                                   <div className="absolute inset-0 z-0">
                                     <Image
-                                      src="/caravan/Gemini_Generated_Image_6dp2uf6dp2uf6dp2.png"
+                                      src="/caravan/GreatAussieWidget.jpg"
                                       alt="Great Aussie Lifestyle"
                                       fill
                                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -332,7 +332,7 @@ export function Navbar() {
                                 >
                                   <div className="absolute inset-0 z-0">
                                     <Image
-                                      src="/mainlogo/Image_fx-5.png"
+                                      src="/caravan/BlogWidget.jpg"
                                       alt="Blog"
                                       fill
                                       className="object-cover transition-transform duration-500 group-hover:scale-105"

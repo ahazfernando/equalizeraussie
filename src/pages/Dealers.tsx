@@ -117,7 +117,7 @@ const Dealers = () => {
                         <div className="lg:col-span-2 lg:row-span-2 relative group overflow-hidden border border-border/20">
                             <div className="absolute inset-0">
                                 <Image
-                                    src="/images/aboutFactory.jpg"
+                                    src="/caravan/GAC-SET-136.jpg"
                                     alt="Australian Craftsmanship"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"

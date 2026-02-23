@@ -380,18 +380,18 @@ export default function AdminBlogs() {
     setUploadingBlogImage(true);
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('folder', 'digital assets/blogs');
+      formData.append("file", file);
+      formData.append("folder", "digital assets/blogs");
 
       const response = await fetch('/api/cloudinary/upload', {
-        method: 'POST',
+        method: "POST",
         body: formData,
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Upload failed');
+        throw new Error(data.error?.message || data.error || 'Upload failed');
       }
 
       setBlogForm({ ...blogForm, imageURL: data.url });
@@ -435,18 +435,18 @@ export default function AdminBlogs() {
     setUploadingAvatar(true);
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('folder', 'digital assets/avatars');
+      formData.append("file", file);
+      formData.append("folder", "digital assets/avatars");
 
       const response = await fetch('/api/cloudinary/upload', {
-        method: 'POST',
+        method: "POST",
         body: formData,
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Upload failed');
+        throw new Error(data.error?.message || data.error || 'Upload failed');
       }
 
       setBlogForm({ ...blogForm, authorAvatarURL: data.url });

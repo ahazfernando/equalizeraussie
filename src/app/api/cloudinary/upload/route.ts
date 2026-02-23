@@ -4,7 +4,8 @@ import { uploadImage } from '@/lib/cloudinary/upload';
 export async function POST(request: NextRequest) {
   try {
     // Check if Cloudinary is configured
-    if (!process.env.CLOUDINARY_API_SECRET || !process.env.CLOUDINARY_API_KEY || !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME) {
+    const apiKey = process.env.CLOUDINARY_API_KEY || process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY;
+    if (!process.env.CLOUDINARY_API_SECRET || !apiKey || !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME) {
       console.error('Cloudinary configuration missing');
       return NextResponse.json(
         { error: 'Cloudinary is not properly configured' },
