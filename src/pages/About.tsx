@@ -765,6 +765,19 @@ export default function About() {
                       <div className="hidden lg:block flex-shrink-0 w-64">
                         <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl border border-white/10 group">
                           <Image
+                            src="/caravan/GAC-SET-136.jpg"
+                            alt="Hand Craftsmanship"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        </div>
+                      </div>
+                    )}
+                    {index === 3 && (
+                      <div className="hidden lg:block flex-shrink-0 w-64">
+                        <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl border border-white/10 group">
+                          <Image
                             src="/caravan/accredition.png"
                             alt="Accreditation"
                             fill

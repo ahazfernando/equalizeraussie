@@ -31,7 +31,7 @@ const trustPillars = [
   {
     icon: MapPin,
     title: "Nationwide Service",
-    description: "Network of authorised service centres across the country.",
+    description: "Network of authorised service centres across the country to make things easier for you.",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function Home() {
               className="object-cover"
             />
             {/* Gradient overlay to blend with background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent from-70% via-black/40 via-90% to-black" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent via-40% to-black" />
           </div>
           <div className="bg-black flex items-center p-12 lg:p-20">
             <div className="max-w-lg">
@@ -703,7 +703,7 @@ export default function Home() {
                     transition={{ duration: 0.6, delay: 0.1 * index }}
                     className="flex-shrink-0 w-80 group cursor-pointer"
                   >
-                    <div className="relative h-96 rounded-2xl overflow-hidden">
+                    <div className="relative h-96 rounded-2xl overflow-hidden group/card relative">
                       <Image
                         src={dest.image}
                         alt={dest.title}
@@ -721,6 +721,13 @@ export default function Home() {
                           {dest.title}
                         </h3>
                       </div>
+
+                      {/* Hover Arrow Indicator */}
+                      <div className="absolute inset-y-0 right-0 w-24 flex items-center justify-end pr-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                          <ChevronRight className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -732,8 +739,8 @@ export default function Home() {
 
       {/* Trust Pillars */}
       <section className="py-16 bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-16 xl:px-24 max-w-[1400px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {trustPillars.map((pillar, index) => (
               <motion.div
                 key={pillar.title}
