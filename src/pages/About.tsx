@@ -80,23 +80,9 @@ export default function About() {
     <>
       {/* Hero Section - Modern Professional Design */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden -mt-24 pt-24 pb-0">
-        {/* Image Background */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/home/abousHeader(D1V1C1).jpg"
-            alt="Australian Engineered Background"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-
-          {/* Sophisticated Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
-
-          {/* Subtle Animated Gradient Overlay - Animation Removed */}
+        {/* Solid Background */}
+        <div className="absolute inset-0 z-0 bg-black">
+          {/* Subtle Animated Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 opacity-30" />
         </div>
 
@@ -113,11 +99,11 @@ export default function About() {
               {/* Left Column: Content starting from column 0 */}
               <div className="lg:col-start-1 lg:col-span-7 space-y-8">
                 {/* Main Heading with Enhanced Typography */}
-                <div className="space-y-6">
+                <div className="space-y-2">
                   <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wider leading-[0.95] text-white">
-                    <span className="block">Australian</span>
+                    <span className="block">Designed and</span>
                     <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
-                      Engineered.
+                      Engineered in Australia
                     </span>
                   </h1>
                 </div>
@@ -125,7 +111,7 @@ export default function About() {
                 {/* Description with Better Typography */}
                 <div className="space-y-6 max-w-2xl">
                   {/* Feature Cards - Modern Design */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 cursor-pointer overflow-hidden">
                       {/* Shimmer Effect */}
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -152,7 +138,7 @@ export default function About() {
                   </div>
 
                   <p className="text-base sm:text-lg text-white/80 leading-relaxed font-light pt-2">
-                    Discover the joy of the open road with Equalizer RV—where your adventure begins, and memories are made.
+                    Discover the joy of the open road with Equalizer RV where your adventure begins, and memories are made.
                   </p>
                 </div>
 
@@ -181,6 +167,19 @@ export default function About() {
                   </Link>
                 </div>
               </div>
+
+              {/* Right Column: Image */}
+              <div className="hidden lg:block lg:col-start-8 lg:col-span-5 relative mt-32">
+                <div className="relative w-full h-[500px] overflow-visible pb-12">
+                  <Image
+                    src="/caravan/aussie.png"
+                    alt="Equalizer RV Caravan"
+                    fill
+                    className="object-contain object-bottom drop-shadow-2xl scale-[1.3]"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -191,10 +190,10 @@ export default function About() {
             <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Proven Process Section */}
-      <section className="py-24 bg-background">
+      < section className="py-24 bg-background" >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold italic mb-4 tracking-wider">
@@ -239,7 +238,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 
       <section className="py-20 bg-background overflow-hidden">
@@ -753,7 +752,7 @@ export default function About() {
                       <div className="hidden lg:block flex-shrink-0 w-64">
                         <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl border border-white/10 group">
                           <Image
-                            src="/images/aboutFactory.jpg"
+                            src="/caravan/GAC-SET-132.jpg"
                             alt="Manufacturing"
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -764,12 +763,14 @@ export default function About() {
                     )}
                     {index === 2 && (
                       <div className="hidden lg:block flex-shrink-0 w-64">
-                        <div className={`relative rounded-2xl overflow-hidden aspect-square shadow-2xl border-2 ${process.borderColor} bg-gradient-to-br ${process.color} p-8 flex flex-col justify-between`}>
-                          <Drill className="w-16 h-16 text-white/80" />
-                          <div>
-                            <h4 className="text-2xl font-bold text-white mb-1">Precision</h4>
-                            <p className="text-sm text-white/70 uppercase tracking-tight">Engineering</p>
-                          </div>
+                        <div className="relative rounded-2xl overflow-hidden aspect-square shadow-2xl border border-white/10 group">
+                          <Image
+                            src="/caravan/accredition.png"
+                            alt="Accreditation"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         </div>
                       </div>
                     )}
