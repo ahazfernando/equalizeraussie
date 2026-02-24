@@ -24,10 +24,10 @@ export function Footer() {
               adventure and crafted for comfort.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/share/p/1FSe4eiY3a/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a href="https://www.instagram.com/equalizerrv?igsh=MWd5Mm1yYnMzNGp6dA==" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
