@@ -718,9 +718,6 @@ export default function Home() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                       {/* Content inside the card */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 pb-8">
-                        <p className="text-accent text-sm font-medium tracking-wider mb-2">
-                          {dest.distance}
-                        </p>
                         <h3 className="text-white text-4xl lg:text-5xl font-black tracking-wide leading-tight mt-1">
                           {dest.titleNode || dest.title}
                         </h3>
