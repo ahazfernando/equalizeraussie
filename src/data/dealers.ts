@@ -44,7 +44,7 @@ export const dealers: Dealer[] = [
   {
     id: "3",
     name: "Choice Caravans",
-    address: "16 Cordeaux Street, Louth Park, NSW 2320",
+    address: "1019 South Rd, Melrose Park SA 5039",
     phone: "+61 8 7200 2467",
     email: "info@choicecaravans.com.au",
     region: "sa",
