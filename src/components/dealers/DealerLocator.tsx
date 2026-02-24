@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MapPin } from "lucide-react";
 import { AustraliaMap } from "./AustraliaMap";
 import { DealerCard } from "./DealerCard";
 import { regions, getDealersByRegion, Dealer } from "@/data/dealers";
@@ -29,12 +30,10 @@ export const DealerLocator = () => {
               {/* Panel Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-display font-bold text-foreground">
+                  <h2 className="text-2xl font-display font-bold text-foreground flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-accent" />
                     {selectedRegionName}
                   </h2>
-                  <p className="text-muted-foreground text-sm mt-1">
-                    {dealers.length} dealer{dealers.length !== 1 ? "s" : ""} available
-                  </p>
                 </div>
               </div>
 

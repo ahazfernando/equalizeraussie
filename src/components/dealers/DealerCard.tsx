@@ -1,7 +1,7 @@
 "use client";
 
 import { Dealer } from "@/data/dealers";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface DealerCardProps {
@@ -24,6 +24,7 @@ export const DealerCard = ({ dealer, index }: DealerCardProps) => {
             {dealer.name}
           </span>
         </h3>
+        <p className="text-muted-foreground text-xs mt-2 uppercase tracking-widest font-medium">Authorized Licensed Dealer</p>
       </div>
 
       {/* Dealer Info Card (Right Side) */}
@@ -59,16 +60,32 @@ export const DealerCard = ({ dealer, index }: DealerCardProps) => {
 
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 text-accent">
-                <Mail className="w-4 h-4" />
+                {dealer.website ? <ExternalLink className="w-4 h-4" /> : <Mail className="w-4 h-4" />}
               </div>
               <div className="overflow-hidden">
-                <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider text-xs mb-1">Email</p>
-                <a
-                  href={`mailto:${dealer.email}`}
-                  className="text-foreground hover:text-accent transition-colors text-sm font-semibold truncate block"
-                >
-                  {dealer.email}
-                </a>
+                {dealer.website ? (
+                  <>
+                    <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider text-xs mb-1">Website</p>
+                    <a
+                      href={dealer.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-accent transition-colors text-sm font-semibold truncate block"
+                    >
+                      Visit Website
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider text-xs mb-1">Email</p>
+                    <a
+                      href={`mailto:${dealer.email}`}
+                      className="text-foreground hover:text-accent transition-colors text-sm font-semibold truncate block"
+                    >
+                      {dealer.email}
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>

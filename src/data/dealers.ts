@@ -4,6 +4,7 @@ export interface Dealer {
   address: string;
   phone: string;
   email: string;
+  website?: string;
   region: string;
 }
 
@@ -42,10 +43,10 @@ export const dealers: Dealer[] = [
   },
   {
     id: "3",
-    name: "Equalizer RV Adelaide",
-    address: "789 King William Street, Adelaide, SA 5000",
-    phone: "(08) 1111 2222",
-    email: "adelaide@equalizerrv.com.au",
+    name: "Choice Caravans",
+    address: "16 Cordeaux Street, Louth Park, NSW 2320",
+    phone: "+61 8 7200 2467",
+    email: "info@choicecaravans.com.au",
     region: "sa",
   },
   {
