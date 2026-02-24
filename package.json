@@ -11,6 +11,7 @@
     "seed": "tsx scripts/seed-firebase.ts"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/outfit": "^5.2.8",
     "@hookform/resolvers": "^5.2.2",

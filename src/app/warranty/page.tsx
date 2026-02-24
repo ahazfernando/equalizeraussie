@@ -49,6 +49,11 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { COUNTRY_CODES } from "@/components/common/countryCodes";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 export default function Warranty() {
     const [formData, setFormData] = useState({
@@ -86,7 +91,7 @@ export default function Warranty() {
     const uploadToCloudinary = async (file: File) => {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "equalizeraussie");
+        formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "equalizeraussierv");
         formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "");
 
         const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dp5dkchm3";
@@ -115,29 +120,86 @@ export default function Warranty() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Basic validation
+        // 1. Basic client-side validation
         if (!formData.firstName || !formData.email || !formData.description) {
-            toast.error("Please fill in all required fields.");
+            toast.error("Please fill in all required fields (Name, Email, Description).");
             return;
         }
+
+        // Optional: more strict email validation if you want
+        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // if (!emailRegex.test(formData.email)) {
+        //     toast.error("Please enter a valid email address.");
+        //     return;
+        // }
 
         setUploading(true);
 
         try {
-            const uploadedUrls = await Promise.all(
-                files.map((file) => uploadToCloudinary(file))
-            );
+            // 2. Upload images to Cloudinary (if any)
+            let uploadedUrls: string[] = [];
+            if (files.length > 0) {
+                toast.info("Uploading images...");
+                uploadedUrls = await Promise.all(
+                    files.map(async (file) => {
+                        try {
+                            return await uploadToCloudinary(file);
+                        } catch (err) {
+                            console.warn("Failed to upload one file:", file.name, err);
+                            return null;
+                        }
+                    })
+                );
 
-            const payload = {
-                ...formData,
-                phone: `${countryCode} ${formData.phone}`,
-                attachments: uploadedUrls,
+                // Filter out any failed uploads
+                uploadedUrls = uploadedUrls.filter((url): url is string => url !== null);
+
+                if (uploadedUrls.length < files.length) {
+                    toast.warning("Some images failed to upload, but proceeding with the claim.");
+                }
+            }
+
+            // 3. Prepare template parameters (must match exactly what is in your EmailJS template)
+            const templateParams = {
+                firstName: formData.firstName.trim(),
+                lastName: formData.lastName.trim() || "—",
+                email: formData.email.trim(),
+                phone: formData.phone.trim()
+                    ? `${countryCode} ${formData.phone.trim()}`
+                    : "Not provided",
+                dealer: formData.dealer || "Not selected",
+                state: formData.state || "—",
+                postcode: formData.postcode.trim() || "—",
+                chassisNumber: formData.chassisNumber.trim() || "—",
+                description: formData.description.trim(),
+                attachments: uploadedUrls.length > 0
+                    ? uploadedUrls.join("\n• ")
+                    : "No photos attached",
+                submitted_date: new Date().toLocaleString("en-AU", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                }),
+                current_year: new Date().getFullYear().toString(),
+                // Very useful: allows user to hit "reply" and email goes back to customer
+                reply_to: formData.email.trim(),
             };
 
-            const success = saveWarrantyClaim(payload);
+            // 4. Send email via EmailJS
+            const response = await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                templateParams,
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+            );
 
-            if (success) {
+            // EmailJS returns status 200 on success
+            if (response.status === 200 && response.text === "OK") {
+                toast.success("Warranty claim submitted successfully!");
+
+                // Show success modal
                 setShowSuccess(true);
+
+                // Reset form completely
                 setFormData({
                     firstName: "",
                     lastName: "",
@@ -151,12 +213,18 @@ export default function Warranty() {
                     issueType: "claim",
                 });
                 setFiles([]);
+                setCountryCode("+61");
             } else {
-                toast.error("Something went wrong. Please try again.");
+                throw new Error(`EmailJS error - status: ${response.status}`);
             }
-        } catch (error) {
-            console.error("Upload error:", error);
-            toast.error("Failed to upload images. Please try again.");
+        } catch (error: any) {
+            console.error("Warranty claim submission failed:", error);
+            const errorMessage =
+                error?.text ||
+                error?.message ||
+                "Failed to send claim. Please try again or contact support.";
+            toast.error(errorMessage);
+        } finally {
             setUploading(false);
         }
     };
