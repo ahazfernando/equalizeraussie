@@ -30,7 +30,7 @@ export function HeroHeader() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/header/nighttimervfeealing.png"
+          src="/homehero/homeheroimage.jpeg"
           alt="Header Background"
           fill
           className="object-cover scale-105 animate-[zoom_20s_ease-in-out_infinite_alternate]"
@@ -50,7 +50,7 @@ export function HeroHeader() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-10 text-center lg:text-left"
+            className="space-y-10 text-center lg:text-left -mt-6 lg:-mt-10"
           >
             {/* Premium Badge */}
             <motion.div
@@ -90,7 +90,7 @@ export function HeroHeader() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-gray-200 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light drop-shadow-lg"
+                className="text-gray-200 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto lg:mx-0 font-light drop-shadow-lg"
               >
                 Experience the freedom of the open road with our adventurous
                 Australian-built caravans. <span className="text-white font-medium">Quality, comfort, and adventure awaits.</span>
