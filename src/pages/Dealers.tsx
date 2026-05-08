@@ -75,7 +75,7 @@ const Dealers = () => {
                 </div>
             </section>
 
-            <section className="py-20">
+            <section className="pt-20 pb-0">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <div className="inline-block mb-6">
@@ -103,11 +103,11 @@ const Dealers = () => {
             </section>
 
             {/* Premium Features Grid Section */}
-            <section className="pt-4 pb-24 lg:pt-6 lg:pb-32 relative overflow-hidden">
+            <section className="pt-0 pb-24 lg:pt-0 lg:pb-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
 
                 <div className="container mx-auto px-4 lg:px-8 relative">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-8">
                         <span className="text-primary text-sm font-medium tracking-wider uppercase">Premium Features</span>
                         <h2 className="font-display text-4xl lg:text-6xl mt-2 text-foreground italic">What sets us apart</h2>
                     </div>

@@ -415,7 +415,7 @@ export default function Home() {
             >
               <div className="relative w-full max-w-none lg:max-w-[1400px] flex items-center">
                 <Image
-                  src="/newmodels/eq.png"
+                  src="/MODERN/EqualizerRogue.png"
                   alt="Equalizer RV Caravan"
                   width={1600}
                   height={1200}

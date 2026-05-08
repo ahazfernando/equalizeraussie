@@ -15,7 +15,7 @@ export default function Caravans() {
         {/* Image Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/header/Image_fx-3.png"
+            src="/MODERN/EqualizerRogue.png"
             alt="Find Your Perfect Caravan"
             fill
             className="object-cover"
