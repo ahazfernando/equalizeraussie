@@ -46,9 +46,9 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Get caravan image path based on model name (fallback for hero/similar)
   const getCaravanImagePath = () => {
-    if (model.name === "Cruzer") return "/newnew/NewCruzer.png";
-    if (model.name === "Rebel") return "/newnew/NewRogue.png";
-    if (model.name === "Rogue") return "/newnew/NewRebel.png";
+    if (model.name === "Cruzer") return "/cruzerimages/CruzerModelD1.png";
+    if (model.name === "Rebel") return "/rebelstudio/RebelModelD1.png";
+    if (model.name === "Rogue") return "/roguestudio/RogueModelD1C1.png";
     return `/caravan/${model.name}Caravan.png`;
   };
 
@@ -105,9 +105,9 @@ export default function RVDetail({ modelId }: RVDetailProps) {
 
   // Get similar models (exclude current model) - use new model images
   const allModels = [
-    { id: "cruzer", name: "Cruzer", image: "/newnew/NewCruzer.png", logo: "/newlogos/C white.png", price: 89990, description: "Perfect On Road Model" },
-    { id: "rebel", name: "Rebel", image: "/newnew/NewRogue.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
-    { id: "rogue", name: "Rogue", image: "/newnew/NewRebel.png", logo: "/newlogos/RO white.png", price: 159990, description: "Off Road Model" },
+    { id: "cruzer", name: "Cruzer", image: "/cruzerimages/CruzerModelD1.png", logo: "/newlogos/C white.png", price: 89990, description: "Perfect On Road Model" },
+    { id: "rebel", name: "Rebel", image: "/MODERN/REBELDISPLAYMODELD1.png", logo: "/newlogos/R.png", price: 119990, description: "Semi Offroad Model" },
+    { id: "rogue", name: "Rogue", image: "/MODERN/ROGUEDISPLAYMODELD2.png", logo: "/newlogos/RO white.png", price: 159990, description: "Off Road Model" },
   ];
   const similarModels = allModels.filter(m => m.id !== modelId);
 
@@ -178,14 +178,14 @@ export default function RVDetail({ modelId }: RVDetailProps) {
   return (
     <div className="mx-auto w-full">
       {/* Back Navigation */}
-      <div className="-mt-24 pt-24 pb-8 bg-background-secondary">
+      <div className="-mt-24 pt-24 pb-2 bg-background-secondary">
         <div className="container mx-auto px-4 lg:px-8">
           <Link href="/models" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors -mb-6 mt-6">
             <ArrowLeft className="w-4 h-4" />
             Back to Models
           </Link>
           {/* Model Logo */}
-          <div className="relative w-64 h-24 md:w-80 md:h-32 lg:w-96 lg:h-40 -mt-8">
+          <div className="relative w-64 h-20 md:w-80 md:h-24 lg:w-96 lg:h-28 -mt-6">
             <Image
               src={getLogoPath()}
               alt={`${model.name} Logo`}

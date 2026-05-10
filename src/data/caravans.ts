@@ -23,7 +23,12 @@ export const caravans: Caravan[] = [
       "Full Ensuite"
     ],
     description: "The Cruzer by Equalizer RV is the perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style",
-    images: ["/Equalizermodels/CR-D1.png", "/Equalizermodels/CR-D2.png"],
+    images: [
+      "/cruzerimages/CruzerModelD1.png",
+      "/cruzerimages/CruzerModelD2.png",
+      "/cruzerimages/CruzerModelD3.png",
+      "/cruzerimages/CruzerModelD4.png",
+    ],
     specs: [
       {
         category: "Dimensions",

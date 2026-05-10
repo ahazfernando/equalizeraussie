@@ -191,7 +191,7 @@ export default function Home() {
         {/* Image Background */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/home/benefits-bg.png"
+            src="/homehero/benefitsequal.jpeg"
             alt="Benefits Background"
             fill
             className="object-cover"
@@ -212,7 +212,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="bg-white/28 border border-white/24 backdrop-blur-[35px] rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl flex flex-col my-8"
+              className="bg-white/28 border border-white/24 backdrop-blur-[35px] rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl flex flex-col my-8 w-full max-w-lg"
             >
               {/* Header Section */}
               <div className="mb-6">
@@ -221,11 +221,11 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="inline-flex items-center gap-2 mb-3"
+                  className="inline-flex items-center mb-3"
                 >
-                  <Sparkles className="w-4 h-4 text-accent" />
-                  <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider">
                     Why Choose Us
+                    <ArrowRight className="w-3.5 h-3.5 text-accent" />
                   </span>
                 </motion.div>
 
@@ -411,15 +411,15 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative lg:absolute lg:-right-[12vw] xl:-right-[18vw] lg:top-0 lg:-translate-y-[95%] w-full lg:w-[70vw] xl:w-[65vw] flex items-center justify-center lg:justify-end"
+              className="relative lg:absolute lg:-right-[8vw] xl:-right-[12vw] lg:top-0 lg:-translate-y-[95%] w-full lg:w-[58vw] xl:w-[54vw] flex items-center justify-center lg:justify-end"
             >
-              <div className="relative w-full max-w-none lg:max-w-[1400px] flex items-center">
+              <div className="relative w-full max-w-none lg:max-w-[1100px] flex items-center">
                 <Image
                   src="/MODERN/EqualizerRogue.png"
                   alt="Equalizer RV Caravan"
                   width={1600}
                   height={1200}
-                  className="w-full h-auto object-contain drop-shadow-2xl scale-110 lg:scale-100"
+                  className="w-full h-auto object-contain drop-shadow-2xl scale-100 lg:scale-95"
                   priority
                 />
               </div>

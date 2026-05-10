@@ -11,7 +11,7 @@ export interface CaravanModel {
   price: string;
   priceValue: number;
   image: string;
-  /** Gallery images for model detail page (from public/newmodels) */
+  /** Gallery images for model detail page (paths under public/) */
   images?: string[];
   features: {
     title: string;
@@ -55,13 +55,12 @@ export const caravanModels: CaravanModel[] = [
     description: "The Cruzer by Equalizer RV is the perfect on-road model for touring in luxury! Designed to provide an unparalleled experience, combining functionality and style",
     price: "From $89,990",
     priceValue: 89990,
-    image: "/Equalizermodels/CR-D1.png",
+    image: "/cruzerimages/CruzerModelD1.png",
     images: [
-      "/Equalizermodels/CR-D1.png",
-      "/Equalizermodels/CR-D2.png",
-      "/Equalizermodels/CR-D3.png",
-      "/Equalizermodels/CR-D4.png",
-      "/Equalizermodels/CR-D5.png"
+      "/cruzerimages/CruzerModelD1.png",
+      "/cruzerimages/CruzerModelD2.png",
+      "/cruzerimages/CruzerModelD3.png",
+      "/cruzerimages/CruzerModelD4.png",
     ],
     features: [
       {
@@ -188,12 +187,12 @@ export const caravanModels: CaravanModel[] = [
     description: "This semi-offroad model is the ideal choice for those seeking to explore both on and off-road in style.",
     price: "From $119,990",
     priceValue: 119990,
-    image: "/rebelnew/RB-D1.png",
+    image: "/rebelstudio/RebelModelD1.png",
     images: [
-      "/rebelnew/RB-D1.png",
-      "/rebelnew/RB-D2.png",
-      "/rebelnew/RB-D3.png",
-      "/rebelnew/RB-D4.png"
+      "/rebelstudio/RebelModelD1.png",
+      "/rebelstudio/RebelModelD2.png",
+      "/rebelstudio/RebelModelD3.png",
+      "/rebelstudio/RebelModelD4.png"
     ],
     features: [
       {
@@ -323,12 +322,12 @@ export const caravanModels: CaravanModel[] = [
     description: "Ultimate off-road caravan designed for those that enjoy exploring locations off the beaten track.",
     price: "From $159,990",
     priceValue: 159990,
-    image: "/Rogue/RO-D1.png",
+    image: "/roguestudio/RogueModelD1C1.png",
     images: [
-      "/Rogue/RO-D1.png",
-      "/Rogue/RO-D2.png",
-      "/Rogue/RO-D3.png",
-      "/Rogue/RO-D4.png"
+      "/roguestudio/RogueModelD1C1.png",
+      "/roguestudio/RogueModelD1C2.png",
+      "/roguestudio/RogueModelD1C3.png",
+      "/roguestudio/RogueModelD1C4.png"
     ],
     features: [
       {
