@@ -21,7 +21,7 @@ export const DealerLocator = () => {
   const selectedRegionName = regions.find((r) => r.id === selectedRegion)?.name;
 
   return (
-    <section className="min-h-screen px-4 sm:px-6 lg:px-8">
+    <section className="px-4 sm:px-6 lg:px-8 pb-4">
       <div>
         <div>
           <div className="flex flex-col items-center justify-center">

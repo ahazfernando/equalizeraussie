@@ -296,7 +296,7 @@ export function Navbar() {
                             )}
                             {item.name === "Explore" && (
                               <>
-                                {/* Great Aussie Lifestyle Widget */}
+                                {/* Great Aussie Lifestyle Widget — hidden
                                 <Link
                                   href="/lifestyle"
                                   onClick={() => setOpenDropdown(null)}
@@ -323,6 +323,7 @@ export function Navbar() {
                                     </span>
                                   </div>
                                 </Link>
+                                */}
 
                                 {/* Blog Widget */}
                                 <Link
