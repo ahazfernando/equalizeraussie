@@ -42,7 +42,7 @@ const navigation = [
           name: "Cruzer",
           href: "/models/cruzer",
           logo: "/newlogos/Cruzer_New.png",
-          heroImage: "/newnew/NewCruzer.png",
+          heroImage: "/cruzerimages/CruzerM1.png",
           description: "Experience ultimate luxury and comfort on the open road with our flagship Cruzer series.",
         },
         {

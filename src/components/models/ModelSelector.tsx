@@ -12,7 +12,7 @@ const models = [
     id: "cruzer",
     name: "Cruzer",
     route: "/models/cruzer",
-    image: "/latest/CruzerNeD.png",
+    image: "/cruzerimages/CruzerM1.png",
     logo: "/newlogos/C white.png",
     description: "Perfect On Road Model",
   },
