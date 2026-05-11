@@ -21,10 +21,10 @@ export const DealerLocator = () => {
   const selectedRegionName = regions.find((r) => r.id === selectedRegion)?.name;
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 pb-4">
+    <section className="px-4 sm:px-6 lg:px-8 pb-2.5">
       <div>
         <div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center w-full">
             {/* Dealers Panel - Always visible */}
             <div className="w-full max-w-5xl">
               {/* Panel Header */}
